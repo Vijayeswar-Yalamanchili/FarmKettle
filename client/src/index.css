@@ -1,0 +1,22 @@
+/* AppNavbar */
+
+@media screen and (min-width : 768px) {
+    .navs{
+        width: 50%;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .authBtns{
+        color: white !important;
+        border: 1px solid white !important;
+    }
+    .myProfileDrpdwn{
+        width: 16rem;
+        background-color: white;
+        position: absolute;
+        top: 5.25rem;
+        right: 9rem;
+        border-radius: 10px !important;
+        border: 1px solid grey;
+    }
+}
