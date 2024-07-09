@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Container, Image, Button } from 'react-bootstrap'
-import logo from '../assets/farmKettle.png'
 import { Link, useNavigate } from 'react-router-dom'
-import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-regular-svg-icons'
+import logo from '../assets/farmKettle.png'
 
 function AppNavbar() {
 

@@ -1,4 +1,4 @@
-/* AppNavbar */
+/* AppNavbar & AppFooter*/
 
 @media screen and (min-width : 768px) {
     .navs{
@@ -8,7 +8,7 @@
     }
     .authBtns{
         color: white !important;
-        border: 1px solid white !important;
+        border: 1px solid #0E6B06 !important;
     }
     .myProfileDrpdwn{
         width: 16rem;
@@ -17,6 +17,26 @@
         top: 5.25rem;
         right: 9rem;
         border-radius: 10px !important;
-        border: 1px solid grey;
+        border: 1px solid #0E6B06;
+    }
+    .footerMenu{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 40%;
+    }
+}
+
+/* Login & Register */
+
+.frgtPwdText, .loginText{
+    color: #0E6B06;
+    text-decoration: none;
+}
+
+@media screen and (min-width : 768px){
+    .authForm{
+        width: 35%;
+        border: 1px solid #0E6B06;
     }
 }
