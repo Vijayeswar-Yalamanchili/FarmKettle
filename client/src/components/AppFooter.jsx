@@ -15,8 +15,9 @@ function AppFooter() {
                     <p onClick={()=>navigate('/')}>Home</p>
                     <p onClick={()=>navigate('/about')}>About us</p>
                     <p onClick={()=>navigate('/healthCertifications')}>Health & Certifications</p>
-                    <p onClick={()=>navigate('/contact')}>Contact us</p>
+                    <p onClick={()=>navigate('/buyProducts')}>Buy Products</p>
                 </div>
+                <div style={{fontSize : "0.85rem"}}>Reach us out at : support@farmkettle.com</div>
                 <hr />
                 <div style={{fontSize : "0.7em"}}>Copyright &copy; 2024 Vijayeswar Yalmanchili</div>
             </Container>
