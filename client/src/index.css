@@ -97,3 +97,16 @@
         align-items: center;
     }
 }
+
+/* Contactus */
+
+@media screen and (min-width : 768px){
+    .contactBlock{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .mapBlock, .contactForm{
+        width: 50%;
+    }
+}
