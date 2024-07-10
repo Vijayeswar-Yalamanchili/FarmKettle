@@ -3,6 +3,7 @@ import Register from "../pages/authentications/Register"
 import Home from "../pages/navs/Home"
 import About from "../pages/navs/About"
 import HealthCertifications from "../pages/navs/HealthCertifications"
+import Contact from "../pages/navs/Contact"
 import BuyProducts from "../pages/navs/BuyProducts"
 
 const Approutes = [
@@ -19,6 +20,11 @@ const Approutes = [
     {
         path : '/healthCertifications',
         element : <HealthCertifications/>,
+        exact : true
+    },
+    {
+        path : '/contact',
+        element : <Contact/>,
         exact : true
     },
     {

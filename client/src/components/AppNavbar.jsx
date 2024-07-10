@@ -22,6 +22,7 @@ function AppNavbar() {
                     <Link to={'/'} style={{textDecoration : "none",color : "white"}}>Home</Link>
                     <Link to={'/about'} style={{textDecoration : "none",color : "white"}}>About us</Link>
                     <Link to={'/healthCertifications'} style={{textDecoration : "none",color : "white"}}>Health & Certifications</Link>
+                    <Link to={'/contact'} style={{textDecoration : "none",color : "white"}}>Contact Us</Link>
                     <Link to={'/buyProducts'} style={{textDecoration : "none",color : "white"}}>Buy Products</Link>
                     <Button variant='none' className='authBtns' onClick={()=>handleMyProfile()}>
                         <FontAwesomeIcon icon={faUser} style={{ height : '1.5rem'}}/>
