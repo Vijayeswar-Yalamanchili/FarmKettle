@@ -7,7 +7,7 @@ function AppFooter() {
 
     let navigate = useNavigate()
     return <>
-        <div style={{backgroundColor : "#0E6B06",color : "white",height : "17rem"}}>
+        <div style={{backgroundColor : "#0E6B06",color : "white",height : "17.5rem"}}>
             <Container className='text-center py-4'>
                 <Image src={logo} width={80} height={80}/>
                 <div className='mb-3'>FARMKETTLE</div>
