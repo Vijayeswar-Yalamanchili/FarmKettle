@@ -66,3 +66,22 @@
         padding-top: 0;
     }
 }
+
+@media screen and (min-width : 768px){
+    .aboutImage{
+        width: 100%;
+        height: 300px;
+    }
+    .aboutContent{
+        display: flex;
+        flex-direction: row;
+    }
+    .aboutLeftContent, .aboutRightContent{
+        width: 50%;
+        padding: 2rem 0;
+    }
+    .aboutRightContent{
+        margin-left: 25%;
+        margin-top: 5%;
+    }
+}

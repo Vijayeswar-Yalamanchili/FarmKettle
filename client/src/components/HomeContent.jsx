@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from 'react-bootstrap'
+import { Container, Image } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBoxesPacking, faCartFlatbed, faFileLines, faGlobe, faMedal, faMobileScreenButton } from '@fortawesome/free-solid-svg-icons'
 import CarouselHome from './CarouselHome'
@@ -38,6 +38,7 @@ function HomeContent() {
 
     return <>
         <CarouselHome/>
+        <Container>
         <div className='homeTextContent'>
 
             <div className='homeTextLeftContent'>
@@ -97,6 +98,7 @@ function HomeContent() {
             </div>
 
         </div>
+        </Container>
     </>
 }
 
