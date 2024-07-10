@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Image } from 'react-bootstrap'
-import aboutImage from '../assets/aboutImage.png'
-import aboutProductImage from '../assets/aboutProductImage.png'
+import aboutImage from '../../assets/aboutImage.png'
+import aboutProductImage from '../../assets/aboutProductImage.png'
 
 function AboutContent() {
     return <>
