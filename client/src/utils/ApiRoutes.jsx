@@ -1,6 +1,6 @@
 const ApiRoutes = {
     LOGIN : {
-        path : '/login',
+        path : '/users/login',
         authenticate : false
     },
 }

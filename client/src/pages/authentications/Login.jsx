@@ -6,6 +6,8 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import AppNavbar from '../../components/AppNavbar'
 import AppFooter from '../../components/AppFooter'
+import AxiosService from '../../utils/AxiosService'
+import ApiRoutes from '../../utils/ApiRoutes'
 
 function Login() {
 
@@ -23,13 +25,15 @@ function Login() {
     onSubmit : async(values) => {
         try {
           console.log(values)
-            // let res = await AxiosService.post(`${ApiRoutes.LOGIN.path}`,values)
+          console.log(`${ApiRoutes.LOGIN.path}`)
+            let res = await AxiosService.post(`${ApiRoutes.LOGIN.path}`,values)
             // if(res.status === 200){
             //     localStorage.setItem('loginToken',res.data.loginToken)
             //     navigate('/')
             // }
         } catch (error) {
-            toast.error(error.response.data.message || error.message)
+          console.log(error.message)
+            // toast.error(error.response.data.message || error.message)
         }
     }
   })

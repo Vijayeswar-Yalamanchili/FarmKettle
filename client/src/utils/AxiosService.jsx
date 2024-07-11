@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const AxiosService = axios.create({
-    baseURL : "http://localhost:6000",
+    baseURL : "http://localhost:8000",
     // baseURL : 'https://book-a-stay.onrender.com',
     headers : {
         "Content-Type" :"application/json",
