@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faPowerOff, faRectangleList, faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import logo from '../assets/farmKettle.png'
 import AxiosService from '../utils/AxiosService'
@@ -70,12 +70,12 @@ function AppNavbar() {
                 <div className="myProfileDrpdwn list-group list-group-flush px-1">
                     <Link className="listMenu list-group-item list-group-item-action" onClick={handleLogout}>
                     <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                        <FontAwesomeIcon icon={faRightToBracket} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
+                        <FontAwesomeIcon icon={faPowerOff} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
                     </span>
                     </Link>
                     <Link to={`/myaccout`} className="listMenu list-group-item list-group-item-action">
                     <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                        <FontAwesomeIcon icon={faUserPlus} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Orders
+                        <FontAwesomeIcon icon={faRectangleList} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Orders
                     </span>
                     </Link>
                 </div> 
