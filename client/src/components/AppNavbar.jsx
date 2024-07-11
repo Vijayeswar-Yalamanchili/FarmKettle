@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faPowerOff, faRectangleList, faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faPowerOff, faRectangleList, faRightToBracket, faUserGear, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import logo from '../assets/farmKettle.png'
 import AxiosService from '../utils/AxiosService'
@@ -69,14 +69,19 @@ function AppNavbar() {
             getLoginToken ?
                 <div className="myProfileDrpdwn list-group list-group-flush px-1">
                     <Link className="listMenu list-group-item list-group-item-action" onClick={handleLogout}>
-                    <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                        <FontAwesomeIcon icon={faPowerOff} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
-                    </span>
+                        <span className='d-flex align-items-center' style={{gap:"15px"}}>
+                            <FontAwesomeIcon icon={faPowerOff} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
+                        </span>
                     </Link>
-                    <Link to={`/myaccout`} className="listMenu list-group-item list-group-item-action">
-                    <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                        <FontAwesomeIcon icon={faRectangleList} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Orders
-                    </span>
+                    <Link to={`/myorders`} className="listMenu list-group-item list-group-item-action">
+                        <span className='d-flex align-items-center' style={{gap:"15px"}}>
+                            <FontAwesomeIcon icon={faRectangleList} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Orders
+                        </span>
+                    </Link>
+                    <Link to={`/myaccount`} className="listMenu list-group-item list-group-item-action">
+                        <span className='d-flex align-items-center' style={{gap:"15px"}}>
+                            <FontAwesomeIcon icon={faUserGear} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Account
+                        </span>
                     </Link>
                 </div> 
                 :
