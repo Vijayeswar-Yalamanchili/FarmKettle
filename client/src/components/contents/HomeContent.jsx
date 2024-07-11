@@ -86,12 +86,10 @@ function HomeContent() {
                 <div style={{width : "80%"}}>
                 {
                     productionCards.map((e,i) => {
-                        return <>
-                            <div className='d-flex justify-content-start align-items-center p-2 mb-5' style={{backgroundColor : '#0E6B06', color : "white"}}>
-                                <FontAwesomeIcon icon={e.icon} className='mx-3'/>
-                                <h4 className='mb-0 ms-3'>{e.text}</h4>
-                            </div>
-                        </>
+                        return <div className='d-flex justify-content-start align-items-center p-2 mb-5' style={{backgroundColor : '#0E6B06', color : "white"}} key={i}>
+                            <FontAwesomeIcon icon={e.icon} className='mx-3'/>
+                            <h4 className='mb-0 ms-3'>{e.text}</h4>
+                        </div>
                     })
                 }
                 </div>
