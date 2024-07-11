@@ -1,15 +1,21 @@
 import React, { useContext, useState } from 'react'
-import { Container, Image, Button, Badge } from 'react-bootstrap'
+import { Container, Image, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import logo from '../assets/farmKettle.png'
+import AxiosService from '../utils/AxiosService'
+import ApiRoutes from '../utils/ApiRoutes'
+import { useLogout } from '../hooks/UseLogout'
 import { CartDataContext } from '../contextApi/CartDataComponent'
 
 function AppNavbar() {
 
     const navigate = useNavigate()
+    let logout = useLogout()
     let { cart} = useContext(CartDataContext)
 
     const [myProfile, setMyProfile] = useState(false)
@@ -17,9 +23,20 @@ function AppNavbar() {
     
     const handleMyProfile = () => setMyProfile(!myProfile)
 
-    // const handleAuth = () => {
-    //     get
-    // } 
+    const handleLogout = async() => {
+        try {     
+          const decodedToken = jwtDecode(getLoginToken)
+          const id = decodedToken.id 
+          let res = await AxiosService.put(`${ApiRoutes.LOGOUT.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
+          if(res.status === 200){
+            logout()
+          }
+        } catch (error) {
+            console.log(error)
+          toast.error(error.response.data.message || error.message)
+        }
+    }
+
     return <>
         <div style={{backgroundColor : "#0E6B06", height : "5rem"}}>
             <Container className='d-flex justify-content-between align-items-center'>
@@ -51,7 +68,7 @@ function AppNavbar() {
         myProfile ? 
             getLoginToken ?
                 <div className="myProfileDrpdwn list-group list-group-flush px-1">
-                    <Link to={'/logout'} className="listMenu list-group-item list-group-item-action">
+                    <Link className="listMenu list-group-item list-group-item-action" onClick={handleLogout}>
                     <span className='d-flex align-items-center' style={{gap:"15px"}}>
                         <FontAwesomeIcon icon={faRightToBracket} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
                     </span>

@@ -25,12 +25,11 @@ function Login() {
     onSubmit : async(values) => {
         try {
           console.log(values)
-          console.log(`${ApiRoutes.LOGIN.path}`)
-            let res = await AxiosService.post(`${ApiRoutes.LOGIN.path}`,values)
-            // if(res.status === 200){
-            //     localStorage.setItem('loginToken',res.data.loginToken)
-            //     navigate('/')
-            // }
+          let res = await AxiosService.post(`${ApiRoutes.LOGIN.path}`,values)
+          if(res.status === 200){
+              localStorage.setItem('loginToken',res.data.loginToken)
+              navigate('/')
+          }
         } catch (error) {
           console.log(error.message)
             // toast.error(error.response.data.message || error.message)

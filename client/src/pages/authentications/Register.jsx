@@ -6,6 +6,8 @@ import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 import AppNavbar from '../../components/AppNavbar'
 import AppFooter from '../../components/AppFooter'
+import AxiosService from '../../utils/AxiosService'
+import ApiRoutes from '../../utils/ApiRoutes'
 
 function Register() {
 
@@ -29,16 +31,15 @@ function Register() {
       confirmPassword:Yup.string().required('Confirm Password is required').matches(/^[a-zA-Z0-9!@#$%^&*]{8,15}$/,'Confirm Password should match Password')
     }),
     onSubmit : async(values) => {
-        try { 
-          console.log(values)       
-            // if(values.password === values.confirmPassword){
-            //   let res = await AxiosService.post(`${ApiRoutes.REGISTER.path}`,values)
-            //   if(res.status === 200){
-            //     navigate('/login')
-            //   }     
-            // }else{
-            //   toast.error("Passwords doesnt match! Please enter the same passwords")
-            // }
+        try {      
+          if(values.password === values.confirmPassword){
+            let res = await AxiosService.post(`${ApiRoutes.REGISTER.path}`,values)
+            if(res.status === 200){
+              navigate('/login')
+            }     
+          }else{
+            toast.error("Passwords doesnt match! Please enter the same passwords")
+          }
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
