@@ -40,14 +40,15 @@ function ContactContent() {
   return <>
     <Container className='contactBlock'>
       <Col md xs={12} className='contactForm p-5'>
+        <h4 className='text-center'>Contact Us</h4>
         <Form onSubmit={formik.handleSubmit} className='contactQueryForm mx-auto rounded-5'>
           
-          <Form.Group className="mb-4">
+          <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
             <Form.Control type="text" placeholder="Enter Name" id='name' name='name' onChange={formik.handleChange} value={formik.values.name} onBlur={formik.handleBlur}/>
             {formik.touched.name && formik.errors.name ? (<div className='authErrorText'>{formik.errors.name}</div>) : null}
           </Form.Group>
-          <Form.Group className="mb-4">
+          <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control type="email" placeholder="Enter email" id='email' name='email' onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur}/>
             {formik.touched.email && formik.errors.email ? (<div className='authErrorText'>{formik.errors.email}</div>) : null}
@@ -62,12 +63,12 @@ function ContactContent() {
             <Form.Control as="textarea" rows={3} placeholder='Enter Query description' name='description' onChange={formik.handleChange} value={formik.values.description} onBlur={formik.handleBlur}/>
             {formik.touched.description && formik.errors.description ? (<div className='authErrorText'>{formik.errors.description}</div>) : null}
           </Form.Group>
-          <div className="d-grid mb-3"><Button variant='primary' className='formBtns' type="submit">Send Query</Button></div>
+          <div className="d-grid"><Button variant='primary' className='formBtns' type="submit">Send Query</Button></div>
         </Form>
       </Col>
 
       <div className='mapBlock p-5'>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62575.05133734738!2d76.65222171990958!3d11.411849727066063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8bd84b5f3d78d%3A0x179bdb14c93e3f42!2sOoty%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1720637461973!5m2!1sen!2sin" width="600" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowFullScreen></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62575.05133734738!2d76.65222171990958!3d11.411849727066063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8bd84b5f3d78d%3A0x179bdb14c93e3f42!2sOoty%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1720637461973!5m2!1sen!2sin" width="600" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowFullScreen></iframe>
       </div>
     </Container>
   </>
