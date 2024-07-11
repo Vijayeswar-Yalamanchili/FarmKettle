@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
-import { Container, Image, Button } from 'react-bootstrap'
+import React, { useContext, useState } from 'react'
+import { Container, Image, Button, Badge } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import logo from '../assets/farmKettle.png'
+import { CartDataContext } from '../contextApi/CartDataComponent'
 
 function AppNavbar() {
 
     const navigate = useNavigate()
+    let { cart} = useContext(CartDataContext)
+
     const [myProfile, setMyProfile] = useState(false)
     const getLoginToken = localStorage.getItem('loginToken')
     
@@ -24,6 +27,15 @@ function AppNavbar() {
                     <Link to={'/healthCertifications'} style={{textDecoration : "none",color : "white"}}>Health & Certifications</Link>
                     <Link to={'/contact'} style={{textDecoration : "none",color : "white"}}>Contact Us</Link>
                     <Link to={'/buyProducts'} style={{textDecoration : "none",color : "white"}}>Buy Products</Link>
+                    {
+                        !getLoginToken ? 
+                        <Button variant='none' className='authBtns cartBtn' onClick={()=>handleCartButton()}>
+                            <FontAwesomeIcon icon={faCartShopping} style={{ height : '1.5rem'}}/>
+                            <div className='cartBadge' style={{fontSize :"1.2rem"}}>{cart}</div>
+                        </Button>
+                        :
+                        null
+                    }
                     <Button variant='none' className='authBtns' onClick={()=>handleMyProfile()}>
                         <FontAwesomeIcon icon={faUser} style={{ height : '1.5rem'}}/>
                     </Button>

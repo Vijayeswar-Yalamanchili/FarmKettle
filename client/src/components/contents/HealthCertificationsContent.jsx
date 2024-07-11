@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Image } from 'react-bootstrap'
-import hcProductImage from '../../assets/h&cProductImage.png'
+import milkTeaBlackteaCombo from '../../assets/milkTeaBlackteaCombo.png'
 import certificationProductImage from '../../assets/certificationProductImage.png'
 import CarouselHealthCertification from '../carousels/CarouselHealthCertification'
 
@@ -12,7 +12,7 @@ function HealthCertificationsContent() {
         <Container>
 
             <div className='healthBlock'>
-                <Image src={hcProductImage} height={400}/>
+                <Image src={milkTeaBlackteaCombo} height={400}/>
                 <div>
                     <h4>HEALTH SECRETS OF ORGANIC TEA</h4>
                     <p>Discover the numerous health benefits of our naturally extracted teas. Rich in antioxidants, they help combat free radicals, promoting overall well-being. Our teas support a healthy immune system, enhancing your body's natural defenses. With natural ingredients, they aid in digestion and improve gut health. Regular consumption can help reduce stress and anxiety, contributing to mental clarity. Our teas also assist in weight management by boosting metabolism. Enjoy a cup daily to hydrate and rejuvenate your skin from within. Embrace the natural path to a healthier you with every sip.</p>

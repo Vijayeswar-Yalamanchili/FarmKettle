@@ -15,7 +15,7 @@
         background-color: white;
         position: absolute;
         top: 5.25rem;
-        right: 9rem;
+        right: 20rem;
         border-radius: 10px !important;
         border: 1px solid #0E6B06;
     }
@@ -24,6 +24,13 @@
         flex-direction: row;
         justify-content: space-around;
         width: 40%;
+    }
+    .cartBtn{
+        border: 1px solid white !important;
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        width: 4.5rem;
     }
 }
 
@@ -108,5 +115,15 @@
     }
     .mapBlock, .contactForm{
         width: 50%;
+    }
+}
+
+/*Buy Produts */
+
+@media screen and (min-width : 768px){
+    .productCardBody {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center !important;
     }
 }
