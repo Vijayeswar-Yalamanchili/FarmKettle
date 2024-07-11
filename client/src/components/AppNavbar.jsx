@@ -53,12 +53,12 @@ function AppNavbar() {
                 <div className="myProfileDrpdwn list-group list-group-flush px-1">
                     <Link to={'/logout'} className="listMenu list-group-item list-group-item-action">
                     <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                        <FontAwesomeIcon icon={faRightToBracket} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Login
+                        <FontAwesomeIcon icon={faRightToBracket} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
                     </span>
                     </Link>
                     <Link to={`/myaccout`} className="listMenu list-group-item list-group-item-action">
                     <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                        <FontAwesomeIcon icon={faUserPlus} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Register
+                        <FontAwesomeIcon icon={faUserPlus} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Orders
                     </span>
                     </Link>
                 </div> 
