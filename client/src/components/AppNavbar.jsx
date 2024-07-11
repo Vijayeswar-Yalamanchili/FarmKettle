@@ -17,6 +17,9 @@ function AppNavbar() {
     
     const handleMyProfile = () => setMyProfile(!myProfile)
 
+    // const handleAuth = () => {
+    //     get
+    // } 
     return <>
         <div style={{backgroundColor : "#0E6B06", height : "5rem"}}>
             <Container className='d-flex justify-content-between align-items-center'>
@@ -26,9 +29,9 @@ function AppNavbar() {
                     <Link to={'/about'} style={{textDecoration : "none",color : "white"}}>About us</Link>
                     <Link to={'/healthCertifications'} style={{textDecoration : "none",color : "white"}}>Health & Certifications</Link>
                     <Link to={'/contact'} style={{textDecoration : "none",color : "white"}}>Contact Us</Link>
-                    <Link to={'/buyProducts'} style={{textDecoration : "none",color : "white"}}>Buy Products</Link>
+                    <Link style={{textDecoration : "none",color : "white"}} onClick={() => getLoginToken ? navigate('/buyProducts') : navigate('/login')}>Buy Products</Link>
                     {
-                        !getLoginToken ? 
+                        getLoginToken ? 
                         <Button variant='none' className='authBtns cartBtn' onClick={()=>handleCartButton()}>
                             <FontAwesomeIcon icon={faCartShopping} style={{ height : '1.5rem'}}/>
                             <div className='cartBadge' style={{fontSize :"1.2rem"}}>{cart}</div>
