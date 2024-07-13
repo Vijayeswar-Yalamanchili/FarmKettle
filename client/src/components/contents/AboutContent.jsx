@@ -23,7 +23,7 @@ function AboutContent() {
                 </div>
 
                 <div className='aboutRightContent'>
-                    <Image src={aboutProductImage} height={400}/>
+                    <Image className='aboutPrdtImage' src={aboutProductImage} height={400}/>
                 </div>
             </div>
         </Container>
