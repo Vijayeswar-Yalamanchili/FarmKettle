@@ -62,7 +62,7 @@ function HomeContent() {
                     <h5>How to make</h5>
                     <p>A HEALTHY CUP OF FARMKETTLE TEA</p>
                     <p style={{color : '#0E6B06'}}>3 Steps to an inviting cup of Farmkettle Tea</p>
-                    <div className='d-flex justify-content-around' >
+                    <div className='tipsBlock' >
                         <div className='d-flex flex-column'>
                             <Image className='tipsImage' src={teaMakingStep1}/>
                             <p className='text-center' style={{width : '7rem', fontSize : "0.75rem"}}>Pour Hot Milk / Water at 90&deg; in cup</p>
@@ -78,11 +78,10 @@ function HomeContent() {
                     </div>
                     <p style={{color : '#0E6B06'}}>Tips : Sweeten with Honey for better health</p>
                 </div>
-
             </div>
 
             <div className='homeTextRightContent'>
-                <div style={{color : "#0E6B06"}} className='mb-5'>FARMKETTLE TEA PRODUCTION</div>
+                <div style={{color : "#0E6B06"}} className='mb-3'><b>FARMKETTLE TEA PRODUCTION</b></div>
                 <div>
                 {
                     productionCards.map((e,i) => {

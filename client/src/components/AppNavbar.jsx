@@ -68,75 +68,74 @@ function AppNavbar() {
             </div>               
         </div>
 
-        <div>
-      {
-        myProfile ? 
-            getLoginToken ?
-                <div className="myProfileDrpdwn list-group list-group-flush px-1">
-                    <Link to={`/myaccount`} className="listMenu list-group-item list-group-item-action">
+        {
+            myProfile ? 
+                getLoginToken ?
+                    <div className="myProfileDrpdwn list-group list-group-flush px-1">
+                        <Link to={`/myaccount`} className="listMenu list-group-item list-group-item-action">
+                            <span className='d-flex align-items-center' style={{gap:"15px"}}>
+                                <FontAwesomeIcon icon={faUserGear} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Account
+                            </span>
+                        </Link>
+                        <Link to={`/myorders`} className="listMenu list-group-item list-group-item-action">
+                            <span className='d-flex align-items-center' style={{gap:"15px"}}>
+                                <FontAwesomeIcon icon={faRectangleList} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Orders
+                            </span>
+                        </Link>
+                        <Link className="listMenu list-group-item list-group-item-action" onClick={handleLogout}>
+                            <span className='d-flex align-items-center' style={{gap:"15px"}}>
+                                <FontAwesomeIcon icon={faPowerOff} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
+                            </span>
+                        </Link>
+                    </div> 
+                    :
+                    <div className="myProfileDrpdwn list-group list-group-flush px-1">
+                        <Link to={'/login'} className="listMenu list-group-item list-group-item-action">
                         <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                            <FontAwesomeIcon icon={faUserGear} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Account
+                            <FontAwesomeIcon icon={faRightToBracket} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Login
+                        </span>
+                        </Link>
+                        <Link to={`/register`} className="listMenu list-group-item list-group-item-action">
+                        <span className='d-flex align-items-center' style={{gap:"15px"}}>
+                            <FontAwesomeIcon icon={faUserPlus} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Register
+                        </span>
+                        </Link>
+                    </div> 
+            : null
+        }
+
+        {
+            respMenu ?
+                <div className="myRespMenuDrpdwn list-group list-group-flush px-1">
+                    <Link to={`/`} className="listMenu list-group-item list-group-item-action">
+                        <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                            <FontAwesomeIcon icon={faHouse} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Home
                         </span>
                     </Link>
-                    <Link to={`/myorders`} className="listMenu list-group-item list-group-item-action">
-                        <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                            <FontAwesomeIcon icon={faRectangleList} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Orders
+                    <Link to={`/about`} className="listMenu list-group-item list-group-item-action">
+                        <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                            <FontAwesomeIcon icon={faAddressCard} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>About Us
                         </span>
                     </Link>
-                    <Link className="listMenu list-group-item list-group-item-action" onClick={handleLogout}>
-                        <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                            <FontAwesomeIcon icon={faPowerOff} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
+                    <Link to={`/healthCertifications`} className="listMenu list-group-item list-group-item-action">
+                        <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                            <FontAwesomeIcon icon={faHeartPulse} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Health & Certifications
+                        </span>
+                    </Link>
+                    <Link to={`/contact`} className="listMenu list-group-item list-group-item-action">
+                        <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                            <FontAwesomeIcon icon={faPhone} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Contact Us
+                        </span>
+                    </Link>
+                    <Link className="listMenu list-group-item list-group-item-action" onClick={() => getLoginToken ? navigate('/buyProducts') : navigate('/login')}>
+                        <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                            <FontAwesomeIcon icon={faBasketShopping} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Buy Products
                         </span>
                     </Link>
                 </div> 
                 :
-                <div className="myProfileDrpdwn list-group list-group-flush px-1">
-                    <Link to={'/login'} className="listMenu list-group-item list-group-item-action">
-                    <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                        <FontAwesomeIcon icon={faRightToBracket} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Login
-                    </span>
-                    </Link>
-                    <Link to={`/register`} className="listMenu list-group-item list-group-item-action">
-                    <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                        <FontAwesomeIcon icon={faUserPlus} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Register
-                    </span>
-                    </Link>
-                </div> 
-          : null
-      }
-
-      {
-        respMenu ?
-        <div className="myRespMenuDrpdwn list-group list-group-flush px-1">
-            <Link to={`/`} className="listMenu list-group-item list-group-item-action">
-                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
-                    <FontAwesomeIcon icon={faHouse} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Home
-                </span>
-            </Link>
-            <Link to={`/about`} className="listMenu list-group-item list-group-item-action">
-                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
-                    <FontAwesomeIcon icon={faAddressCard} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>About Us
-                </span>
-            </Link>
-            <Link to={`/healthCertifications`} className="listMenu list-group-item list-group-item-action">
-                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
-                    <FontAwesomeIcon icon={faHeartPulse} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Health & Certifications
-                </span>
-            </Link>
-            <Link to={`/contact`} className="listMenu list-group-item list-group-item-action">
-                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
-                    <FontAwesomeIcon icon={faPhone} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Contact Us
-                </span>
-            </Link>
-            <Link to={`/buyProducts`} className="listMenu list-group-item list-group-item-action">
-                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
-                    <FontAwesomeIcon icon={faBasketShopping} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Buy Products
-                </span>
-            </Link>
-        </div> 
-        :null
-      }
-    </div>
+                null
+        }
     </>
 }
 

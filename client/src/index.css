@@ -8,7 +8,7 @@
 .myRespMenuDrpdwn, .myProfileDrpdwn{
     width: 15rem;
     background-color: white;
-    z-index: 2;
+    z-index: 5;
     border-radius: 10px !important;
     border: 1px solid #0E6B06;
 }
@@ -102,6 +102,21 @@
 
 .processStepBlock{
     width: 18rem;
+}
+
+.tipsBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+@media screen and (max-width : 576px){
+    .tipsBlock{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media screen and (max-width : 768px){
@@ -227,7 +242,7 @@
 .healthBlock, .certificationBlock{
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .healthBlock{
@@ -236,6 +251,13 @@
 
 .certificationBlock{
     padding-bottom: 2rem;
+}
+
+@media screen and (max-width : 576px){
+    .hcComboImg, .hcCertifyImg{
+        width: 200px;
+        height: 200px;
+    }
 }
 
 @media screen and (min-width : 991px){
