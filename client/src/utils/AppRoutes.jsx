@@ -5,6 +5,8 @@ import About from "../pages/navs/About"
 import HealthCertifications from "../pages/navs/HealthCertifications"
 import Contact from "../pages/navs/Contact"
 import BuyProducts from "../pages/navs/BuyProducts"
+import MyAccount from "../pages/navs/MyAccount"
+import MyOrders from "../pages/navs/MyOrders"
 
 const Approutes = [
     {
@@ -40,6 +42,16 @@ const Approutes = [
     {
         path : '/register',
         element : <Register/>,
+        exact : true
+    },
+    {
+        path : '/myaccount',
+        element : <MyAccount/>,
+        exact : true
+    },
+    {
+        path : '/myorders',
+        element : <MyOrders/>,
         exact : true
     },
     
