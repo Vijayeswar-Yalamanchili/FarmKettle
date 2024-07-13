@@ -64,16 +64,16 @@ function HomeContent() {
                     <p style={{color : '#0E6B06'}}>3 Steps to an inviting cup of Farmkettle Tea</p>
                     <div className='d-flex justify-content-around' >
                         <div className='d-flex flex-column'>
-                            <Image src={teaMakingStep1} width={150} height={150}/>
-                            <p className='text-center' style={{width : '150px'}}>Pour Hot Milk / Water at 90&deg; in cup</p>
+                            <Image className='tipsImage' src={teaMakingStep1}/>
+                            <p className='text-center' style={{width : '7rem', fontSize : "0.75rem"}}>Pour Hot Milk / Water at 90&deg; in cup</p>
                         </div>
                         <div className='d-flex flex-column'>
-                            <Image src={teaMakingStep2} width={150} height={150}/>
-                            <p className='text-center' style={{width : '150px'}}>Dip FarmKettle Tea bag for 2 minutes</p>
+                            <Image className='tipsImage' src={teaMakingStep2}/>
+                            <p className='text-center' style={{width : '7rem', fontSize : "0.75rem"}}>Dip FarmKettle Tea bag for 2 minutes</p>
                         </div>
                         <div className='d-flex flex-column'>
-                            <Image src={teaMakingStep3} width={150} height={150}/>
-                            <p className='text-center' style={{width : '150px'}}>Your healthy cup of tea is ready</p>
+                            <Image className='tipsImage' src={teaMakingStep3}/>
+                            <p className='text-center' style={{width : '7rem', fontSize : "0.75rem"}}>Your healthy cup of tea is ready</p>
                         </div>
                     </div>
                     <p style={{color : '#0E6B06'}}>Tips : Sweeten with Honey for better health</p>
@@ -82,13 +82,13 @@ function HomeContent() {
             </div>
 
             <div className='homeTextRightContent'>
-                <h4 style={{color : "#0E6B06"}} className='mb-5'>FARMKETTLE TEA PRODUCTION</h4>
-                <div style={{width : "80%"}}>
+                <div style={{color : "#0E6B06"}} className='mb-5'>FARMKETTLE TEA PRODUCTION</div>
+                <div>
                 {
                     productionCards.map((e,i) => {
-                        return <div className='d-flex justify-content-start align-items-center p-2 mb-5' style={{backgroundColor : '#0E6B06', color : "white"}} key={i}>
+                        return <div className='processStepBlock d-flex justify-content-start align-items-center p-2 mb-5' style={{backgroundColor : '#0E6B06', color : "white"}} key={i}>
                             <FontAwesomeIcon icon={e.icon} className='mx-3'/>
-                            <h4 className='mb-0 ms-3'>{e.text}</h4>
+                            <div className='mb-0 ms-3'>{e.text}</div>
                         </div>
                     })
                 }

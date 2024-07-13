@@ -87,11 +87,32 @@
 
 /* Home */
 
-@media screen and (min-width : 768px){
-    .carouselImage{
-        width: 100%;
-        height: 25rem;
+.carouselImage{
+    width: 100%;
+    height: 23rem;
+    object-fit: contain;
+}
+
+.processStepBlock{
+    width: 18rem;
+}
+
+@media screen and (max-width : 768px){
+    .homeTextContent{
+        display: flex;
+        flex-direction: column !important;
+        justify-content: space-around;
+        align-items: center;
     }
+    .homeTextRightContent{
+        width: 100% !important;
+    }
+    .tipsImage{
+        width: 7rem;
+    }
+}
+
+@media screen and (min-width : 991px){
     .homeTextContent{
         display: flex;
         flex-direction: row;
@@ -100,16 +121,42 @@
     }
     .homeTextLeftContent,.homeTextRightContent{
         width: 50%;
-        padding: 3rem;
     }
     .homeTextRightContent{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-top: 0;
+    }
+    .tipsImage{
+        width: 11rem;
     }
 }
+
+@media screen and (max-width : 991px){
+    .carouselImage{
+        height: 10rem;
+    }
+    .homeTextContent{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .homeTextLeftContent,.homeTextRightContent{
+        width: 100%;
+    }
+    .homeTextRightContent{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .tipsImage{
+        width: 7rem;
+    }    
+}
+
 
 /* About Us */
 
