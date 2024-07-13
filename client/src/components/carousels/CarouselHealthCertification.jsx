@@ -8,10 +8,10 @@ function CarouselHealthCertification() {
     return <>
         <Carousel>
             <Carousel.Item interval={2000}>
-                <Image className='carouselImage' src={CarouselHealth}/>
+                <Image className='carouselHCImage' src={CarouselHealth}/>
             </Carousel.Item>
             <Carousel.Item interval={2000}>
-                <Image className='carouselImage' src={CarouselCertification}/>
+                <Image className='carouselHCImage' src={CarouselCertification}/>
             </Carousel.Item>
         </Carousel>
     </>
