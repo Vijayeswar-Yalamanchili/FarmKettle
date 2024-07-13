@@ -1,37 +1,73 @@
 /* AppNavbar & AppFooter*/
 
-@media screen and (min-width : 768px) {
-    .navs{
-        width: 50%;
-        justify-content: space-around;
-        align-items: center;
+.authBtns{
+    color: white !important;
+    border: 1px solid #0E6B06 !important;
+}
+
+.myRespMenuDrpdwn, .myProfileDrpdwn{
+    width: 15rem;
+    background-color: white;
+    z-index: 2;
+    border-radius: 10px !important;
+    border: 1px solid #0E6B06;
+}
+
+.cartBtn{
+    border: 1px solid white !important;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    width: 4.5rem;
+}
+
+.footerMenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 40%;
+}
+
+@media screen and (max-width : 991px) {
+    .navTab{
+        display: none;
     }
-    .authBtns{
-        color: white !important;
-        border: 1px solid #0E6B06 !important;
+    .respBtn{
+        display: block;
     }
     .myProfileDrpdwn{
-        width: 16rem;
-        background-color: white;
         position: absolute;
-        top: 5.25rem;
-        right: 20rem;
-        z-index: 2;
-        border-radius: 10px !important;
-        border: 1px solid #0E6B06;
+        top: 4.25rem;
+        right: 5.5rem;
     }
-    .footerMenu{
-        display: flex;
-        flex-direction: row;
+    .myRespMenuDrpdwn{
+        position: absolute;
+        top: 4.25rem;
+        right: 2.5rem;
+    }
+}
+
+@media screen and (min-width : 992px) {
+    .navs{
+        width: 65%;
         justify-content: space-around;
-        width: 40%;
-    }
-    .cartBtn{
-        border: 1px solid white !important;
-        display: flex !important;
-        justify-content: space-between;
         align-items: center;
-        width: 4.5rem;
+    }
+    .respBtn{
+        display: none !important;
+    }
+    .myProfileDrpdwn{
+        position: absolute;
+        top: 4.25rem;
+        right: 2rem;
+    }
+}
+
+@media screen and (min-width : 1200px) {
+    .navs{
+        width: 55%;
+        justify-content: space-around;
+        align-items: center;
     }
 }
 

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faPowerOff, faRectangleList, faRightToBracket, faUserGear, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard, faBars, faBasketShopping, faCartShopping, faHeartPulse, faHouse, faList, faPhone, faPowerOff, faRectangleList, faRightToBracket, faUserGear, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import logo from '../assets/farmKettle.png'
 import AxiosService from '../utils/AxiosService'
@@ -16,12 +16,14 @@ function AppNavbar() {
 
     const navigate = useNavigate()
     let logout = useLogout()
-    let { cart} = useContext(CartDataContext)
+    let { cart } = useContext(CartDataContext)
 
     const [myProfile, setMyProfile] = useState(false)
+    const [respMenu, setRespMenu] = useState(false)
     const getLoginToken = localStorage.getItem('loginToken')
     
     const handleMyProfile = () => setMyProfile(!myProfile)
+    const handleRespMenu = () => setRespMenu(!respMenu)
 
     const handleLogout = async() => {
         try {     
@@ -39,14 +41,14 @@ function AppNavbar() {
 
     return <>
         <div style={{backgroundColor : "#0E6B06", height : "5rem"}}>
-            <Container className='d-flex justify-content-between align-items-center'>
+            <div className='d-flex justify-content-between align-items-center px-3'>
                 <Image src={logo} height={80} onClick={()=> navigate('/')}/>
                 <div className='navs d-flex'>
-                    <Link to={'/'} style={{textDecoration : "none",color : "white"}}>Home</Link>
-                    <Link to={'/about'} style={{textDecoration : "none",color : "white"}}>About us</Link>
-                    <Link to={'/healthCertifications'} style={{textDecoration : "none",color : "white"}}>Health & Certifications</Link>
-                    <Link to={'/contact'} style={{textDecoration : "none",color : "white"}}>Contact Us</Link>
-                    <Link style={{textDecoration : "none",color : "white"}} onClick={() => getLoginToken ? navigate('/buyProducts') : navigate('/login')}>Buy Products</Link>
+                    <Link className='navTab' to={'/'} style={{textDecoration : "none",color : "white"}}>Home</Link>
+                    <Link className='navTab' to={'/about'} style={{textDecoration : "none",color : "white"}}>About us</Link>
+                    <Link className='navTab' to={'/healthCertifications'} style={{textDecoration : "none",color : "white"}}>Health & Certifications</Link>
+                    <Link className='navTab' to={'/contact'} style={{textDecoration : "none",color : "white"}}>Contact Us</Link>
+                    <Link className='navTab' style={{textDecoration : "none",color : "white"}} onClick={() => getLoginToken ? navigate('/buyProducts') : navigate('/login')}>Buy Products</Link>
                     {
                         getLoginToken ? 
                         <Button variant='none' className='authBtns cartBtn' onClick={()=>handleCartButton()}>
@@ -59,8 +61,11 @@ function AppNavbar() {
                     <Button variant='none' className='authBtns' onClick={()=>handleMyProfile()}>
                         <FontAwesomeIcon icon={faUser} style={{ height : '1.5rem'}}/>
                     </Button>
+                    <Button variant='none' className='authBtns respBtn' onClick={()=>handleRespMenu()}>
+                        <FontAwesomeIcon icon={faBars} style={{ height : '1.5rem'}}/>
+                    </Button>
                 </div>
-            </Container>               
+            </div>               
         </div>
 
         <div>
@@ -68,9 +73,9 @@ function AppNavbar() {
         myProfile ? 
             getLoginToken ?
                 <div className="myProfileDrpdwn list-group list-group-flush px-1">
-                    <Link className="listMenu list-group-item list-group-item-action" onClick={handleLogout}>
+                    <Link to={`/myaccount`} className="listMenu list-group-item list-group-item-action">
                         <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                            <FontAwesomeIcon icon={faPowerOff} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
+                            <FontAwesomeIcon icon={faUserGear} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Account
                         </span>
                     </Link>
                     <Link to={`/myorders`} className="listMenu list-group-item list-group-item-action">
@@ -78,9 +83,9 @@ function AppNavbar() {
                             <FontAwesomeIcon icon={faRectangleList} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Orders
                         </span>
                     </Link>
-                    <Link to={`/myaccount`} className="listMenu list-group-item list-group-item-action">
+                    <Link className="listMenu list-group-item list-group-item-action" onClick={handleLogout}>
                         <span className='d-flex align-items-center' style={{gap:"15px"}}>
-                            <FontAwesomeIcon icon={faUserGear} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Account
+                            <FontAwesomeIcon icon={faPowerOff} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Logout
                         </span>
                     </Link>
                 </div> 
@@ -98,6 +103,38 @@ function AppNavbar() {
                     </Link>
                 </div> 
           : null
+      }
+
+      {
+        respMenu ?
+        <div className="myRespMenuDrpdwn list-group list-group-flush px-1">
+            <Link to={`/`} className="listMenu list-group-item list-group-item-action">
+                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                    <FontAwesomeIcon icon={faHouse} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Home
+                </span>
+            </Link>
+            <Link to={`/about`} className="listMenu list-group-item list-group-item-action">
+                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                    <FontAwesomeIcon icon={faAddressCard} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>About Us
+                </span>
+            </Link>
+            <Link to={`/healthCertifications`} className="listMenu list-group-item list-group-item-action">
+                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                    <FontAwesomeIcon icon={faHeartPulse} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Health & Certifications
+                </span>
+            </Link>
+            <Link to={`/contact`} className="listMenu list-group-item list-group-item-action">
+                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                    <FontAwesomeIcon icon={faPhone} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Contact Us
+                </span>
+            </Link>
+            <Link to={`/buyProducts`} className="listMenu list-group-item list-group-item-action">
+                <span className='d-flex align-items-center justify-content-start' style={{gap:"15px"}}>
+                    <FontAwesomeIcon icon={faBasketShopping} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>Buy Products
+                </span>
+            </Link>
+        </div> 
+        :null
       }
     </div>
     </>
