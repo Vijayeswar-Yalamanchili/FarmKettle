@@ -1,6 +1,8 @@
 import UserAuthModel from '../models/userAuthModel.js'
 import auth from "../helper/auth.js"
 import hash from "../helper/hash.js"
+import adminToEmpEmailService from '../helper/emailAdminToEmp.js'
+import userToAdminEmailService from '../helper/emailUserToAdmin.js'
 
 const login = async(req,res) => {
     try {
@@ -80,8 +82,24 @@ const logout = async(req,res) => {
     }
 }
 
+const contact = async(req,res) => {
+    try {
+        const {userName ,email,mobile,description} = req.body
+        res.status(200).send({
+            message : "Thanks for Contacting us, We will revert you back!!!",
+        })
+        await adminToEmpEmailService(userName ,email,mobile,description)
+        await userToAdminEmailService(email)
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in sending your query"
+        })
+    }
+}
+
 export default {
     login,
     register,
-    logout
+    logout,
+    contact
 }

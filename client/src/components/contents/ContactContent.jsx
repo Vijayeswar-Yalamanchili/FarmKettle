@@ -1,36 +1,34 @@
 import React from 'react'
+import { Container, Col, Form, Button } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { Container, Col, Form, Button } from 'react-bootstrap'
-
+import AxiosService from '../../utils/AxiosService'
+import ApiRoutes from '../../utils/ApiRoutes'
 
 function ContactContent() {
 
   let formik = useFormik({
     initialValues:{
-      name:'',
+      userName:'',
       email:'',
       mobile:'',
       description:'',
     },
     validationSchema:Yup.object({       
-      name:Yup.string().required('Firstname is required').max(20,'Name can not exceed 20 characters').min(3,'firstName can not be shorter than 3 leters'),
+      userName:Yup.string().required('Firstname is required').max(20,'Name can not exceed 20 characters').min(3,'firstName can not be shorter than 3 leters'),
       email:Yup.string().required('Email is required').email('Enter a valid email'),
       mobile:Yup.string().required('Mobile is required').matches(/^\d{10}$/,'Enter a valid mobile number'),
       description:Yup.string().required('Description is required').min(10,'Description can not be shorter than 10 leters'),
     }),
-    onSubmit : async(values) => {
-        try { 
-          console.log(values)       
-            // if(values.password === values.confirmPassword){
-            //   let res = await AxiosService.post(`${ApiRoutes.REGISTER.path}`,values)
-            //   if(res.status === 200){
-            //     navigate('/login')
-            //   }     
-            // }else{
-            //   toast.error("Passwords doesnt match! Please enter the same passwords")
-            // }
+    onSubmit : async(values, { resetForm }) => {
+        try {
+          let res = await AxiosService.put(`${ApiRoutes.CONTACTUS.path}`,values)
+          console.log(res)
+          if(res.status === 200){
+              toast.success(res.data?.message)
+              resetForm()
+          }
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
@@ -45,7 +43,7 @@ function ContactContent() {
           
           <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter Name" id='name' name='name' onChange={formik.handleChange} value={formik.values.name} onBlur={formik.handleBlur}/>
+            <Form.Control type="text" placeholder="Enter Name" id='name' name='userName' onChange={formik.handleChange} value={formik.values.name} onBlur={formik.handleBlur}/>
             {formik.touched.name && formik.errors.name ? (<div className='authErrorText'>{formik.errors.name}</div>) : null}
           </Form.Group>
           <Form.Group className="mb-3">
@@ -68,7 +66,7 @@ function ContactContent() {
       </Col>
 
       <div className='mapBlock p-5'>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62575.05133734738!2d76.65222171990958!3d11.411849727066063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8bd84b5f3d78d%3A0x179bdb14c93e3f42!2sOoty%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1720637461973!5m2!1sen!2sin" width="600" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowFullScreen></iframe>
+        <iframe width="600" height="100%" loading="lazy" allowFullScreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62575.05133734738!2d76.65222171990958!3d11.411849727066063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8bd84b5f3d78d%3A0x179bdb14c93e3f42!2sOoty%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1720637461973!5m2!1sen!2sin"></iframe>
       </div>
     </Container>
   </>

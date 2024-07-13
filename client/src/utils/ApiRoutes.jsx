@@ -11,6 +11,10 @@ const ApiRoutes = {
         path : '/users/logout',
         authenticate : true
     },
+    CONTACTUS : {
+        path : '/users/contact ',
+        authenticate : true
+    },
 }
 
 export default ApiRoutes
