@@ -47,7 +47,7 @@ function HomeContent() {
                     <p>
                         At FarmKettle, we believe that the best tea comes from the  purest sources. Our teas are carefully cultivated using  natural methods, ensuring that you experience the true essence   of tea with every cup. Whether you are a seasoned tea     connoisseur or new to the world of tea, we invite you to    explore our diverse selection of premium teas, each crafted to     perfection.
                     </p>
-                    <p>
+                    <div>
                         Discover our range of exquisite teas:
                         <ul>
                             <li><b>Green Tea:</b> Refreshing and invigorating, our  green teas are rich in antioxidants and flavor.</ li>
@@ -55,7 +55,7 @@ function HomeContent() {
                             <li><b>Herbal Tea:</b> Delicate and soothing, our herbal teas offer a relaxing escape from the hustle and bustle of daily life.</li>
                             <li><b>Specialty Blends:</b> Unique and flavorful, our specialty blends are crafted to surprise and delight your senses.</li>
                         </ul>
-                    </p>
+                    </div>
                 </div>
 
                 <div>

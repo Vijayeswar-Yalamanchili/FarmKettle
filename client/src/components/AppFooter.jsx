@@ -7,14 +7,14 @@ function AppFooter() {
 
     let navigate = useNavigate()
     return <>
-        <div style={{backgroundColor : "#0E6B06",color : "white",height : "17.5rem"}}>
+        <div style={{backgroundColor : "#0E6B06",color : "white",height : "100%"}}>
             <Container className='text-center py-4'>
                 <Image src={logo} width={80} height={80}/>
                 <div className='mb-3'>FARMKETTLE</div>
                 <div className='footerMenu mx-auto'>
                     <p onClick={()=>navigate('/')}>Home</p>
-                    <p onClick={()=>navigate('/about')}>About us</p>
-                    <p onClick={()=>navigate('/healthCertifications')}>Health & Certifications</p>
+                    {/* <p onClick={()=>navigate('/about')}>About us</p> */}
+                    {/* <p onClick={()=>navigate('/healthCertifications')}>Health & Certifications</p> */}
                     <p onClick={()=>navigate('/contact')}>Contact Us</p>
                     <p onClick={()=>navigate('/buyProducts')}>Buy Products</p>
                 </div>

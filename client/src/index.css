@@ -45,6 +45,9 @@
         top: 4.25rem;
         right: 2.5rem;
     }
+    .footerMenu{
+        flex-direction: column;
+    }
 }
 
 @media screen and (min-width : 992px) {
