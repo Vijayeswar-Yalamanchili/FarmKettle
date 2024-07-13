@@ -74,6 +74,8 @@
     }
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 /* Login & Register */
 
 .frgtPwdText, .loginText{
@@ -87,6 +89,8 @@
         border: 1px solid #0E6B06;
     }
 }
+
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 /* Home */
 
@@ -160,6 +164,7 @@
     }    
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 /* About Us */
 
@@ -205,6 +210,8 @@
     }
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 /* Health & Certifications */
 .carouselHCImage{
     width: 100%;
@@ -246,9 +253,11 @@
     }
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 /* Contactus */
 
-@media screen and (min-width : 768px){
+@media screen and (min-width : 991px){
     .contactBlock{
         display: flex;
         flex-direction: row;
@@ -259,12 +268,22 @@
     }
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 /*Buy Produts */
 
+.productCard{
+    margin-left: 15%;
+}
+
+.productCardBody {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center !important;
+}
+
 @media screen and (min-width : 768px){
-    .productCardBody {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center !important;
+    .productCard{
+        margin-left: 0;
     }
 }

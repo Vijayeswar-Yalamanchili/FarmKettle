@@ -7,9 +7,7 @@ import BuyProductContent from '../../components/contents/BuyProductContent'
 function BuyProducts() {
     return <>
         <AppNavbar/>
-        <Container>
-            <BuyProductContent/>
-        </Container>
+        <BuyProductContent/>
         <AppFooter/>
     </>
 }

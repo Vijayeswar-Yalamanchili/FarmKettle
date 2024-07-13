@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import ProductCard from '../ProductCard'
 import blackTeaImage from '../../assets/blackTea.png'
 import herbalTeaImage from '../../assets/herbalTea.png'
@@ -64,7 +64,7 @@ function BuyProductContent() {
     ]
 
     return <> 
-        <div className='my-4'>
+        <Container className='my-4'>
             <div className='d-flex justify-content-between align-items-center'> 
                 <h2>PRODUCTS LIST</h2>
             </div>
@@ -77,7 +77,7 @@ function BuyProductContent() {
                 }
                 </Row>
             </div>
-        </div>
+        </Container>
     </>
 }
 
