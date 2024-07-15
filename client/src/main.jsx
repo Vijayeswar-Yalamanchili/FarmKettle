@@ -6,12 +6,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import CartDataComponent from './contextApi/CartDataComponent.jsx'
+import UserContextComponent from './contextApi/UserContextComponent.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <CartDataComponent>
-      <App/>
-    </CartDataComponent>
+    <UserContextComponent>
+      <CartDataComponent>
+        <App/>
+      </CartDataComponent>
+    </UserContextComponent>
     <ToastContainer autoClose={2000}/>
   </React.StrictMode>,
 )

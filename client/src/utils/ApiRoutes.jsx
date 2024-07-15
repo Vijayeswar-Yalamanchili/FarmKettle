@@ -15,6 +15,14 @@ const ApiRoutes = {
         path : '/users/contact ',
         authenticate : true
     },
+    CURRENTUSER : {
+        path : '/users/currentUser ',
+        authenticate : true
+    },
+    ALLUSERS : {
+        path : '/users/allusers',
+        authenticate : true
+    },
 }
 
 export default ApiRoutes
