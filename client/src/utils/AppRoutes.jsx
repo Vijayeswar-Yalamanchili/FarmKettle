@@ -7,6 +7,8 @@ import Contact from "../pages/navs/Contact"
 import BuyProducts from "../pages/navs/BuyProducts"
 import MyAccount from "../pages/navs/MyAccount"
 import MyOrders from "../pages/navs/MyOrders"
+import MyProfile from "../pages/navs/MyProfile"
+import MyAddress from "../pages/navs/MyAddress"
 
 const Approutes = [
     {
@@ -47,6 +49,16 @@ const Approutes = [
     {
         path : '/myaccount',
         element : <MyAccount/>,
+        exact : true
+    },
+    {
+        path : '/myaccount/profile',
+        element : <MyProfile/>,
+        exact : true
+    },
+    {
+        path : '/myaccount/address',
+        element : <MyAddress/>,
         exact : true
     },
     {

@@ -1,11 +1,13 @@
 import React from 'react'
 import { Card, Container, Row, Image } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import myProfileImage from '../../assets/myProfileImage.svg'
 import addressImage from '../../assets/addressImage.svg'
 import ordersImage from '../../assets/ordersImage.svg'
 
 function MyAccountContent() {
 
+    let navigate = useNavigate()
     let accountCardsList = [
         {
             route : 'profile',
@@ -28,7 +30,13 @@ function MyAccountContent() {
     ]
 
     const handleCardBtn = async(e) => {
-        console.log(e.route)
+        if(e.route === 'orders'){
+            navigate(`/myorders`)
+        }else{
+            navigate(`/myaccount/${e.route}`)
+        }
+
+        // navigate(`/myaccount/${e.route}`)
     }
 
     return <>
