@@ -35,13 +35,10 @@ function MyAccountContent() {
         }else{
             navigate(`/myaccount/${e.route}`)
         }
-
-        // navigate(`/myaccount/${e.route}`)
     }
 
     return <>
         <Container>
-            {/* <Row xs={1} md={2} className="g-4 my-4 mx-auto"> */}
             <div className='accountCards'>
                 {
                     accountCardsList.map((e,i) => (
@@ -56,8 +53,7 @@ function MyAccountContent() {
                         </Card>
                     ))
                 }
-                </div>
-            {/* </Row> */}
+            </div>
         </Container>
     </>
 }
