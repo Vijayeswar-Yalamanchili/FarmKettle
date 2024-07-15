@@ -11,12 +11,15 @@ import AxiosService from '../utils/AxiosService'
 import ApiRoutes from '../utils/ApiRoutes'
 import { useLogout } from '../hooks/UseLogout'
 import { CartDataContext } from '../contextApi/CartDataComponent'
+import { UserAuthContext } from '../contextApi/UserContextComponent'
+
 
 function AppNavbar() {
 
     const navigate = useNavigate()
     let logout = useLogout()
     let { cart } = useContext(CartDataContext)
+    let {userAuth} = useContext(UserAuthContext)
 
     const [myProfile, setMyProfile] = useState(false)
     const [respMenu, setRespMenu] = useState(false)
@@ -72,6 +75,7 @@ function AppNavbar() {
             myProfile ? 
                 getLoginToken ?
                     <div className="myProfileDrpdwn list-group list-group-flush px-1">
+                        <div className="listMenu list-group-item list-group-item-action"><b style={{textTransform : 'capitalize'}}>Hi, {userAuth[0]?.firstName}</b></div>
                         <Link to={`/myaccount`} className="listMenu list-group-item list-group-item-action">
                             <span className='d-flex align-items-center' style={{gap:"15px"}}>
                                 <FontAwesomeIcon icon={faUserGear} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Account

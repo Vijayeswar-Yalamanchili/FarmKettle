@@ -16,11 +16,15 @@ const ApiRoutes = {
         authenticate : true
     },
     CURRENTUSER : {
-        path : '/users/currentUser ',
+        path : '/users/currentuser',
         authenticate : true
     },
     ALLUSERS : {
         path : '/users/allusers',
+        authenticate : true
+    },
+    USERPROFILEUPDATE : {
+        path : '/users/profileupdate',
         authenticate : true
     },
 }

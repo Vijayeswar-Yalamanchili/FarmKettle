@@ -11,5 +11,7 @@ router.put('/logout/:id',userAuthController.logout)
 
 router.put('/contact',userController.contact)
 router.get('/allusers/:id', auth.authenticate,userController.allUsers)
+router.get('/currentuser/:id', auth.authenticate,userController.currentUserData)
+router.put('/profileupdate/:id', auth.authenticate,userController.userprofileUpdate)
 
 export default router

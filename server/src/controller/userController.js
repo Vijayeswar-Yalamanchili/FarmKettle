@@ -17,19 +17,48 @@ const contact = async(req,res) => {
 
 const allUsers = async(req,res) => {
     try {
-        console.log(req.params)
         const usersList = await UserAuthModel.find()
         res.status(200).send({
             usersList
         })
     } catch (error) {
         res.status(500).send({
-            message : "Internal server error in sending your query"
+            message : "Internal server error in getting users data"
         })
     }
 }
 
+const currentUserData = async(req,res) => {
+    try {
+        const currentUser = await UserAuthModel.findById({_id : req.params.id})
+        res.status(200).send({
+            currentUser
+        })
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in getting current User data"
+        })
+    }
+}
+
+const userprofileUpdate = async(req,res) => {
+    try {
+        const updatedProfile = await UserAuthModel.findByIdAndUpdate({_id : req.params.id}, {$set : req.body},{new :true})
+        res.status(200).send({
+            updatedProfile
+        })
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in updating profile data"
+        })
+    }
+}
+
+
+
 export default {
     contact,
-    allUsers
+    allUsers,
+    currentUserData,
+    userprofileUpdate,
 }
