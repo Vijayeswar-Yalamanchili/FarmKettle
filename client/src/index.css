@@ -316,3 +316,97 @@
         margin-left: 0;
     }
 }
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*My Accounts */
+
+@media screen and (max-width : 576px){
+    .cardImage {
+        width: 6rem;
+    }
+    .subtitle{
+        font-size: smaller;
+    }
+}
+
+@media screen and (max-width : 767px){
+    .cardImage {
+        width: 8rem;
+    }
+    .accountCards{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 3rem 0;
+    }
+    .cardAcc{
+        margin-bottom: 1rem;
+    }
+    .cardBody{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .cardBodyText{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: end;
+    }
+}
+
+@media screen and (min-width : 768px) and (max-width : 991px){
+    .cardImage {
+        width: 8rem;
+    }
+    .accountCards{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 3rem 0;
+    }
+    .cardAcc{
+        width: 14rem;
+    }
+    .cardBody{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .cardBodyText{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width : 991px){
+    .cardImage {
+        width: 10rem;
+    }
+    .accountCards{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 3rem 0;
+    }
+    .cardAcc{
+        width: 22rem;
+    }
+    .cardBody{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .cardBodyText{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: end;
+    }
+}
