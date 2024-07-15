@@ -8,6 +8,7 @@ import AppNavbar from '../../components/AppNavbar'
 import AppFooter from '../../components/AppFooter'
 import AxiosService from '../../utils/AxiosService'
 import ApiRoutes from '../../utils/ApiRoutes'
+import OAuth from '../../components/OAuth'
 
 function Login() {
 
@@ -66,7 +67,7 @@ function Login() {
           <div className="d-grid mb-4">
             <Button className='formBtns' onClick={()=>navigate('/register')}>Sign Up</Button>
           </div>
-
+          <OAuth/>
         </Form>
       </Col>
     </Container>

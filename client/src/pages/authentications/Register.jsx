@@ -8,6 +8,7 @@ import AppNavbar from '../../components/AppNavbar'
 import AppFooter from '../../components/AppFooter'
 import AxiosService from '../../utils/AxiosService'
 import ApiRoutes from '../../utils/ApiRoutes'
+import OAuth from '../../components/OAuth'
 
 function Register() {
 
@@ -88,7 +89,9 @@ function Register() {
           <div className="d-grid mb-3">
             <Button variant='primary'className='formBtns' type="submit">Register</Button>
           </div>
-          <div className='text-center mb-2'>
+          <hr style={{color:"#0E6B06"}}/>
+          <OAuth/>
+          <div className='text-center mt-3'>
             Already existing user? <Link to={'/login'} className='loginText'>Login</Link>
           </div>
         </Form>

@@ -85,6 +85,13 @@
 
 @media screen and (min-width : 768px){
     .authForm{
+        width: 55%;
+        border: 1px solid #0E6B06;
+    }
+}
+
+@media screen and (min-width : 1024px){
+    .authForm{
         width: 35%;
         border: 1px solid #0E6B06;
     }
