@@ -18,15 +18,17 @@ function MyAddress() {
   const [show, setShow] = useState(false);  
   const [editAddress, setEditAddress] = useState();
   const [oldAddress, setOldAddress] = useState();
-  const [editShow, setEditShow] = useState(false);  
+  const [editShow, setEditShow] = useState(false); 
+  const [id,setId] = useState()
   const getLoginToken = localStorage.getItem('loginToken')
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true); 
   const handleEditClose = () => setEditShow(false);
-  const handleEditShow = (e) => {
+  const handleEditShow = (e,id) => {
     setEditShow(true)
     setOldAddress(e)
+    setId(id)
   }
 
   const handleAddAddress = async() => {
@@ -36,19 +38,35 @@ function MyAddress() {
         'Authorization' : `${getLoginToken}`
       }})
       if(res.status === 200){
-          handleClose()
+        handleClose()
       }
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }
   }
 
-  const handleEditAddress = async()=> {
-
+  const handleEditAddress = async(id)=> {
+    try {
+      let modifiedAddress = { newAddress : editAddress }
+      let res = await AxiosService.put(`${ApiRoutes.EDITADDRESS.path}/${userAuth[0]?._id}/${id}`,modifiedAddress,{ headers : {
+        'Authorization' : `${getLoginToken}`
+      }})
+      if(res.status === 200){
+        handleEditClose()
+      }
+    } catch (error) {
+      toast.error(error.response.data.message || error.message)
+    }
   }
 
-  const handleDeleteAddress = async(i)=> {
-    console.log(i)
+  const handleDeleteAddress = async(id)=> {
+    try {
+      let res = await AxiosService.delete(`${ApiRoutes.DELETEADDRESS.path}/${userAuth[0]?._id}/${id}`,{ headers : {
+        'Authorization' : `${getLoginToken}`
+      }})
+    } catch (error) {
+      toast.error(error.response.data.message || error.message)
+    }
   }
 
 
@@ -95,8 +113,8 @@ function MyAddress() {
                     <Card.Body className='addressContent'>
                       <p className='addressText'>{e.address}</p>
                       <div className='actionBtns'>
-                        <Button variant='secondary' onClick={() => handleEditShow(e.address)}><FontAwesomeIcon icon={faEdit}/></Button>
-                        <Button variant='danger' onClick={() => handleDeleteAddress(i)}><FontAwesomeIcon icon={faTrash}/></Button>
+                        <Button variant='secondary' onClick={() => handleEditShow(e.address,e._id)}><FontAwesomeIcon icon={faEdit}/></Button>
+                        <Button variant='danger' onClick={() => handleDeleteAddress(e._id)}><FontAwesomeIcon icon={faTrash}/></Button>
                       </div>
                     </Card.Body>
                   </Card>
@@ -141,7 +159,7 @@ function MyAddress() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleEditClose}>Close</Button>
-          <Button variant="primary" onClick={handleEditAddress}>Save Address</Button>
+          <Button variant="primary" onClick={(e) => handleEditAddress(id)}>Save Address</Button>
         </Modal.Footer>
       </Form>
     </Modal>

@@ -35,6 +35,14 @@ const ApiRoutes = {
         path : '/users/getaddress',
         authenticate : true
     },
+    EDITADDRESS : {
+        path : '/users/editaddress',
+        authenticate : true
+    },
+    DELETEADDRESS : {
+        path : '/users/deleteaddress',
+        authenticate : true
+    },
 }
 
 export default ApiRoutes

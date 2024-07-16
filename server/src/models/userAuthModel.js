@@ -46,10 +46,11 @@ const userAuthSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
     },
-    addressList : {
-        type : Array,
-        default: [],
-    }
+    addressList : [
+        {
+            address : String
+        }
+    ]
 },
 { timestamps : true },
 { collection : 'user' })
