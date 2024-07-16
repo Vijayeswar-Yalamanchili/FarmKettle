@@ -56,7 +56,8 @@ const userprofileUpdate = async(req,res) => {
 
 const addAddress = async(req,res) => {
     try {
-        const newAddress = await UserAuthModel.findByIdAndUpdate({_id : req.params.id}, {$push : {addressList : req.body.newAddress}},{new :true})
+        console.log(req.body)
+        const newAddress = await UserAuthModel.findByIdAndUpdate({_id : req.params.id}, {$push : {addressList : {address : req.body.newAddress}}},{new :true})
         res.status(200).send({
             newAddress
         })

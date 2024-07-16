@@ -47,7 +47,8 @@ const userAuthSchema = new mongoose.Schema({
         default:false,
     },
     addressList : {
-        type : [String]
+        type : Array,
+        default: [],
     }
 },
 { timestamps : true },

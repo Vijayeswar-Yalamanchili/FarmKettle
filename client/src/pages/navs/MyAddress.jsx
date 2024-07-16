@@ -81,7 +81,9 @@ function MyAddress() {
       <div>
           <header className='d-flex justify-content-between align-items-center mb-3'>
             <h4 className='mb-0'>My Address</h4>
-            <Button onClick={()=> handleShow()}>Add Address</Button>
+            {
+              addressList.length <6  ? <Button onClick={()=> handleShow()}>Add Address</Button> : <Button onClick={()=> handleShow()} disabled>Add Address</Button>
+            }
           </header>
 
           <Row xs={1} md={3} className="g-4">
@@ -91,9 +93,9 @@ function MyAddress() {
                 return <div>
                   <Card className='addressCard px-0' key={i}>
                     <Card.Body className='addressContent'>
-                      <p className='addressText'>{e}</p>
+                      <p className='addressText'>{e.address}</p>
                       <div className='actionBtns'>
-                        <Button variant='secondary' onClick={() => handleEditShow(e)}><FontAwesomeIcon icon={faEdit}/></Button>
+                        <Button variant='secondary' onClick={() => handleEditShow(e.address)}><FontAwesomeIcon icon={faEdit}/></Button>
                         <Button variant='danger' onClick={() => handleDeleteAddress(i)}><FontAwesomeIcon icon={faTrash}/></Button>
                       </div>
                     </Card.Body>
