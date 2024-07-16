@@ -27,6 +27,14 @@ const ApiRoutes = {
         path : '/users/profileupdate',
         authenticate : true
     },
+    ADDADDRESS : {
+        path : '/users/addaddress',
+        authenticate : true
+    },
+    GETADDRESS : {
+        path : '/users/getaddress',
+        authenticate : true
+    },
 }
 
 export default ApiRoutes

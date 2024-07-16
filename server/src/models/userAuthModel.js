@@ -45,6 +45,9 @@ const userAuthSchema = new mongoose.Schema({
     isLoggedIn : {
         type:Boolean,
         default:false,
+    },
+    addressList : {
+        type : [String]
     }
 },
 { timestamps : true },

@@ -415,22 +415,54 @@
 
 /*My Profile */
 
-@media screen and (min-width :992px) {
+.profileBlock{
+    padding : 2rem;
+    border : 1px solid #0E6B06;
+    border-radius: 30px;
+}
+.profileTextField{
+    border:  1px solid #0E6B06;
+    border-radius: 10px;
+    height: 2rem;
+    padding: 0 0.5rem;
+    align-content: center;
+}
+
+@media screen and (min-width :992px){
     .profileBlock{
         width: 40%;
         height: max-content;
         padding : 3rem;
-        border : 1px solid #0E6B06;
-        border-radius: 30px;
     }
     .profileData{
         height: max-content;
     }
-    .profileTextField{
-        border:  1px solid #0E6B06;
-        border-radius: 10px;
-        height: 2rem;
-        padding: 0 0.5rem;
-        align-content: center;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*My Address */
+
+@media screen and (min-width :992px){
+    .addressCards{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 3rem 0;
+    }
+    .addressContent{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .addressText{
+        height: 10rem;
+        width: 70%;
+    }
+    .actionBtns{
+        width: 25%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 }
