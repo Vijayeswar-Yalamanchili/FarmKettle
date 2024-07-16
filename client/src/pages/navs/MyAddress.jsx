@@ -17,13 +17,17 @@ function MyAddress() {
   const [addressList, setAddressList] = useState([]);
   const [show, setShow] = useState(false);  
   const [editAddress, setEditAddress] = useState();
+  const [oldAddress, setOldAddress] = useState();
   const [editShow, setEditShow] = useState(false);  
   const getLoginToken = localStorage.getItem('loginToken')
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true); 
   const handleEditClose = () => setEditShow(false);
-  const handleEditShow = () => setEditShow(true); 
+  const handleEditShow = (e) => {
+    setEditShow(true)
+    setOldAddress(e)
+  }
 
   const handleAddAddress = async() => {
     try {
@@ -42,6 +46,11 @@ function MyAddress() {
   const handleEditAddress = async()=> {
 
   }
+
+  const handleDeleteAddress = async(i)=> {
+    console.log(i)
+  }
+
 
   const getAddressList = async() => {
     try {
@@ -84,8 +93,8 @@ function MyAddress() {
                     <Card.Body className='addressContent'>
                       <p className='addressText'>{e}</p>
                       <div className='actionBtns'>
-                        <Button variant='secondary' onClick={handleEditShow}><FontAwesomeIcon icon={faEdit}/></Button>
-                        <Button variant='danger'><FontAwesomeIcon icon={faTrash}/></Button>
+                        <Button variant='secondary' onClick={() => handleEditShow(e)}><FontAwesomeIcon icon={faEdit}/></Button>
+                        <Button variant='danger' onClick={() => handleDeleteAddress(i)}><FontAwesomeIcon icon={faTrash}/></Button>
                       </div>
                     </Card.Body>
                   </Card>
@@ -125,8 +134,7 @@ function MyAddress() {
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
-            {/* <Form.Label>Enter new Address</Form.Label> */}
-            <Form.Control as="textarea" rows={3} placeholder='Enter new Address' onChange={(e) => setEditAddress(e.target.value)}/>
+            <Form.Control as="textarea" rows={3} placeholder='Enter new Address' defaultValue={oldAddress} onChange={(e) => setEditAddress(e.target.value)}/>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
