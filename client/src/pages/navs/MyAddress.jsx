@@ -113,8 +113,8 @@ function MyAddress() {
                     <Card.Body className='addressContent'>
                       <p className='addressText'>{e.address}</p>
                       <div className='actionBtns'>
-                        <Button variant='secondary' onClick={() => handleEditShow(e.address,e._id)}><FontAwesomeIcon icon={faEdit}/></Button>
-                        <Button variant='danger' onClick={() => handleDeleteAddress(e._id)}><FontAwesomeIcon icon={faTrash}/></Button>
+                        <Button variant='secondary' style={{width : "40%"}} onClick={() => handleEditShow(e.address,e._id)}><FontAwesomeIcon icon={faEdit}/></Button>
+                        <Button variant='danger' style={{width : "40%"}} onClick={() => handleDeleteAddress(e._id)}><FontAwesomeIcon icon={faTrash}/></Button>
                       </div>
                     </Card.Body>
                   </Card>

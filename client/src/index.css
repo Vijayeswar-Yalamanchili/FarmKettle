@@ -443,6 +443,23 @@
 
 /*My Address */
 
+.actionBtns{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.addressText{
+    max-height: 12rem;
+}
+
+@media screen and (min-width : 768px) and (max-width : 991px){
+    .addressText{
+        height: 15rem;
+        max-height: 19rem;
+    }  
+}
+
 @media screen and (min-width :992px){
     .addressCards{
         display: flex;
@@ -452,17 +469,16 @@
     }
     .addressContent{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
     }
     .addressText{
         height: 10rem;
-        width: 70%;
-    }
-    .actionBtns{
-        width: 25%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+    }    
+}
+
+@media screen and (min-width :1200px) {
+    .addressText{
+        height: 8rem;
+    }  
 }
