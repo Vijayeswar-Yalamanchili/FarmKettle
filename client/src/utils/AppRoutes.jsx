@@ -9,6 +9,9 @@ import MyAccount from "../pages/navs/MyAccount"
 import MyOrders from "../pages/navs/MyOrders"
 import MyProfile from "../pages/navs/MyProfile"
 import MyAddress from "../pages/navs/MyAddress"
+import AdminLogin from "../adminPages/authentications/AdminLogin"
+import AdminRegister from "../adminPages/authentications/AdminRegister"
+import AdminDashboard from "../adminPages/navs/AdminDashboard"
 
 const Approutes = [
     {
@@ -66,7 +69,22 @@ const Approutes = [
         element : <MyOrders/>,
         exact : true
     },
-    
+    // ADMIN
+    {
+        path : '/admin',
+        element : <AdminLogin/>,
+        exact : true
+    },
+    {
+        path : '/admin/register',
+        element : <AdminRegister/>,
+        exact : true
+    },
+    {
+        path : '/admin/dashboard',
+        element : <AdminDashboard/>,
+        exact : true
+    },
 ]
 
 export default Approutes

@@ -76,6 +76,38 @@
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+/* AdminNavbar & AdminFooter */
+
+.adminNavTab{
+    display: none;
+}
+
+.adminRespMenuDrpdwn{
+    width: 12rem;
+    background-color: white;
+    z-index: 5;
+    border-radius: 10px !important;
+    border: 1px solid blue;
+    position: absolute;
+    top: 4.25rem;
+    right: 2.5rem;
+}
+
+@media screen and (min-width : 768px){
+    .adminNavs{
+        width: 12rem;
+        justify-content: space-around;
+    }
+    .adminNavTab{
+        display: block;
+    }
+    .adminAuthBtns,.adminRespMenuDrpdwn{
+        display: none !important;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 /* Login & Register */
 
 .frgtPwdText, .loginText{
@@ -83,19 +115,56 @@
     text-decoration: none;
 }
 
+.authErrorText{
+    color: red;
+}
+
+.authForm{
+    border: 1px solid #0E6B06;
+}
+
 @media screen and (min-width : 768px){
     .authForm{
         width: 55%;
-        border: 1px solid #0E6B06;
     }
 }
 
 @media screen and (min-width : 1024px){
     .authForm{
         width: 35%;
-        border: 1px solid #0E6B06;
     }
 }
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* AdminLogin & AdminRegister */
+
+.adminFrgtPwdText, .adminLoginText{
+    color: blue;
+    text-decoration: none;
+}
+
+.adminAuthForm {
+    border: 1px solid blue;
+}
+
+.adminAuthErrorText{
+    color: red;
+}
+
+
+@media screen and (min-width : 768px){
+    .adminAuthForm{
+        width: 55%;
+    }
+}
+
+@media screen and (min-width : 1024px){
+    .adminAuthForm{
+        width: 35%;
+    }
+}
+
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
