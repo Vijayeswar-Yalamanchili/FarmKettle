@@ -111,6 +111,10 @@
     width: 18rem;
 }
 
+.homeTextContent{
+    margin-top : 1rem
+}
+
 .tipsBlock{
     display: flex;
     flex-direction: row;
