@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Breadcrumb, Button, Container, Form, Modal } from 'react-bootstrap'
-import AppNavbar from '../../components/userComponents/AppNavbar'
-import AppFooter from '../../components/userComponents/AppFooter'
-import { UserAuthContext } from '../../contextApi/UserContextComponent'
+import AppNavbar from '../../../components/userComponents/AppNavbar'
+import AppFooter from '../../../components/userComponents/AppFooter'
+import { UserAuthContext } from '../../../contextApi/UserContextComponent'
 import { toast } from 'react-toastify'
-import AxiosService from '../../utils/AxiosService'
-import ApiRoutes from '../../utils/ApiRoutes'
+import AxiosService from '../../../utils/AxiosService'
+import ApiRoutes from '../../../utils/ApiRoutes'
 import { jwtDecode } from 'jwt-decode'
 
 

@@ -1,15 +1,16 @@
 import React from 'react'
-import AdminNavbar from '../../components/adminComponents/AdminNavbar'
-import AdminFooter from '../../components/adminComponents/AdminFooter'
+import { Col, Row, Button, Form, Container } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import AxiosService from '../../utils/AxiosService'
-import ApiRoutes from '../../utils/ApiRoutes'
+import AppNavbar from '../../../components/userComponents/AppNavbar'
+import AppFooter from '../../../components/userComponents/AppFooter'
+import AxiosService from '../../../utils/AxiosService'
+import ApiRoutes from '../../../utils/ApiRoutes'
+import OAuth from '../../../components/userComponents/OAuth'
 
-function AdminRegister() {
+function Register() {
 
   const navigate = useNavigate();
 
@@ -31,11 +32,11 @@ function AdminRegister() {
       confirmPassword:Yup.string().required('Confirm Password is required').matches(/^[a-zA-Z0-9!@#$%^&*]{8,15}$/,'Confirm Password should match Password')
     }),
     onSubmit : async(values) => {
-        try {  
+        try {      
           if(values.password === values.confirmPassword){
-            let res = await AxiosService.post(`${ApiRoutes.ADMINREGISTER.path}`,values)
+            let res = await AxiosService.post(`${ApiRoutes.REGISTER.path}`,values)
             if(res.status === 200){
-              navigate('/admin')
+              navigate('/login')
             }     
           }else{
             toast.error("Passwords doesnt match! Please enter the same passwords")
@@ -45,57 +46,59 @@ function AdminRegister() {
         }
     }
   })
+
   return <>
-    <AdminNavbar/>
+    <AppNavbar/>
     <Container>
       <Col md xs={12}>
-        <Form onSubmit={formik.handleSubmit} className='adminAuthForm mx-auto my-5 p-5 rounded-5'>
+        <Form onSubmit={formik.handleSubmit} className='authForm mx-auto my-5 p-5 rounded-5'>
           <Row className="mb-3">
             <Col lg xs={12} className='fieldBottom'>
               <Form.Label>Firstname</Form.Label>
               <Form.Control type='text' placeholder="Enter Firstname" id='firstName' name='firstName' onChange={formik.handleChange} value={formik.values.firstName} onBlur={formik.handleBlur}/>
-              {formik.touched.firstName && formik.errors.firstName ? (<div className='adminAuthErrorText'>{formik.errors.firstName}</div>) : null}
+              {formik.touched.firstName && formik.errors.firstName ? (<div className='authErrorText'>{formik.errors.firstName}</div>) : null}
             </Col>
             <Col lg xs={12}>
               <Form.Label>Lastname</Form.Label>
               <Form.Control type='text' placeholder="Enter Lastname" id='lastName' name='lastName' onChange={formik.handleChange} value={formik.values.lastName} onBlur={formik.handleBlur}/>
-              {formik.touched.lastName && formik.errors.lastName ? (<div className='adminAuthErrorText'>{formik.errors.lastName}</div>) : null}
+              {formik.touched.lastName && formik.errors.lastName ? (<div className='authErrorText'>{formik.errors.lastName}</div>) : null}
             </Col>
           </Row>
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control type="email" placeholder="Enter email" id="email" name='email' onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur}/>
-            {formik.touched.email && formik.errors.email ? (<div className='adminAuthErrorText'>{formik.errors.email}</div>) : null}
+            {formik.touched.email && formik.errors.email ? (<div className='authErrorText'>{formik.errors.email}</div>) : null}
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Mobile</Form.Label>
             <Form.Control type="text" placeholder="Enter Mobile number" maxLength={10} id="mobile" name='mobile' onChange={formik.handleChange} value={formik.values.mobile} onBlur={formik.handleBlur}/>
-            {formik.touched.mobile && formik.errors.mobile ? (<div className='adminAuthErrorText'>{formik.errors.mobile}</div>) : null}
+            {formik.touched.mobile && formik.errors.mobile ? (<div className='authErrorText'>{formik.errors.mobile}</div>) : null}
           </Form.Group>
           <Row className="mb-4">
             <Col lg xs={12} className='fieldBottom'>
               <Form.Label>Password</Form.Label>
               <Form.Control type='password' placeholder="Enter password" id="password" name='password' onChange={formik.handleChange} value={formik.values.password} onBlur={formik.handleBlur}/>
-              {formik.touched.password && formik.errors.password ? (<div className='adminAuthErrorText'>{formik.errors.password}</div>) : null}
+              {formik.touched.password && formik.errors.password ? (<div className='authErrorText'>{formik.errors.password}</div>) : null}
             </Col>
             <Col lg xs={12}>
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control type='password' placeholder="Re-Enter Password" id="confirmPassword" name='confirmPassword' onChange={formik.handleChange} value={formik.values.confirmPassword} onBlur={formik.handleBlur}/>
-              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (<div className='adminAuthErrorText'>{formik.errors.confirmPassword}</div>) : null}
+              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (<div className='authErrorText'>{formik.errors.confirmPassword}</div>) : null}
             </Col>
           </Row>
           <div className="d-grid mb-3">
             <Button variant='primary'className='formBtns' type="submit">Register</Button>
           </div>
-          <hr style={{color:"blue"}}/>
+          <hr style={{color:"#0E6B06"}}/>
+          <OAuth/>
           <div className='text-center mt-3'>
-            Already existing user? <Link to={'/admin'} className='adminLoginText'>Login</Link>
+            Already existing user? <Link to={'/login'} className='loginText'>Login</Link>
           </div>
         </Form>
       </Col>
     </Container>
-    <AdminFooter/>
+    <AppFooter/>
   </>
 }
 
-export default AdminRegister
+export default Register

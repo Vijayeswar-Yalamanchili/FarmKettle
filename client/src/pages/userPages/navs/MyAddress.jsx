@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Breadcrumb, Container, Button, Modal, Form, Card, Row } from 'react-bootstrap'
-import AppNavbar from '../../components/userComponents/AppNavbar'
-import AppFooter from '../../components/userComponents/AppFooter'
-import { toast } from 'react-toastify';
-import AxiosService from '../../utils/AxiosService';
-import ApiRoutes from '../../utils/ApiRoutes';
-import { UserAuthContext } from '../../contextApi/UserContextComponent'
-import { jwtDecode } from 'jwt-decode';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import AppNavbar from '../../../components/userComponents/AppNavbar'
+import AppFooter from '../../../components/userComponents/AppFooter'
+import { toast } from 'react-toastify'
+import AxiosService from '../../../utils/AxiosService'
+import ApiRoutes from '../../../utils/ApiRoutes'
+import { UserAuthContext } from '../../../contextApi/UserContextComponent'
+import { jwtDecode } from 'jwt-decode'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function MyAddress() {
 
