@@ -4,11 +4,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
-import AppNavbar from '../../components/AppNavbar'
-import AppFooter from '../../components/AppFooter'
+import AppNavbar from '../../components/userComponents/AppNavbar'
+import AppFooter from '../../components/userComponents/AppFooter'
 import AxiosService from '../../utils/AxiosService'
 import ApiRoutes from '../../utils/ApiRoutes'
-import OAuth from '../../components/OAuth'
+import OAuth from '../../components/userComponents/OAuth'
 
 function Register() {
 

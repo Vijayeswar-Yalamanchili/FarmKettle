@@ -1,7 +1,7 @@
 import React from 'react'
 import { Carousel, Image } from 'react-bootstrap'
-import CarouselHealth from '../../assets/CarouselHealth.png'
-import CarouselCertification from '../../assets/CarouselCertification.png'
+import CarouselHealth from '../../../assets/CarouselHealth.png'
+import CarouselCertification from '../../../assets/CarouselCertification.png'
 
 function CarouselHealthCertification() {
 

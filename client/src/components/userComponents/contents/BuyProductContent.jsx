@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { Container, Row } from 'react-bootstrap'
 import ProductCard from '../ProductCard'
-import blackTeaImage from '../../assets/blackTea.png'
-import herbalTeaImage from '../../assets/herbalTea.png'
-import blackTeaComboImage from '../../assets/blackTeaCombo.png'
-import herbalTeaComboImage from '../../assets/herbalTeaCombo.png'
-import { CartDataContext } from '../../contextApi/CartDataComponent'
+import blackTeaImage from '../../../assets/blackTea.png'
+import herbalTeaImage from '../../../assets/herbalTea.png'
+import blackTeaComboImage from '../../../assets/blackTeaCombo.png'
+import herbalTeaComboImage from '../../../assets/herbalTeaCombo.png'
+import { CartDataContext } from '../../../contextApi/CartDataComponent'
 
 function BuyProductContent() {
 

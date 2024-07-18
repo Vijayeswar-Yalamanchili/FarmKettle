@@ -1,13 +1,11 @@
 import React from 'react'
-import AppNavbar from '../../components/AppNavbar'
-import AppFooter from '../../components/AppFooter'
-// import AccountContent from '../../components/contents/AccountContent'
-import MyAccountContent from '../../components/contents/MyAccountContent'
+import AppNavbar from '../../components/userComponents/AppNavbar'
+import AppFooter from '../../components/userComponents/AppFooter'
+import MyAccountContent from '../../components/userComponents/contents/MyAccountContent'
 
 function MyAccount() {
     return <>
     <AppNavbar/>
-    {/* <AccountContent/> */}
     <MyAccountContent/>
     <AppFooter/>
     </>

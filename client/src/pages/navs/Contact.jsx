@@ -1,7 +1,7 @@
 import React from 'react'
-import AppNavbar from '../../components/AppNavbar'
-import AppFooter from '../../components/AppFooter'
-import ContactContent from '../../components/contents/ContactContent'
+import AppNavbar from '../../components/userComponents/AppNavbar'
+import AppFooter from '../../components/userComponents/AppFooter'
+import ContactContent from '../../components/userComponents/contents/ContactContent'
 
 function Contact() {
     return <>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Image } from 'react-bootstrap'
-import milkTeaBlackteaCombo from '../../assets/milkTeaBlackteaCombo.png'
-import certificationProductImage from '../../assets/certificationProductImage.png'
+import milkTeaBlackteaCombo from '../../../assets/milkTeaBlackteaCombo.png'
+import certificationProductImage from '../../../assets/certificationProductImage.png'
 import CarouselHealthCertification from '../carousels/CarouselHealthCertification'
 
 

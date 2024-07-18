@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Image } from 'react-bootstrap'
-import googleLogo from '../assets/googleIcon.svg'
+import googleLogo from '../../assets/googleIcon.svg'
 
 function OAuth() {
     return <>

@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
+import { Button, Container, Form, Modal } from 'react-bootstrap'
 import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button, Container, Form, Modal } from 'react-bootstrap'
 
 function AccountContent() {
 
-  // const [addressList, setAddressList] = useState([])
   const [addAddress, setAddAddress] = useState(false)
 
   const [newAddshow, setNewAddshow] = useState(false);

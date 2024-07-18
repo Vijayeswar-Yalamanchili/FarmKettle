@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Image } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import logo from '../assets/farmKettle.png'
+import logo from '../../assets/farmKettle.png'
 
 function AppFooter() {
 

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Card, Container, Row, Image } from 'react-bootstrap'
+import { Card, Container, Image } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import myProfileImage from '../../assets/myProfileImage.svg'
-import addressImage from '../../assets/addressImage.svg'
-import ordersImage from '../../assets/ordersImage.svg'
+import myProfileImage from '../../../assets/myProfileImage.svg'
+import addressImage from '../../../assets/addressImage.svg'
+import ordersImage from '../../../assets/ordersImage.svg'
 
 function MyAccountContent() {
 

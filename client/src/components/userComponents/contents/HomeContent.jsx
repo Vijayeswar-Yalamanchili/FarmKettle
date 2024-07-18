@@ -3,9 +3,9 @@ import { Container, Image } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBoxesPacking, faCartFlatbed, faFileLines, faGlobe, faMedal, faMobileScreenButton } from '@fortawesome/free-solid-svg-icons'
 import CarouselHome from '../carousels/CarouselHome'
-import teaMakingStep1 from '../../assets/teaMakingStep1.png'
-import teaMakingStep2 from '../../assets/teaMakingStep2.png'
-import teaMakingStep3 from '../../assets/teaMakingStep3.png'
+import teaMakingStep1 from '../../../assets/teaMakingStep1.png'
+import teaMakingStep2 from '../../../assets/teaMakingStep2.png'
+import teaMakingStep3 from '../../../assets/teaMakingStep3.png'
 
 function HomeContent() {
 

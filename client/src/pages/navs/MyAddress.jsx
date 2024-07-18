@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Breadcrumb, Container, Button, Modal, Form, Card, Row } from 'react-bootstrap'
-import AppNavbar from '../../components/AppNavbar'
-import AppFooter from '../../components/AppFooter'
+import AppNavbar from '../../components/userComponents/AppNavbar'
+import AppFooter from '../../components/userComponents/AppFooter'
 import { toast } from 'react-toastify';
 import AxiosService from '../../utils/AxiosService';
 import ApiRoutes from '../../utils/ApiRoutes';

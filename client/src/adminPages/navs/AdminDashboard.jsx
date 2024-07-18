@@ -5,7 +5,7 @@ import AdminFooter from '../../components/adminComponents/AdminFooter'
 function AdminDashboard() {
   return <>
     <AdminNavbar/>
-    df
+      
     <AdminFooter/>
   </>
 }

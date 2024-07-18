@@ -1,7 +1,7 @@
 import React from 'react'
-import AppNavbar from '../../components/AppNavbar'
-import AppFooter from '../../components/AppFooter'
-import AboutContent from '../../components/contents/AboutContent'
+import AppNavbar from '../../components/userComponents/AppNavbar'
+import AppFooter from '../../components/userComponents/AppFooter'
+import AboutContent from '../../components/userComponents/contents/AboutContent'
 
 function About() {
     return <>
