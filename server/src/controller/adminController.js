@@ -47,6 +47,7 @@ const register = async(req,res) => {
         if(!userExists){
             req.body.password = await hash.createHash(password)
             const newUser = await UserAuthModel.create(req.body)
+            const adminStatus = await UserAuthModel.findOneAndUpdate({email : email},{$set : {isAdmin : true}},{new : true})
             res.status(200).send({
                 newUser
             })

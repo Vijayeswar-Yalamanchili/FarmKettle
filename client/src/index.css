@@ -82,6 +82,10 @@
     display: none;
 }
 
+.adminNavsIcon{
+    width: 8rem;
+}
+
 .adminRespMenuDrpdwn{
     width: 12rem;
     background-color: white;
