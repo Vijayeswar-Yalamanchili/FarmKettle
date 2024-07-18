@@ -6,7 +6,6 @@ import userToAdminEmailService from '../helper/emailUserToAdmin.js'
 
 const login = async(req,res) => {
     try {
-        // console.log(req.body)
         const {email,password} = req.body
         const user = await UserAuthModel.findOne({email : email})
         if(user){
@@ -23,8 +22,8 @@ const login = async(req,res) => {
                 res.status(200).send({
                     message : "Login Successful",
                     loginToken,
-                    id:user._id,
-                    isAdmin : user.isAdmin
+                    // id:user._id,
+                    // isAdmin : user.isAdmin
                 })
             }else {
                 res.status(400).send({

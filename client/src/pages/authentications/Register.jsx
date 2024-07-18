@@ -55,18 +55,18 @@ function Register() {
           <Row className="mb-3">
             <Col lg xs={12} className='fieldBottom'>
               <Form.Label>Firstname</Form.Label>
-              <Form.Control type='text' placeholder="Enter Firstname" id='firstName' name='firstName'onChange={formik.handleChange} value={formik.values.firstName} onBlur={formik.handleBlur}/>
+              <Form.Control type='text' placeholder="Enter Firstname" id='firstName' name='firstName' onChange={formik.handleChange} value={formik.values.firstName} onBlur={formik.handleBlur}/>
               {formik.touched.firstName && formik.errors.firstName ? (<div className='authErrorText'>{formik.errors.firstName}</div>) : null}
             </Col>
             <Col lg xs={12}>
               <Form.Label>Lastname</Form.Label>
-              <Form.Control type='text' placeholder="Enter Lastname" id='lastName' name='lastName'onChange={formik.handleChange} value={formik.values.lastName} onBlur={formik.handleBlur}/>
+              <Form.Control type='text' placeholder="Enter Lastname" id='lastName' name='lastName' onChange={formik.handleChange} value={formik.values.lastName} onBlur={formik.handleBlur}/>
               {formik.touched.lastName && formik.errors.lastName ? (<div className='authErrorText'>{formik.errors.lastName}</div>) : null}
             </Col>
           </Row>
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" id="email" name='email'onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur}/>
+            <Form.Control type="email" placeholder="Enter email" id="email" name='email' onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur}/>
             {formik.touched.email && formik.errors.email ? (<div className='authErrorText'>{formik.errors.email}</div>) : null}
           </Form.Group>
           <Form.Group className="mb-3">
@@ -77,12 +77,12 @@ function Register() {
           <Row className="mb-4">
             <Col lg xs={12} className='fieldBottom'>
               <Form.Label>Password</Form.Label>
-              <Form.Control type='password' placeholder="Enter password" id="password" name='password'onChange={formik.handleChange} value={formik.values.password} onBlur={formik.handleBlur}/>
+              <Form.Control type='password' placeholder="Enter password" id="password" name='password' onChange={formik.handleChange} value={formik.values.password} onBlur={formik.handleBlur}/>
               {formik.touched.password && formik.errors.password ? (<div className='authErrorText'>{formik.errors.password}</div>) : null}
             </Col>
             <Col lg xs={12}>
               <Form.Label>Confirm Password</Form.Label>
-              <Form.Control type='password' placeholder="Re-Enter Password" id="confirmPassword" name='confirmPassword'onChange={formik.handleChange} value={formik.values.confirmPassword} onBlur={formik.handleBlur}/>
+              <Form.Control type='password' placeholder="Re-Enter Password" id="confirmPassword" name='confirmPassword' onChange={formik.handleChange} value={formik.values.confirmPassword} onBlur={formik.handleBlur}/>
               {formik.touched.confirmPassword && formik.errors.confirmPassword ? (<div className='authErrorText'>{formik.errors.confirmPassword}</div>) : null}
             </Col>
           </Row>

@@ -43,6 +43,20 @@ const ApiRoutes = {
         path : '/users/deleteaddress',
         authenticate : true
     },
+
+    // ADMIN
+    ADMINLOGIN : {
+        path : 'admin/login',
+        authenticate : true
+    },
+    ADMINREGISTER : {
+        path : 'admin/register',
+        authenticate : true
+    },
+    ADMINLOGOUT : {
+        path : 'admin/logout',
+        authenticate : true
+    }
 }
 
 export default ApiRoutes

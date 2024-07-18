@@ -25,7 +25,6 @@ function Login() {
     }),
     onSubmit : async(values) => {
         try {
-          console.log(values)
           let res = await AxiosService.post(`${ApiRoutes.LOGIN.path}`,values)
           if(res.status === 200){
               localStorage.setItem('loginToken',res.data.loginToken)
