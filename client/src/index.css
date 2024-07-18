@@ -398,6 +398,12 @@
 
 /*My Accounts */
 
+.accountCards{
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem 0;
+}
+
 @media screen and (max-width : 576px){
     .cardImage {
         width: 6rem;
@@ -412,10 +418,7 @@
         width: 8rem;
     }
     .accountCards{
-        display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        margin: 3rem 0;
     }
     .cardAcc{
         margin-bottom: 1rem;
@@ -439,10 +442,7 @@
         width: 8rem;
     }
     .accountCards{
-        display: flex;
         flex-direction: row;
-        justify-content: space-around;
-        margin: 3rem 0;
     }
     .cardAcc{
         width: 14rem;
@@ -466,10 +466,7 @@
         width: 10rem;
     }
     .accountCards{
-        display: flex;
         flex-direction: row;
-        justify-content: space-around;
-        margin: 3rem 0;
     }
     .cardAcc{
         width: 22rem;
@@ -485,6 +482,12 @@
         flex-direction: column;
         justify-content: end;
         align-items: end;
+    }
+}
+
+@media screen and (min-width : 991px) and (max-width : 1200px){
+    .cardAcc{
+        width: 19rem;
     }
 }
 
@@ -558,4 +561,40 @@
     .addressText{
         height: 8rem;
     }  
+}
+
+/* ADMIN */
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*Dashboard */
+
+.dashboardCards{
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem 0;
+}
+
+@media screen and (max-width : 767px){
+    .dashboardCards{
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width : 768px) and (max-width : 991px){
+    .dashboardCards{
+        flex-direction: row;
+    }
+}
+
+@media screen and (min-width : 991px){
+    .dashboardCards{
+        flex-direction: row;
+    }
+}
+
+@media screen and (min-width : 991px) and (max-width : 1200px){
+    .cardAcc{
+        width: 19rem;
+    }
 }
