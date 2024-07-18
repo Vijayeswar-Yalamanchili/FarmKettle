@@ -56,7 +56,15 @@ const ApiRoutes = {
     ADMINLOGOUT : {
         path : 'admin/logout',
         authenticate : true
-    }
+    },
+    ADMINALLUSERS : {
+        path : 'admin/allusers',
+        authenticate : true
+    },
+    ADMINDELETEUSER : {
+        path : 'admin/deleteuser',
+        authenticate : true
+    },
 }
 
 export default ApiRoutes
