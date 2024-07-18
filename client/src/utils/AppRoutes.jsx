@@ -12,6 +12,8 @@ import MyAddress from "../pages/userPages/navs/MyAddress"
 import AdminLogin from "../pages/adminPages/authentications/AdminLogin"
 import AdminRegister from "../pages/adminPages/authentications/AdminRegister"
 import AdminDashboard from "../pages/adminPages/navs/AdminDashboard"
+import AdminUsersList from "../pages/adminPages/navs/AdminUsersList"
+import AdminProductsList from "../pages/adminPages/navs/AdminProductsList"
 
 const Approutes = [
     {
@@ -83,6 +85,16 @@ const Approutes = [
     {
         path : '/admin/dashboard',
         element : <AdminDashboard/>,
+        exact : true
+    },
+    {
+        path : '/admin/dashboard/userslist',
+        element : <AdminUsersList/>,
+        exact : true
+    },
+    {
+        path : '/admin/dashboard/productslist',
+        element : <AdminProductsList/>,
         exact : true
     },
 ]

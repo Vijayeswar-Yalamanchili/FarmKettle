@@ -25,7 +25,6 @@ function AdminLogin() {
         onSubmit : async(values) => {
             try {
             let res = await AxiosService.post(`${ApiRoutes.ADMINLOGIN.path}`,values)
-            console.log(res.data)
             if(res.status === 200){
                 localStorage.setItem('adminLoginToken',res.data.adminLoginToken)
                 navigate('/admin/dashboard')
