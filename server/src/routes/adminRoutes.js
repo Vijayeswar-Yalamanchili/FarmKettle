@@ -10,6 +10,8 @@ router.post('/register',adminAuthController.register)
 router.put('/logout/:id',adminAuthController.logout)
 
 router.get('/allusers/:id',auth.adminAuthenticate,auth.adminGuard,adminController.allUsers)
-router.delete('/deleteuser/:id',auth.adminAuthenticate,adminController.deleteUser)
+router.get('/currentuser/:userId/:id',auth.adminAuthenticate,adminController.currentUser)
+router.put('/edituser/:userId/:id',auth.adminAuthenticate,adminController.editUser)
+router.delete('/deleteuser/:userId/:id',auth.adminAuthenticate,adminController.deleteUser)
 
 export default router

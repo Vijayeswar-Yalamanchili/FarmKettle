@@ -41,9 +41,7 @@ const login = async(req,res) => {
 const register = async(req,res) => {
     try {
         const { email,password } = req.body
-        console.log(email, password)
         const userExists = await UserAuthModel.findOne({email : email})
-        console.log(userExists)
         if(!userExists){
             req.body.password = await hash.createHash(password)
             const newUser = await UserAuthModel.create(req.body)
