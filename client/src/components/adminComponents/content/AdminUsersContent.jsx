@@ -72,7 +72,6 @@ function AdminUsersContent() {
         try {
             let res = await AxiosService.get(`${ApiRoutes.ADMINCURRENTUSER.path}/${id}/${decodedTokenId}`, { headers : { 'Authorization' : `${adminLoginToken}`}})
             let result = res.data.currentuser
-            // setCurrentUsers(result)
             if(res.status === 200){
                 setCurrentUsers(result)
                 setIsAdmin(result.isAdmin)

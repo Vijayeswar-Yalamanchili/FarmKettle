@@ -73,6 +73,23 @@ const ApiRoutes = {
         path : '/admin/deleteuser',
         authenticate : true
     },
+    ADMINADDPRODUCT : {
+        path : '/admin/addproduct',
+        authenticate : true
+    },
+    ADMINGETPRODUCT : {
+        path : '/admin/getallproducts',
+        authenticate : true
+    },
+    ADMINEDITPRODUCT : {
+        path : '/admin/editproduct',
+        authenticate : true
+    },
+    ADMINDELETEPRODUCT : {
+        path : '/admin/deleteproduct',
+        authenticate : true
+    },
 }
+
 
 export default ApiRoutes

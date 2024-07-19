@@ -2,16 +2,18 @@ import multer from 'multer'
 
 const productImageStorage = multer.diskStorage({
   destination: (req, file, cb) => {
+    // console.log("sada : ",file)
     cb(null, 'productImages')
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.fieldname + '-' + uniqueSuffix)
+    const uniqueSuffix = Date.now()
+    // console.log(uniqueSuffix,file)
+    cb(null, uniqueSuffix + file.originalname)
   }
 })
   
-const productImageUpload = multer({ storage: productImageStorage })
+const imageUpload = multer({ storage: productImageStorage })
 
 export default {
-  productImageUpload
+  imageUpload
 }
