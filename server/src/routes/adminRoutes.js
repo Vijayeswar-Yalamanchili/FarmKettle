@@ -18,7 +18,7 @@ router.delete('/deleteuser/:userId/:id',auth.adminAuthenticate,adminUserControll
 
 router.post('/addproduct/:id', auth.adminAuthenticate,auth.adminGuard, productImageUpload.imageUpload.single('imagefile'),adminProductController.addProduct)
 router.get('/getallproducts/:id', auth.adminAuthenticate, adminProductController.getAllProducts)
-router.put('/editproduct/:id', auth.adminAuthenticate, adminProductController.updateProduct)
+router.put('/editproduct/:id', auth.adminAuthenticate,productImageUpload.imageUpload.single('imagefile'), adminProductController.updateProduct)
 router.delete('/deleteproduct/:id', auth.adminAuthenticate, adminProductController.removeProduct)
 
 export default router

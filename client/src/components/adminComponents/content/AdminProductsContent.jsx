@@ -31,13 +31,11 @@ function AdminProductsContent() {
         formData.append('weight', weight)
         formData.append('description', desc)
         formData.append('imagefile', image)
-        // const formProps = Object.fromEntries(formData)
         try {
             let res = await AxiosService.post(`${ApiRoutes.ADMINADDPRODUCT.path}/${id}`,formData, { headers : {
                 'Authorization' : `${getAdminToken}`,
                 "Content-Type" : 'multipart/form-data'
             } })
-            // console.log(res.data)handleClose
             if(res.status === 200) {
                 handleClose()
             }
@@ -66,12 +64,14 @@ function AdminProductsContent() {
 
     return <>
         <Container className='my-5'>
+
             <Breadcrumb>
                 <Breadcrumb.Item onClick={ ()=> navigate('/admin/dashboard')}>Dashboard</Breadcrumb.Item>
                 <Breadcrumb.Item active>Products</Breadcrumb.Item>
             </Breadcrumb>
+
             <div className='productsArea'>
-                <div className='d-flex justify-content-between'>
+                <div className='d-flex justify-content-between mb-4'>
                     <h4>Products List</h4>
                     <Button onClick={handleShow}>Add Product</Button>
                 </div>
