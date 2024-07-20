@@ -1,15 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Row } from 'react-bootstrap'
-import ProductCard from '../ProductCard'
-import blackTeaImage from '../../../assets/blackTea.png'
-import herbalTeaImage from '../../../assets/herbalTea.png'
-import blackTeaComboImage from '../../../assets/blackTeaCombo.png'
-import herbalTeaComboImage from '../../../assets/herbalTeaCombo.png'
-import { CartDataContext } from '../../../contextApi/CartDataComponent'
 import { toast } from 'react-toastify'
+import { jwtDecode } from 'jwt-decode'
+import { CartDataContext } from '../../../contextApi/CartDataComponent'
+import ProductCard from '../ProductCard'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
-import { jwtDecode } from 'jwt-decode'
+
 
 function BuyProductContent() {
 
