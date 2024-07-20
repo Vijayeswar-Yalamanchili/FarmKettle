@@ -17,7 +17,7 @@ function ProductCard({cart,setCart,cardData}) {
             let res = await AxiosService.put(`${ApiRoutes.ADDCARTLIST.path}/${productId}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
             console.log("Adding : ", res.data)
             if(res.status === 200) {
-                setToggle(!toggle)
+                setToggle(false)
                 setCart(cart+1)
             }
         } catch (error) {
@@ -30,7 +30,7 @@ function ProductCard({cart,setCart,cardData}) {
             let res = await AxiosService.put(`${ApiRoutes.REMOVECARTLIST.path}/${productId}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
             console.log("Removal : ", res.data)
             if(res.status === 200) {
-                setToggle(!toggle)
+                setToggle(true)
                 setCart(cart-1)
             }
         } catch (error) {

@@ -92,14 +92,10 @@ const addCartList = async(req,res) => {
 
 const removeCartList = async(req,res) => {
     try {
-        console.log("first")
         let user = await UserAuthModel.findById({_id : req.params.id})
-        console.log(user)
         if(user){
             if(!user.cartList.includes(req.params.productId)){
-                console.log(user.cartList.includes(req.params.productId))
                 let removeFromCart = await UserAuthModel.findByIdAndUpdate({_id:req.params.id},{$pull : {cartList : {productId : req.params.productId}}})
-                console.log(removeFromCart)
                 res.status(200).send({
                     removeFromCart
                 })
@@ -115,7 +111,6 @@ const removeCartList = async(req,res) => {
         })
     }
 }
-
 
 export default {
     contact,
