@@ -1,4 +1,5 @@
 import UserAuthModel from '../models/userAuthModel.js'
+import ProductModel from '../models/productModel.js'
 
 const contact = async(req,res) => {
     try {
@@ -54,9 +55,24 @@ const userprofileUpdate = async(req,res) => {
     }
 }
 
+const getAllProducts = async(req,res) => {
+    try {
+        let productsList = await ProductModel.find()
+        res.status(200).send({
+            productsList
+        })
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in getting product list"
+        })
+    }
+}
+
+
 export default {
     contact,
     allUsers,
     currentUserData,
-    userprofileUpdate
+    userprofileUpdate,
+    getAllProducts
 }

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container, Row } from 'react-bootstrap'
 import ProductCard from '../ProductCard'
 import blackTeaImage from '../../../assets/blackTea.png'
@@ -6,62 +6,35 @@ import herbalTeaImage from '../../../assets/herbalTea.png'
 import blackTeaComboImage from '../../../assets/blackTeaCombo.png'
 import herbalTeaComboImage from '../../../assets/herbalTeaCombo.png'
 import { CartDataContext } from '../../../contextApi/CartDataComponent'
+import { toast } from 'react-toastify'
+import AxiosService from '../../../utils/AxiosService'
+import ApiRoutes from '../../../utils/ApiRoutes'
+import { jwtDecode } from 'jwt-decode'
 
 function BuyProductContent() {
 
     let { cart, setCart} = useContext(CartDataContext)
+    const [productCardData,setProductCardData] = useState([])
+    let getLoginToken = localStorage.getItem('loginToken')
+    let decodedToken = jwtDecode(getLoginToken)
+    let id = decodedToken.id
 
-    let productCardData = [
-        {
-            productImage : blackTeaImage,
-            productTitle : 'Black Tea',
-            productWeight : '(250g)',
-            ProductDescription : 'FarmKettle Organic black Tea Bag',
-        },
-        {
-            productImage : blackTeaImage,
-            productTitle : 'Black Tea',
-            productWeight : '(500g)',
-            ProductDescription : 'FarmKettle Organic black Tea Bag',
-        },
-        {
-            productImage : blackTeaImage,
-            productTitle : 'Black Tea',
-            productWeight : '(1Kg)',
-            ProductDescription : 'FarmKettle Organic black Tea Bag',
-        },
-        {
-            productImage : blackTeaComboImage,
-            productTitle : 'Black Tea Combo',
-            productWeight : '(1Kg +1Kg)',
-            ProductDescription : 'FarmKettle Organic black Tea Bag',
-        },
-        {
-            productImage : herbalTeaImage,
-            productTitle : 'Herbal Tea',
-            productWeight : '(250g)',
-            ProductDescription : 'FarmKettle Organic Herbal Tea Bag',
-        },
-        {
-            productImage : herbalTeaImage,
-            productTitle : 'Herbal Tea',
-            productWeight : '(500g)',
-            ProductDescription : 'FarmKettle Organic Herbal Tea Bag',
-        },
-        {
-            productImage : herbalTeaImage,
-            productTitle : 'Herbal Tea',
-            productWeight : '(1Kg)',
-            ProductDescription : 'FarmKettle Organic Herbal Tea Bag',
-        },
-        {
-            productImage : herbalTeaComboImage,
-            productTitle : 'Herbal Tea Combo',
-            productWeight : '(1Kg +1Kg)',
-            ProductDescription : 'FarmKettle Organic Herbal Tea Bag',
-        },
-        
-    ]
+    const getProductsData = async() => {
+        try {
+            let res = await AxiosService.get(`${ApiRoutes.GETALLPRODUCTS.path}/${id}`,{ headers : { 
+                'Authorization' : `${getLoginToken}`
+            }})
+            if(res.status === 200) {
+                setProductCardData(res.data.productsList)
+            }
+        } catch (error) {
+            toast.error(error.response.data.message || error.message)
+        }
+    }
+
+    useEffect(() => {
+        getProductsData()
+    },[productCardData])
 
     return <> 
         <Container className='my-4'>

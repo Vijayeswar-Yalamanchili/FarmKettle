@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Col, Card } from 'react-bootstrap'
+import { Button, Col, Card, Image } from 'react-bootstrap'
 
 function ProductCard({cart,setCart,cardData}) {
 
@@ -18,10 +18,10 @@ function ProductCard({cart,setCart,cardData}) {
     return <>
         <Col>
             <Card style={{ width: '18rem',border : "none",boxShadow : 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
-                <Card.Img variant="top" height={220} src={cardData.productImage} />
+                <Image height={180} src={`http://localhost:8000/${cardData.productImage}`} style={{borderRadius : "5px"}}/>
                 <Card.Body className='productCardBody'>
                     <h5 className='text-center'>{cardData.productTitle}<span style={{fontSize : "smaller"}}>{cardData.productWeight}</span></h5>
-                    <p className='text-center'>{cardData.ProductDescription}</p>
+                    <p className='text-center'>{cardData.productDescription}</p>
                     {
                         toggle ? 
                         <Button variant="primary" onClick={handleAddCart}>Add to Cart</Button>

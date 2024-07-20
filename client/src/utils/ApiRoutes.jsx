@@ -43,6 +43,10 @@ const ApiRoutes = {
         path : '/users/deleteaddress',
         authenticate : true
     },
+    GETALLPRODUCTS : {
+        path : '/users/allproducts',
+        authenticate : true
+    },
 
     // ADMIN
     ADMINLOGIN : {

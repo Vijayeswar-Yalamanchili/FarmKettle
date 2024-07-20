@@ -22,4 +22,7 @@ router.get('/getaddress/:id',auth.authenticate, addressController.getAddress)
 router.put('/editaddress/:id/:addressId',auth.authenticate, addressController.editAddress)
 router.delete('/deleteaddress/:id/:addressId',auth.authenticate, addressController.deleteAddress)
 
+//Products
+router.get('/allproducts/:id',auth.authenticate, userController.getAllProducts)
+
 export default router
