@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container, Card, Button, Breadcrumb, Modal, Form, Image, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import AxiosService from '../../../utils/AxiosService'
-import ApiRoutes from '../../../utils/ApiRoutes'
 import { jwtDecode } from 'jwt-decode'
 import { toast } from 'react-toastify'
+import { UserListContext } from '../../../contextApi/UserListContextComponent'
+import AxiosService from '../../../utils/AxiosService'
+import ApiRoutes from '../../../utils/ApiRoutes'
 import AdminProductCard from '../AdminProductCard'
 
 function AdminProductsContent() {
 
     let navigate = useNavigate()
+    let { products } = useContext(UserListContext)
+
     const [show, setShow] = useState(false)
     const [title, setTitle] = useState('');
     const [weight, setWeight] = useState('');
     const [desc, setDesc] = useState('');
     const [image, setImage] = useState(null);
-    const [products, setProducts] = useState([]);
 
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
@@ -44,23 +46,6 @@ function AdminProductsContent() {
         }
 
     }
-
-    const getProductsList = async() => {
-        try {
-            let res = await AxiosService.get(`${ApiRoutes.ADMINGETPRODUCT.path}/${id}`,{ headers : { 
-                'Authorization' : `${getAdminToken}`
-            }})
-            if(res.status === 200) {
-                setProducts(res.data.productsList)
-            }
-        } catch (error) {
-            toast.error(error.response.data.message || error.message)
-        }
-    }
-
-    useEffect(()=> {
-        getProductsList()
-    },[products])
 
     return <>
         <Container className='my-5'>

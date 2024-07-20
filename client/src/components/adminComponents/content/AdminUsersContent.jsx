@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Container, Table, Modal, Form, Breadcrumb, Row, Col } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { UserListContext } from '../../../contextApi/UserListContextComponent'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
-
 
 function AdminUsersContent() {
     
     let navigate = useNavigate()
-    const [users, setUsers] = useState([])
+    let { users } = useContext(UserListContext)
     const [currentUser, setCurrentUsers] = useState([])
     const [popup, setPopup] = useState(false)
     const [userID, setUserID] = useState()
@@ -33,17 +33,6 @@ function AdminUsersContent() {
     const handlePopUp = async(id) => {
         setPopup(true)
         setUserID(id)
-    }
-
-    let getAllUsersList = async() => {
-        try {
-            let res = await AxiosService.get(`${ApiRoutes.ADMINALLUSERS.path}/${decodedTokenId}`, { headers : { 'Authorization' : `${adminLoginToken}`}})
-            if(res.status === 200){
-                setUsers(res.data.usersList)
-            }
-        } catch (error) {
-            toast.error(error.response.data.message || error.message)
-        }
     }
 
     const handleModal = (id) => {
@@ -90,10 +79,6 @@ function AdminUsersContent() {
             toast.error(error.response.data.message || error.message)
         }
     }
-
-    useEffect(()=>{
-        getAllUsersList()
-    },[users])
 
     return <>
         <Container className='my-5'>
