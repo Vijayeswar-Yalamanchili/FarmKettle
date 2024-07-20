@@ -68,11 +68,61 @@ const getAllProducts = async(req,res) => {
     }
 }
 
+const addCartList = async(req,res) => {
+    try {
+        let user = await UserAuthModel.findById({_id : req.params.id})
+        if(user){
+            if(!user.cartList.includes(req.params.productId)){
+                let addToCart = await UserAuthModel.findByIdAndUpdate({_id:req.params.id},{$push : {cartList : {productId : req.params.productId}}})
+                res.status(200).send({
+                    addToCart
+                })
+            }
+        }else{
+            res.status(400).send({
+                message : "Something went wrong in adding to cart"
+            })
+        }
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in adding to cart"
+        })
+    }
+}
+
+const removeCartList = async(req,res) => {
+    try {
+        console.log("first")
+        let user = await UserAuthModel.findById({_id : req.params.id})
+        console.log(user)
+        if(user){
+            if(!user.cartList.includes(req.params.productId)){
+                console.log(user.cartList.includes(req.params.productId))
+                let removeFromCart = await UserAuthModel.findByIdAndUpdate({_id:req.params.id},{$pull : {cartList : {productId : req.params.productId}}})
+                console.log(removeFromCart)
+                res.status(200).send({
+                    removeFromCart
+                })
+            }
+        }else{
+            res.status(400).send({
+                message : "Something went wrong in removing to cart"
+            })
+        }
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in removing to cart"
+        })
+    }
+}
+
 
 export default {
     contact,
     allUsers,
     currentUserData,
     userprofileUpdate,
-    getAllProducts
+    getAllProducts,
+    addCartList,
+    removeCartList
 }

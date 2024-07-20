@@ -24,5 +24,7 @@ router.delete('/deleteaddress/:id/:addressId',auth.authenticate, addressControll
 
 //Products
 router.get('/allproducts/:id',auth.authenticate, userController.getAllProducts)
+router.put('/addcart/:productId/:id', auth.authenticate, userController.addCartList)
+router.put('/removecart/:productId/:id', auth.authenticate, userController.removeCartList)
 
 export default router

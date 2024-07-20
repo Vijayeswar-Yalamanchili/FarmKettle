@@ -47,6 +47,15 @@ const ApiRoutes = {
         path : '/users/allproducts',
         authenticate : true
     },
+    ADDCARTLIST : {
+        path : '/users/addcart',
+        authenticate : true
+    },
+    REMOVECARTLIST : {
+        path : '/users/removecart',
+        authenticate : true
+    },
+    
 
     // ADMIN
     ADMINLOGIN : {
