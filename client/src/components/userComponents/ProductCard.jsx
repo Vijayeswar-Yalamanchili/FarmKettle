@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Card, Image } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import AxiosService from '../../utils/AxiosService'
@@ -17,7 +17,8 @@ function ProductCard({cart,setCart,cardData}) {
             let res = await AxiosService.put(`${ApiRoutes.ADDCARTLIST.path}/${productId}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
             console.log("Adding : ", res.data)
             if(res.status === 200) {
-                setToggle(false)
+                // setPId(productId)
+                setToggle(!toggle)
                 setCart(cart+1)
             }
         } catch (error) {
@@ -30,13 +31,34 @@ function ProductCard({cart,setCart,cardData}) {
             let res = await AxiosService.put(`${ApiRoutes.REMOVECARTLIST.path}/${productId}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
             console.log("Removal : ", res.data)
             if(res.status === 200) {
-                setToggle(true)
+                setToggle(!toggle)
                 setCart(cart-1)
             }
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
     }
+
+    const getCartCount = async(pid) => {
+        try {
+            let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
+            let result = res.data.currentUser
+            let cartState = result.cartList
+            if(res.status === 200){
+                let a = cartState.map((e) => {
+                    if(e.productId === pid){
+                        setToggle(!toggle)
+                    }
+                })
+            }
+        } catch (error) {
+            toast.error(error.response.data.message || error.message)
+        }
+    }
+
+    useEffect(() => {
+        getCartCount(cardData._id)
+    },[])
 
     return <>
         <Col>
