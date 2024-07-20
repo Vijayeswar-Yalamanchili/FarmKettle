@@ -21,4 +21,7 @@ router.get('/getallproducts/:id', auth.adminAuthenticate, adminProductController
 router.put('/editproduct/:id', auth.adminAuthenticate,productImageUpload.imageUpload.single('imagefile'), adminProductController.updateProduct)
 router.delete('/deleteproduct/:id', auth.adminAuthenticate, adminProductController.removeProduct)
 
+router.get('/getcurrentuser/:id', auth.adminAuthenticate, adminUserController.getCurrentUser)
+router.put('/updatecurrentuser/:id', auth.adminAuthenticate, adminUserController.updateProfileData)
+
 export default router

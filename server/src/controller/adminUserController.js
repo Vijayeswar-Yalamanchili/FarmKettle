@@ -58,9 +58,37 @@ const deleteUser = async(req,res) => {
     }
 }
 
+const getCurrentUser = async(req,res) => {
+    try {
+        let profile = await UserAuthModel.findById({_id : req.params.id})
+        res.status(200).send({
+            profile
+        }) 
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal error in fetching Profile Details"
+        })
+    }
+}
+
+const updateProfileData = async(req,res) => {
+    try {
+        let updatedProfile = await UserAuthModel.findByIdAndUpdate({_id : req.params.id},{$set : req.body},{new : true})
+        res.status(200).send({
+            updatedProfile
+        }) 
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal error in Updating Profile Details"
+        })
+    }
+}
+
 export default {
     allUsers,
     currentUser,
     editUser,
-    deleteUser
+    deleteUser,
+    getCurrentUser,
+    updateProfileData
 }

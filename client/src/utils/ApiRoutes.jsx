@@ -65,6 +65,14 @@ const ApiRoutes = {
         path : '/admin/currentuser',
         authenticate : true
     },
+    ADMINPROFILEUSER : {
+        path : '/admin/getcurrentuser',
+        authenticate : true
+    },
+    ADMINUPDATEPROFILEUSER : {
+        path : '/admin/updatecurrentuser',
+        authenticate : true
+    },
     ADMINEDITUSER : {
         path : '/admin/edituser',
         authenticate : true

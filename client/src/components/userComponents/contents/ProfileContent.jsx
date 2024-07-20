@@ -21,7 +21,10 @@ function ProfileContent() {
     const [mobile, setMobile] = useState('')
     const [email, setEmail] = useState('')
     const [show, setShow] = useState(false);
-    const getLoginToken = localStorage.getItem('loginToken')
+    
+    const getLoginToken = localStorage.getItem('loginToken')    
+    const decodedtoken = jwtDecode(getLoginToken)
+    const id = decodedtoken.id
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -46,12 +49,10 @@ function ProfileContent() {
   
     const getuserData = async() => {
         try {
-            const decodedtoken = jwtDecode(getLoginToken)
-            const id = decodedtoken.id
-            let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : {
-            'Authorization' : `${getLoginToken}`
-            }})
-            setOldData(res.data.currentUser)
+            let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authorization' : `${getLoginToken}` }})
+            if(res.status === 200) {
+                setOldData(res.data.currentUser)
+            }
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
