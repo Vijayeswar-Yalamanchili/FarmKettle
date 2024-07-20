@@ -15,6 +15,7 @@ import AdminDashboard from "../pages/adminPages/navs/AdminDashboard"
 import AdminUsersList from "../pages/adminPages/navs/AdminUsersList"
 import AdminProductsList from "../pages/adminPages/navs/AdminProductsList"
 import AdminProfile from "../pages/adminPages/navs/AdminProfile"
+import UserListContextComponent from "../contextApi/UserListContextComponent"
 
 const Approutes = [
     {
@@ -85,17 +86,17 @@ const Approutes = [
     },
     {
         path : '/admin/dashboard',
-        element : <AdminDashboard/>,
+        element : <UserListContextComponent><AdminDashboard/></UserListContextComponent>,
         exact : true
     },
     {
         path : '/admin/dashboard/userslist',
-        element : <AdminUsersList/>,
+        element : <UserListContextComponent><AdminUsersList/></UserListContextComponent>,
         exact : true
     },
     {
         path : '/admin/dashboard/productslist',
-        element : <AdminProductsList/>,
+        element : <UserListContextComponent><AdminProductsList/></UserListContextComponent>,
         exact : true
     },
     {
