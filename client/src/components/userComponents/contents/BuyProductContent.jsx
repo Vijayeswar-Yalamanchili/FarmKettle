@@ -36,7 +36,7 @@ function BuyProductContent() {
     return <> 
         <Container className='my-4'>
             <div className='d-flex justify-content-between align-items-center'> 
-                <h2>PRODUCTS LIST</h2>
+                <h4>PRODUCTS LIST</h4>
             </div>
             <div className='productCard mt-4'>
                 <Row xs={1} md={2} lg={3} xl={4} className="g-4">
