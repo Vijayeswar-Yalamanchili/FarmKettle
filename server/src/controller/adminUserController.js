@@ -3,9 +3,15 @@ import UserAuthModel from "../models/userAuthModel.js"
 const allUsers = async(req,res) => {
     try {
         let usersList = await UserAuthModel.find()
-        res.status(200).send({
-            usersList
-        }) 
+        if(usersList) {
+            let userCount = await UserAuthModel.countDocuments({isAdmin : false})
+            let adminCount = await UserAuthModel.countDocuments({isAdmin : true})
+            res.status(200).send({
+                usersList,
+                userCount,
+                adminCount
+            }) 
+        }
     } catch (error) {
         res.status(500).send({
             message : "Internal error in fetching Users list"

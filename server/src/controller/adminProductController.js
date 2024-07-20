@@ -5,7 +5,6 @@ const addProduct = async(req,res) => {
         const { title,weight,description } = req.body
         const { filename } = req.file
         const addproduct = await ProductsModel.create({productTitle : title, productWeight : weight, productDescription : description, productImage : filename})
-        // console.log(addproduct)
         res.status(200).send({
             addproduct
         })
@@ -19,9 +18,13 @@ const addProduct = async(req,res) => {
 const getAllProducts = async(req,res) => {
     try {
         let productsList = await ProductsModel.find()
-        res.status(200).send({
-            productsList
-        })
+        if(productsList){
+            let productsCount = await ProductsModel.countDocuments()
+            res.status(200).send({
+                productsList,
+                productsCount
+            })
+        }
     } catch (error) {
         res.status(500).send({
             message : "Internal server error in adding new product"

@@ -37,7 +37,7 @@ function AdminNavbar() {
         {
             getAdminLoginToken ? 
                 <div className='d-flex justify-content-between align-items-center px-3'>
-                    <Image src={logo} height={80} onClick={()=> navigate('/admin')}/>
+                    <Image src={logo} height={80} onClick={()=> navigate('/admin/dashboard')}/>
                     <div className='adminNavsIcon d-flex'>
                         <Button variant='none' className='adminNavTab'><FontAwesomeIcon icon={faUser} onClick={()=>navigate('/admin/adminprofile')} style={{ height : '1.5rem', color : "white"}}/></Button>
                         <Button variant='none' className='adminNavTab'><FontAwesomeIcon icon={faPowerOff} onClick={handleLogout} style={{ height : '1.5rem', color : "white"}}/></Button>
