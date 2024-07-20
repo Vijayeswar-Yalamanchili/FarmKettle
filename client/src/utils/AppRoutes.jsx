@@ -14,6 +14,7 @@ import AdminRegister from "../pages/adminPages/authentications/AdminRegister"
 import AdminDashboard from "../pages/adminPages/navs/AdminDashboard"
 import AdminUsersList from "../pages/adminPages/navs/AdminUsersList"
 import AdminProductsList from "../pages/adminPages/navs/AdminProductsList"
+import AdminProfile from "../pages/adminPages/navs/AdminProfile"
 
 const Approutes = [
     {
@@ -95,6 +96,11 @@ const Approutes = [
     {
         path : '/admin/dashboard/productslist',
         element : <AdminProductsList/>,
+        exact : true
+    },
+    {
+        path : '/admin/adminprofile',
+        element : <AdminProfile/>,
         exact : true
     },
 ]

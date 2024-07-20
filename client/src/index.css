@@ -659,3 +659,31 @@
         left: 42%;
     }
 }
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/*Admin Profile */
+
+.adminProfileBlock{
+    padding : 2rem;
+    border : 1px solid blue;
+    border-radius: 30px;
+}
+.adminProfileTextField{
+    border:  1px solid blue;
+    border-radius: 10px;
+    height: 2rem;
+    padding: 0 0.5rem;
+    align-content: center;
+}
+
+@media screen and (min-width :992px){
+    .adminProfileBlock{
+        width: 40%;
+        height: max-content;
+        padding : 3rem;
+    }
+    .adminProfileData{
+        height: max-content;
+    }
+}
