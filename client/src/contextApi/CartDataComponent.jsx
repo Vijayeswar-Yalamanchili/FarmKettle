@@ -9,17 +9,20 @@ export const CartDataContext = React.createContext()
 function CartDataComponent ({children}){
 
     const [cart, setCart] = useState(0)
-    let getLoginToken = localStorage.getItem('loginToken') ? localStorage.getItem('loginToken') : null
-    let decodedToken = jwtDecode(getLoginToken)
-    let id = decodedToken.id
+    const [loggedIn, setLoggedIn] = useState(false)
     
     const getCartCount = async() => {
-        try {
-            let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
-            let result = res.data.currentUser
-            let cartCount = result.cartList.length
-            if(res.status === 200){
-                setCart(cartCount)
+        try { 
+            let getLoginToken = localStorage.getItem('loginToken') && setLoggedIn(true) 
+            if(loggedIn === true) {
+                let decodedToken = jwtDecode(getLoginToken)
+                let id = decodedToken.id
+                let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
+                let result = res.data.currentUser
+                let cartCount = result.cartList.length
+                if(res.status === 200){
+                    setCart(cartCount)
+                }
             }
         } catch (error) {
             toast.error(error.response.data.message || error.message)
