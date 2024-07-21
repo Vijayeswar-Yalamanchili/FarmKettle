@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Card, Image } from 'react-bootstrap'
 import { toast } from 'react-toastify'
+import { jwtDecode } from 'jwt-decode'
 import AxiosService from '../../utils/AxiosService'
 import ApiRoutes from '../../utils/ApiRoutes'
-import { jwtDecode } from 'jwt-decode'
 
 function ProductCard({cart,setCart,cardData}) {
 

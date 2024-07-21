@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Card, Container, Button, Image } from 'react-bootstrap'
+import { Card, Container, Image } from 'react-bootstrap'
 import pic from '../../../assets/blackTea.png'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
@@ -26,9 +26,7 @@ function CartContent() {
   const handleRemoveCart = async(productId) => {
     try {
         let res = await AxiosService.put(`${ApiRoutes.REMOVECARTLIST.path}/${productId}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
-        console.log("Removal : ", res.data)
         if(res.status === 200) {
-            // setToggle(!toggle)
             setCart(cart-1)
         }
     } catch (error) {
@@ -57,7 +55,7 @@ function CartContent() {
         cartItem.length > 0 ? cartItem.map((e,i)=> {
             return <Card className='cartItemCard d-flex mx-auto mb-3' key={i}>
               <div className='cartItemCardImage'>
-                <Image src={pic} style={{width : "100%",height : "100%"}}/>
+                <Image src={`http://localhost:8000/${e.productImage}`} style={{width : "100%",height : "100%"}}/>
               </div>
               <Card.Body className='cartItemCardBody d-flex my-3'>
                 <div>
@@ -78,8 +76,8 @@ function CartContent() {
             </Card>
           })
           :
-          <Card>
-            <Card.Body>No Items in Your Cart</Card.Body>
+          <Card style={{width : "18rem"}} className='mx-auto'>
+            <Card.Body className='text-center' style={{fontSize : "larger"}}>No Items in Your Cart</Card.Body>
           </Card>
 
       }
