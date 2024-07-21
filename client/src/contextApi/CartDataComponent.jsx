@@ -9,7 +9,7 @@ export const CartDataContext = React.createContext()
 function CartDataComponent ({children}){
 
     const [cart, setCart] = useState(0)
-    let getLoginToken = localStorage.getItem('loginToken')
+    let getLoginToken = localStorage.getItem('loginToken') ? localStorage.getItem('loginToken') : null
     let decodedToken = jwtDecode(getLoginToken)
     let id = decodedToken.id
     

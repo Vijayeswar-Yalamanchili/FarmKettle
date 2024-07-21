@@ -16,6 +16,7 @@ import AdminUsersList from "../pages/adminPages/navs/AdminUsersList"
 import AdminProductsList from "../pages/adminPages/navs/AdminProductsList"
 import AdminProfile from "../pages/adminPages/navs/AdminProfile"
 import UserListContextComponent from "../contextApi/UserListContextComponent"
+import Cart from "../pages/userPages/navs/Cart"
 
 const Approutes = [
     {
@@ -66,6 +67,11 @@ const Approutes = [
     {
         path : '/myaccount/address',
         element : <MyAddress/>,
+        exact : true
+    },
+    {
+        path : '/cart',
+        element : <Cart/>,
         exact : true
     },
     {

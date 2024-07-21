@@ -54,7 +54,7 @@ function AppNavbar() {
                     <Link className='navTab' style={{textDecoration : "none",color : "white"}} onClick={() => getLoginToken ? navigate('/buyProducts') : navigate('/login')}>Buy Products</Link>
                     {
                         getLoginToken ? 
-                        <Button variant='none' className='authBtns cartBtn' onClick={()=>handleCartButton()}>
+                        <Button variant='none' className='authBtns cartBtn' onClick={()=> navigate('/cart')}>
                             <FontAwesomeIcon icon={faCartShopping} style={{ height : '1.5rem'}}/>
                             <div className='cartBadge' style={{fontSize :"1.2rem"}}>{cart}</div>
                         </Button>

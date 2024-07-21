@@ -55,6 +55,10 @@ const ApiRoutes = {
         path : '/users/removecart',
         authenticate : true
     },
+    GETCARTITEMS : {
+        path :'/users/cartitems',
+        authenticate : true
+    },
     
 
     // ADMIN

@@ -112,6 +112,30 @@ const removeCartList = async(req,res) => {
     }
 }
 
+const cartItemsList = async(req,res) => {
+    try {
+        let user = await UserAuthModel.findById({_id : req.params.id})
+        if(user) {
+            let cartItems = await Promise.all(
+                user.cartList.map((e) => {
+                    return ProductModel.findById(e.productId)
+                })
+            )
+            res.status(200).send({
+                cartItems
+            })
+        }else {
+            res.status(400).send({
+                message : "No Items in cart"
+            }) 
+        }        
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in getting product list"
+        })
+    }
+}
+
 export default {
     contact,
     allUsers,
@@ -119,5 +143,6 @@ export default {
     userprofileUpdate,
     getAllProducts,
     addCartList,
-    removeCartList
+    removeCartList,
+    cartItemsList
 }

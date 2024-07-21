@@ -563,6 +563,60 @@
     }  
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* CART CARD */
+
+.cartItemCard {
+    flex-direction: row !important;
+    width: 70%;
+    height: 12rem  !important;
+    min-height: 5rem;
+    max-height: max-content;
+}
+
+.cartItemCardImage{
+    width: 15rem;
+}
+
+.cartItemCardBody{
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cartItemCardQuantity, .cartItemCardCount{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width : 992px){
+    .cartItemCard{
+        width: 100%;
+    }
+    .cartItemCardImage{
+        width: 10rem;
+    }
+}
+
+@media screen and (max-width : 576px){
+    .cartItemCard{
+        height: 15rem !important;
+    }
+    .cartItemCardQuantity{
+        flex-direction: column;
+        justify-content: start;
+        align-self: start;
+    }
+    .cartItemCardCount{
+        margin-top: 1rem;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+
+
 /* ADMIN */
 
 /* ------------------------------------------------------------------------------------------------------------------ */

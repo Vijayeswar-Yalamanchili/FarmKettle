@@ -23,7 +23,7 @@ router.put('/editaddress/:id/:addressId',auth.authenticate, addressController.ed
 router.delete('/deleteaddress/:id/:addressId',auth.authenticate, addressController.deleteAddress)
 
 //Products
-// router.get('/currentuser/:id', auth.authenticate,userController.cartList)
+router.get('/cartitems/:id', auth.authenticate,userController.cartItemsList)
 router.get('/allproducts/:id',auth.authenticate, userController.getAllProducts)
 router.put('/addcart/:productId/:id', auth.authenticate, userController.addCartList)
 router.put('/removecart/:productId/:id', auth.authenticate, userController.removeCartList)
