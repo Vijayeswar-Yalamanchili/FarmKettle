@@ -1,5 +1,5 @@
-import React from 'react'
-import { Col, Row, Button, Form, Container } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Col, Row, Button, Form, Container, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
@@ -12,7 +12,8 @@ import OAuth from '../../../components/userComponents/OAuth'
 
 function Register() {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   let formik = useFormik({
     initialValues:{
@@ -33,11 +34,13 @@ function Register() {
     }),
     onSubmit : async(values) => {
         try {      
+          setLoading(true)
           if(values.password === values.confirmPassword){
             let res = await AxiosService.post(`${ApiRoutes.REGISTER.path}`,values)
             if(res.status === 200){
               navigate('/login')
-            }     
+            }   
+            setLoading(false)  
           }else{
             toast.error("Passwords doesnt match! Please enter the same passwords")
           }
@@ -87,7 +90,7 @@ function Register() {
             </Col>
           </Row>
           <div className="d-grid mb-3">
-            <Button variant='primary'className='formBtns' type="submit">Register</Button>
+            <Button variant='primary'className='formBtns' type="submit" disabled={loading}>{loading ? <Spinner animation="border" /> : 'Register'}</Button>
           </div>
           <hr style={{color:"#0E6B06"}}/>
           <OAuth/>

@@ -1,17 +1,18 @@
-import React from 'react'
-import AdminNavbar from '../../../components/adminComponents/AdminNavbar'
-import AdminFooter from '../../../components/adminComponents/AdminFooter'
+import React, { useState } from 'react'
+import { Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import AdminNavbar from '../../../components/adminComponents/AdminNavbar'
+import AdminFooter from '../../../components/adminComponents/AdminFooter'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
 
 function AdminRegister() {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   let formik = useFormik({
     initialValues:{
@@ -32,11 +33,13 @@ function AdminRegister() {
     }),
     onSubmit : async(values) => {
         try {  
+          setLoading(true)
           if(values.password === values.confirmPassword){
             let res = await AxiosService.post(`${ApiRoutes.ADMINREGISTER.path}`,values)
             if(res.status === 200){
               navigate('/admin')
-            }     
+            }  
+            setLoading(false)   
           }else{
             toast.error("Passwords doesnt match! Please enter the same passwords")
           }
@@ -85,7 +88,7 @@ function AdminRegister() {
             </Col>
           </Row>
           <div className="d-grid mb-3">
-            <Button variant='primary'className='formBtns' type="submit">Register</Button>
+            <Button variant='primary'className='formBtns' type="submit" disabled={loading}>{loading ? <Spinner animation="border" /> : 'Register'}</Button>
           </div>
           <hr style={{color:"blue"}}/>
           <div className='text-center mt-3'>

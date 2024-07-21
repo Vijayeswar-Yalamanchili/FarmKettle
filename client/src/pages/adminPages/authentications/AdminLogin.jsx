@@ -1,17 +1,19 @@
-import React from 'react'
-import AdminNavbar from '../../../components/adminComponents/AdminNavbar'
-import AdminFooter from '../../../components/adminComponents/AdminFooter'
+import React, { useState } from 'react'
 import { Container, Form, Col, Button } from 'react-bootstrap'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import AxiosService from '../../../utils/AxiosService'
-import ApiRoutes from '../../../utils/ApiRoutes'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import AdminNavbar from '../../../components/adminComponents/AdminNavbar'
+import AdminFooter from '../../../components/adminComponents/AdminFooter'
+import AxiosService from '../../../utils/AxiosService'
+import ApiRoutes from '../../../utils/ApiRoutes'
+
 
 function AdminLogin() {
 
     let navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
 
     let formik = useFormik({
         initialValues:{
@@ -24,11 +26,13 @@ function AdminLogin() {
         }),
         onSubmit : async(values) => {
             try {
-            let res = await AxiosService.post(`${ApiRoutes.ADMINLOGIN.path}`,values)
-            if(res.status === 200){
-                localStorage.setItem('adminLoginToken',res.data.adminLoginToken)
-                navigate('/admin/dashboard')
-            }
+                setLoading(true)
+                let res = await AxiosService.post(`${ApiRoutes.ADMINLOGIN.path}`,values)
+                if(res.status === 200){
+                    localStorage.setItem('adminLoginToken',res.data.adminLoginToken)
+                    navigate('/admin/dashboard')
+                }
+                setLoading(false)
             } catch (error) {
                 toast.error(error.response.data.message || error.message)
             }
