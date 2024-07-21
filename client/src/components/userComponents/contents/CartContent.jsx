@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Card, Container, Button, Image } from 'react-bootstrap'
 import pic from '../../../assets/blackTea.png'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
+import { CartDataContext } from '../../../contextApi/CartDataComponent'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
 
 function CartContent() {
 
+  let { setCart,cart } = useContext(CartDataContext)
   const [quantity, setQuantity] = useState(1)
   const [cartItem, setCartItem] = useState([])
   let getLoginToken = localStorage.getItem('loginToken')
@@ -17,20 +19,31 @@ function CartContent() {
   const addQuantity = () => {
       setQuantity(quantity+1)
   }
-  const removeQuantity = () => {
-      quantity >= 0 ? setQuantity(quantity-1) : setQuantity(0)
+  const removeQuantity = (productId) => {
+      quantity >= 2 ? setQuantity(quantity-1) : handleRemoveCart(productId)
   }
+
+  const handleRemoveCart = async(productId) => {
+    try {
+        let res = await AxiosService.put(`${ApiRoutes.REMOVECARTLIST.path}/${productId}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
+        console.log("Removal : ", res.data)
+        if(res.status === 200) {
+            // setToggle(!toggle)
+            setCart(cart-1)
+        }
+    } catch (error) {
+        toast.error(error.response.data.message || error.message)
+    }
+}
 
   const getCartItem = async() => {
     try {
       let res = await AxiosService.get(`${ApiRoutes.GETCARTITEMS.path}/${id}`,{ headers : { 'Authorization' : `${getLoginToken}` }})
-      // console.log(res.data.cartItems)
       if (res.status === 200) {
         setCartItem(res.data.cartItems)
       }      
     } catch (error) {
-      console.log(error.message)
-      // toast.error(error.response.data.message || error.message)
+      toast.error(error.response.data.message || error.message)
     }
   }
 
@@ -54,7 +67,7 @@ function CartContent() {
                 <div className='cartItemCardQuantity d-flex'>
                   <Card.Text style={{fontSize :"smaller"}} className='mb-0'>Delivery in 1 week</Card.Text>
                   <div className='cartItemCardCount d-flex'>
-                    <button type="button" className='btn btn-outline-danger' onClick={()=>{removeQuantity()}}>-</button>
+                    <button type="button" className='btn btn-outline-danger' onClick={()=>{removeQuantity(e._id)}}>-</button>
                     &nbsp;
                     <div className='py-1 quantityText'>{quantity}</div>
                     &nbsp;
