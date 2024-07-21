@@ -21,6 +21,7 @@ import { lazy, Suspense } from "react"
 import LoadingComponent from '../components/userComponents/LoadingComponent'
 
 const Products = lazy(()=> import('../pages/userPages/navs/BuyProducts'))
+const CartPage = lazy(()=> import('../pages/userPages/navs/Cart'))
 
 const Approutes = [
     {
@@ -45,7 +46,6 @@ const Approutes = [
     },
     {
         path : '/buyProducts',
-        // element : <BuyProducts/>,
         element : <Suspense fallback={<LoadingComponent/>}><Products/></Suspense>,
         exact : true
     },
@@ -76,7 +76,8 @@ const Approutes = [
     },
     {
         path : '/cart',
-        element : <Cart/>,
+        // element : <Cart/>,
+        element : <Suspense fallback={<LoadingComponent/>}><CartPage/></Suspense>,
         exact : true
     },
     {
