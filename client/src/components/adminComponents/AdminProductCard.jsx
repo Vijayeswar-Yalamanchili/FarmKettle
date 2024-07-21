@@ -53,7 +53,8 @@ function AdminProductCard({e}) {
     return <>
         <Col>
             <Card style={{ width: '18rem',border : "none", borderRadius : "5px",boxShadow : 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
-                <Image height={180} src={`http://localhost:8000/${e.productImage}`} style={{borderRadius : "5px"}}/>
+                {/* <Image height={180} src={`http://localhost:8000/${e.productImage}`} style={{borderRadius : "5px"}}/> */}
+                <Image height={180} src={`http://farmkettle.onrender.com/${e.productImage}`} style={{borderRadius : "5px"}}/>
                 <Card.Body className='productCardBody'>
                     <h5 className='text-center'>{e.productTitle}<span style={{fontSize : "smaller"}}>({e.productWeight})</span></h5>
                     <p className='text-center'>{e.productDescription}</p>

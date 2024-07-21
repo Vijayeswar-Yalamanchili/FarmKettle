@@ -55,7 +55,8 @@ function CartContent() {
         cartItem.length > 0 ? cartItem.map((e,i)=> {
             return <Card className='cartItemCard d-flex mx-auto mb-3' key={i}>
               <div className='cartItemCardImage'>
-                <Image src={`http://localhost:8000/${e.productImage}`} style={{width : "100%",height : "100%"}}/>
+                {/* <Image src={`http://localhost:8000/${e.productImage}`} style={{width : "100%",height : "100%"}}/> */}
+                <Image src={`https://farmkettle.onrender.com/${e.productImage}`} style={{width : "100%",height : "100%"}}/>
               </div>
               <Card.Body className='cartItemCardBody d-flex my-3'>
                 <div>

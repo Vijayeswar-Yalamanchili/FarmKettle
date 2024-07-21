@@ -13,8 +13,6 @@ function AppFooter() {
                 <div className='mb-3'>FARMKETTLE</div>
                 <div className='footerMenu mx-auto'>
                     <p onClick={()=>navigate('/')}>Home</p>
-                    {/* <p onClick={()=>navigate('/about')}>About us</p> */}
-                    {/* <p onClick={()=>navigate('/healthCertifications')}>Health & Certifications</p> */}
                     <p onClick={()=>navigate('/contact')}>Contact Us</p>
                     <p onClick={()=>navigate('/buyProducts')}>Buy Products</p>
                 </div>
