@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, Col, Form, Button } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Container, Col, Form, Button, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
@@ -13,6 +13,7 @@ import OAuth from '../../../components/userComponents/OAuth'
 function Login() {
 
   let navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   let formik = useFormik({
     initialValues:{
@@ -25,11 +26,13 @@ function Login() {
     }),
     onSubmit : async(values) => {
         try {
+          setLoading(true)
           let res = await AxiosService.post(`${ApiRoutes.LOGIN.path}`,values)
           if(res.status === 200){
               localStorage.setItem('loginToken',res.data.loginToken)
               navigate('/')
           }
+          setLoading(false)
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
@@ -59,7 +62,7 @@ function Login() {
           </div>
          
           <div className="d-grid mb-4">
-            <Button className='formBtns' type='submit'>Login</Button>
+            <Button className='formBtns' type='submit' disabled={loading}>{loading ? <Spinner animation="border" /> : 'Login'}</Button>            
           </div>
           <hr style={{color:"#0E6B06"}}/>
           <div className="d-grid mb-4">
