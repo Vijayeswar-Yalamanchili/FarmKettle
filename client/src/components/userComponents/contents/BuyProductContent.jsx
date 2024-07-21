@@ -10,6 +10,7 @@ import ApiRoutes from '../../../utils/ApiRoutes'
 
 function BuyProductContent() {
 
+    const [loading, setLoading] = useState(false)
     let { cart, setCart} = useContext(CartDataContext)
     const [productCardData,setProductCardData] = useState([])
     let getLoginToken = localStorage.getItem('loginToken')
@@ -18,12 +19,14 @@ function BuyProductContent() {
 
     const getProductsData = async() => {
         try {
+            setLoading(true)
             let res = await AxiosService.get(`${ApiRoutes.GETALLPRODUCTS.path}/${id}`,{ headers : { 
                 'Authorization' : `${getLoginToken}`
             }})
             if(res.status === 200) {
                 setProductCardData(res.data.productsList)
             }
+            setLoading(false)
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }

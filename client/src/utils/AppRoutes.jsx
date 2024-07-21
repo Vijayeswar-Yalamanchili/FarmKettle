@@ -17,6 +17,10 @@ import AdminProductsList from "../pages/adminPages/navs/AdminProductsList"
 import AdminProfile from "../pages/adminPages/navs/AdminProfile"
 import UserListContextComponent from "../contextApi/UserListContextComponent"
 import Cart from "../pages/userPages/navs/Cart"
+import { lazy, Suspense } from "react"
+import LoadingComponent from '../components/userComponents/LoadingComponent'
+
+const Products = lazy(()=> import('../pages/userPages/navs/BuyProducts'))
 
 const Approutes = [
     {
@@ -41,7 +45,8 @@ const Approutes = [
     },
     {
         path : '/buyProducts',
-        element : <BuyProducts/>,
+        // element : <BuyProducts/>,
+        element : <Suspense fallback={<LoadingComponent/>}><Products/></Suspense>,
         exact : true
     },
     {
