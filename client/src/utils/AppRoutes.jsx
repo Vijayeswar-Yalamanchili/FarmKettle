@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react"
 import LoadingComponent from '../components/userComponents/LoadingComponent'
 import UserListContextComponent from "../contextApi/UserListContextComponent"
+import AdminLoadingComponent from "../components/adminComponents/AdminLoadingComponent"
 
 const LoginPage = lazy(()=> import('../pages/userPages/authentications/Login'))
 const RegisterPage = lazy(()=> import('../pages/userPages/authentications/Register'))
@@ -86,32 +87,32 @@ const Approutes = [
     // ADMIN
     {
         path : '/admin',
-        element : <Suspense fallback={<LoadingComponent/>}><AdminLoginPage/></Suspense>,
+        element : <Suspense fallback={<AdminLoadingComponent/>}><AdminLoginPage/></Suspense>,
         exact : true
     },
     {
         path : '/admin/register',
-        element : <Suspense fallback={<LoadingComponent/>}><AdminRegisterPage/></Suspense>,
+        element : <Suspense fallback={<AdminLoadingComponent/>}><AdminRegisterPage/></Suspense>,
         exact : true
     },
     {
         path : '/admin/dashboard',
-        element : <Suspense fallback={<LoadingComponent/>}><UserListContextComponent><AdminDashboardPage/></UserListContextComponent></Suspense>,
+        element : <Suspense fallback={<AdminLoadingComponent/>}><UserListContextComponent><AdminDashboardPage/></UserListContextComponent></Suspense>,
         exact : true
     },
     {
         path : '/admin/dashboard/userslist',
-        element : <Suspense fallback={<LoadingComponent/>}><UserListContextComponent><AdminUsersListPage/></UserListContextComponent></Suspense>,
+        element : <Suspense fallback={<AdminLoadingComponent/>}><UserListContextComponent><AdminUsersListPage/></UserListContextComponent></Suspense>,
         exact : true
     },
     {
         path : '/admin/dashboard/productslist',
-        element : <Suspense fallback={<LoadingComponent/>}><UserListContextComponent><AdminProductssListPage/></UserListContextComponent></Suspense>,
+        element : <Suspense fallback={<AdminLoadingComponent/>}><UserListContextComponent><AdminProductssListPage/></UserListContextComponent></Suspense>,
         exact : true
     },
     {
         path : '/admin/adminprofile',
-        element : <Suspense fallback={<LoadingComponent/>}><AdminProfilePage/></Suspense>,
+        element : <Suspense fallback={<AdminLoadingComponent/>}><AdminProfilePage/></Suspense>,
         exact : true
     },
 ]

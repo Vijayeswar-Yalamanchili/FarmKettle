@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Form, Col, Button } from 'react-bootstrap'
+import { Container, Form, Col, Button, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
@@ -61,7 +61,7 @@ function AdminLogin() {
                     </div>
                     
                     <div className="d-grid mb-4">
-                        <Button className='formBtns' type='submit'>Login</Button>
+                        <Button className='formBtns' type='submit'disabled={loading}>{loading ? <Spinner animation="border" /> : 'Login'}</Button>
                     </div>
                     <hr style={{color:"blue"}}/>
                     <div className="d-grid mb-4">

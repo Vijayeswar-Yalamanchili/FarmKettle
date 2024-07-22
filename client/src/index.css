@@ -590,6 +590,10 @@
     align-items: center;
 }
 
+.cartItemCardCount{
+    width: 18%;
+}
+
 @media screen and (max-width : 992px){
     .cartItemCard{
         width: 100%;

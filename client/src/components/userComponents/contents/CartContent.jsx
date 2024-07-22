@@ -19,9 +19,11 @@ function CartContent() {
   const addQuantity = () => {
       setQuantity(quantity+1)
   }
+  
   const removeQuantity = (productId) => {
       quantity >= 2 ? setQuantity(quantity-1) : handleRemoveCart(productId)
   }
+
 
   const handleRemoveCart = async(productId) => {
     try {
@@ -68,7 +70,7 @@ function CartContent() {
                   <div className='cartItemCardCount d-flex'>
                     <button type="button" className='btn btn-outline-danger' onClick={()=>{removeQuantity(e._id)}}>-</button>
                     &nbsp;
-                    <div className='py-1 quantityText'>{quantity}</div>
+                    <div className='py-1 cartQuantityText'>{quantity}</div>
                     &nbsp;
                     <button type="button" className='btn btn-outline-success' onClick={()=>{addQuantity()}}>+</button>
                   </div>
