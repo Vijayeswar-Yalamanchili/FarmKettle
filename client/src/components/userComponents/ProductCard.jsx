@@ -62,7 +62,7 @@ function ProductCard({cart,setCart,cardData}) {
 
     return <>
         <Col>
-            <Card style={{ width: '18rem',border : "none",boxShadow : 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
+            <Card style={{ width: '16rem',border : "none",boxShadow : 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
                 {/* <Image height={180} src={`http://localhost:8000/${cardData.productImage}`} style={{borderRadius : "5px"}}/> */}
                 <Image height={180} src={`http://farmkettle.onrender.com/${cardData.productImage}`} style={{borderRadius : "5px"}}/>
                 <Card.Body className='productCardBody'>
