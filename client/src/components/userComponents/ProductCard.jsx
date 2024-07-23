@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Card, Image } from 'react-bootstrap'
+import { Button, Col, Card, Image, Spinner } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 import AxiosService from '../../utils/AxiosService'
@@ -8,12 +8,14 @@ import ApiRoutes from '../../utils/ApiRoutes'
 function ProductCard({cart,setCart,cardData}) {
 
     let [toggle, setToggle] = useState(true)
+    const [loading, setLoading] = useState(false)
     let getLoginToken = localStorage.getItem('loginToken')
     let decodedToken = jwtDecode(getLoginToken)
     let id = decodedToken.id
 
     const handleAddCart = async(productId) => {
         try {
+            setLoading(true)
             let res = await AxiosService.put(`${ApiRoutes.ADDCARTLIST.path}/${productId}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
             console.log("Adding : ", res.data)
             if(res.status === 200) {
@@ -21,6 +23,7 @@ function ProductCard({cart,setCart,cardData}) {
                 setToggle(!toggle)
                 setCart(cart+1)
             }
+            setLoading(false)
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
@@ -28,12 +31,14 @@ function ProductCard({cart,setCart,cardData}) {
 
     const handleRemoveCart = async(productId) => {
         try {
+            setLoading(true)
             let res = await AxiosService.put(`${ApiRoutes.REMOVECARTLIST.path}/${productId}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
             console.log("Removal : ", res.data)
             if(res.status === 200) {
                 setToggle(!toggle)
                 setCart(cart-1)
             }
+            setLoading(false)
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
@@ -70,9 +75,9 @@ function ProductCard({cart,setCart,cardData}) {
                     <p className='text-center'>{cardData.productDescription}</p>
                     {
                         toggle ? 
-                        <Button variant="primary" onClick={() => handleAddCart(cardData._id)}>Add to Cart</Button>
+                        <Button variant="primary" onClick={() => handleAddCart(cardData._id)} disabled={loading}>{loading ? <Spinner animation="border" /> : 'Add to Cart'}</Button>
                         :
-                        <Button variant="danger" onClick={() => handleRemoveCart(cardData._id)}>Remove from Cart</Button>
+                        <Button variant="danger" onClick={() => handleRemoveCart(cardData._id)} disabled={loading}>{loading ? <Spinner animation="border" /> : 'Remove from Cart' }</Button>
                     }
                 </Card.Body>
             </Card>

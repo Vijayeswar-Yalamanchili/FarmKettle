@@ -10,10 +10,11 @@ function CartDataComponent ({children}){
 
     const [cart, setCart] = useState(0)
     const [loggedIn, setLoggedIn] = useState(false)
+    let getLoginToken = localStorage.getItem('loginToken')
     
     const getCartCount = async() => {
         try { 
-            let getLoginToken = localStorage.getItem('loginToken') && setLoggedIn(true) 
+            getLoginToken && setLoggedIn(true) 
             if(loggedIn === true) {
                 let decodedToken = jwtDecode(getLoginToken)
                 let id = decodedToken.id
@@ -25,6 +26,7 @@ function CartDataComponent ({children}){
                 }
             }
         } catch (error) {
+            console.log(error.message)
             toast.error(error.response.data.message || error.message)
         }
     }

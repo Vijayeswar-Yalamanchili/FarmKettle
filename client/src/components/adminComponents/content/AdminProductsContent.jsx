@@ -14,10 +14,11 @@ function AdminProductsContent() {
     let { products } = useContext(UserListContext)
 
     const [show, setShow] = useState(false)
-    const [title, setTitle] = useState('');
-    const [weight, setWeight] = useState('');
-    const [desc, setDesc] = useState('');
-    const [image, setImage] = useState(null);
+    const [title, setTitle] = useState('')
+    const [weight, setWeight] = useState('')
+    const [desc, setDesc] = useState('')
+    const [price, setPrice] = useState('')
+    const [image, setImage] = useState(null)
 
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
@@ -32,6 +33,7 @@ function AdminProductsContent() {
         formData.append('title', title)
         formData.append('weight', weight)
         formData.append('description', desc)
+        formData.append('price', price)
         formData.append('imagefile', image)
         try {
             let res = await AxiosService.post(`${ApiRoutes.ADMINADDPRODUCT.path}/${id}`,formData, { headers : {
@@ -96,6 +98,10 @@ function AdminProductsContent() {
                     <Form.Group className="mb-3">
                         <Form.Label>Product Description</Form.Label>
                         <Form.Control type="text" name='description' onChange={(e)=> setDesc(e.target.value)} placeholder="Enter Description"/>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Product Price</Form.Label>
+                        <Form.Control type="text" name='price' onChange={(e)=> setPrice(e.target.value)} placeholder="Enter Description"/>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Product Image<span style={{fontSize:'small'}}>(Name should not contain space)</span></Form.Label>

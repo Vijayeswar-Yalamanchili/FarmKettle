@@ -2,9 +2,9 @@ import ProductsModel from '../models/productModel.js'
 
 const addProduct = async(req,res) => {
     try {
-        const { title,weight,description } = req.body
+        const { title,weight,description, price } = req.body
         const { filename } = req.file
-        const addproduct = await ProductsModel.create({productTitle : title, productWeight : weight, productDescription : description, productImage : filename})
+        const addproduct = await ProductsModel.create({productTitle : title, productWeight : weight, productDescription : description, productPrice : price, productImage : filename})
         res.status(200).send({
             addproduct
         })
@@ -34,9 +34,9 @@ const getAllProducts = async(req,res) => {
 
 const updateProduct = async(req,res) => {
     try {
-        const { title,weight,description } = req.body
+        const { title,weight,description,price } = req.body
         const { filename } = req.file
-        let editedProduct = await ProductsModel.findByIdAndUpdate({_id : req.params.id}, {$set : {productTitle : title, productWeight : weight, productDescription : description, productImage : filename}},{new : true})
+        let editedProduct = await ProductsModel.findByIdAndUpdate({_id : req.params.id}, {$set : {productTitle : title, productWeight : weight, productDescription : description, productPrice : price,productImage : filename}},{new : true})
         res.status(200).send({
             editedProduct
         })
