@@ -72,7 +72,8 @@ function ProductCard({cart,setCart,cardData}) {
                 <Image height={180} src={`http://farmkettle.onrender.com/${cardData.productImage}`} style={{borderRadius : "5px"}}/>
                 <Card.Body className='productCardBody'>
                     <h5 className='text-center'>{cardData.productTitle}<span style={{fontSize : "smaller"}}> ({cardData.productWeight})</span></h5>
-                    <p className='text-center'>{cardData.productDescription}</p>
+                    <p className='text-center mb-2' style={{fontSize : "smaller"}}>{cardData.productDescription}</p>
+                    <h5 className='text-center' style={{color : "green"}}>{'\u20B9'}{cardData.productPrice}.00/-</h5>
                     {
                         toggle ? 
                         <Button variant="primary" onClick={() => handleAddCart(cardData._id)} disabled={loading}>{loading ? <Spinner animation="border" /> : 'Add to Cart'}</Button>

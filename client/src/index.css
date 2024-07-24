@@ -580,6 +580,7 @@
 }
 
 .cartItemCardBody{
+    width: 100%;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -591,7 +592,17 @@
 }
 
 .cartItemCardCount{
-    width: 22%;
+    width: 20%;
+}
+
+.cartItemCardHeader{
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.summaryBlock{
+    width: 60% !important;
 }
 
 @media screen and (max-width : 992px){
@@ -601,11 +612,14 @@
     .cartItemCardImage{
         width: 10rem;
     }
+    .summaryBlock{
+        width: 80% !important;
+    }
 }
 
 @media screen and (max-width : 576px){
     .cartItemCard{
-        height: 15rem !important;
+        height: max-content !important;
     }
     .cartItemCardQuantity{
         flex-direction: column;
@@ -614,6 +628,12 @@
     }
     .cartItemCardCount{
         margin-top: 1rem;
+    }
+    .cartItemCardHeader{
+        flex-direction: column;
+    }
+    .summaryBlock{
+        width: 80% !important;
     }
 }
 
