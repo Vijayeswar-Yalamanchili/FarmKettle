@@ -59,6 +59,14 @@ const ApiRoutes = {
         path :'/users/cartitems',
         authenticate : true
     },
+    UPDATEQUANTITY : {
+        path :'/users/updatequantity',
+        authenticate : true
+    },
+    PAYMENTCHECKOUT : {
+        path :'/payment/order',
+        authenticate : false
+    },
     
 
     // ADMIN

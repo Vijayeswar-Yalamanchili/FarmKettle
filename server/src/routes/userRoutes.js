@@ -27,5 +27,6 @@ router.get('/cartitems/:id', auth.authenticate,userController.cartItemsList)
 router.get('/allproducts/:id',auth.authenticate, userController.getAllProducts)
 router.put('/addcart/:productId/:id', auth.authenticate, userController.addCartList)
 router.put('/removecart/:productId/:id', auth.authenticate, userController.removeCartList)
+router.put('/updatequantity/:productId/:id', auth.authenticate, userController.updateQuantity)
 
 export default router

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Container, Image, Spinner } from 'react-bootstrap'
-import pic from '../../../assets/blackTea.png'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 import { CartDataContext } from '../../../contextApi/CartDataComponent'
+import logo from '../../../assets/farmKettle.png'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
+
 
 function CartContent() {
 
@@ -14,8 +15,6 @@ function CartContent() {
   const [loading, setLoading] = useState(false)
   const [cartItem, setCartItem] = useState([])
   const [quantities, setQuantities] = useState({})
-  // const [ price, setPrice ] = useState([])
-  let temp=[]
 
   let getLoginToken = localStorage.getItem('loginToken')
   let decodedToken = jwtDecode(getLoginToken)
@@ -41,26 +40,49 @@ function CartContent() {
       let productPrices = result.map((e) => e.price)
       if (res.status === 200) {
         setCartItem(result)
-        // setPrice(productPrices)
-      }      
+        result.length > 0 && setCart(result.length)
+        setQuantity(result.productQuantity)
+      }  
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }
   }
 
-  const handleQuantityChange = (productId, change) => {
-    setQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [productId]: (prevQuantities[productId] || 1) + change,
-    }))
-    quantities[productId] <= 0 && handleRemoveCart(productId)
+  const handleQuantityChange = async(productId, change) => {
+    let quantityVal = {
+      value : change
+    }
+    try {
+      let res = await AxiosService.put(`${ApiRoutes.UPDATEQUANTITY.path}/${productId}/${id}`,quantityVal,{ headers : { 'Authentication' : `${getLoginToken}` }})
+      let result = res.data.quantity
+      if(result.productQuantity === 0){
+        handleRemoveCart(result._id)
+      }
+    } catch (error) {
+      toast.error(error.response.data.message || error.message)
+    }
   }
 
   const cummulativePrice = cartItem.reduce((preve,curr)=> preve + ((quantities[curr._id]  || 1)* curr?.productPrice) ,0)
 
+  const handleBuyNow = async(price) => {
+    console.log(price)
+    let bodyData = {
+      products : cartItem
+    }
+    let bodyContent = JSON.stringify(bodyData)
+    try {
+      // let res = await AxiosService.post(`${ApiRoutes.PAYMENTCHECKOUT.path}/${id}`,bodyContent,{ headers : { "Content-Type" : 'application/json' }})
+      // let result = res.data.paymentCheckOut
+      
+    } catch (error) {
+      toast.error(error.response.data.message || error.message)
+    }
+  }
+
   useEffect(()=> {
     getCartItem()
-  },[cartItem])
+  },[cartItem,quantity])
 
   return  <>
     <Container className='my-5'>
@@ -84,7 +106,7 @@ function CartContent() {
                   <div className='cartItemCardCount d-flex'>
                     <button type="button" className='btn btn-outline-danger' onClick={()=>{handleQuantityChange(e._id,-1)}} disabled={loading}>{loading ? <Spinner animation="border" /> : '-'}</button>
                     &nbsp;
-                    <div className='py-1 cartQuantityText'>{quantities[e._id] || 1}</div>
+                    <div className='py-1 cartQuantityText'>{e.productQuantity}</div>
                     &nbsp;
                     <button type="button" className='btn btn-outline-success' onClick={()=>{handleQuantityChange(e._id,1)}}>+</button>
                   </div>
@@ -106,18 +128,22 @@ function CartContent() {
       {
         cummulativePrice ? 
           <div className='summaryBlock mx-auto'>
-            <h5>Summary</h5>
+            <h4>Summary</h4>
             <div className='d-flex justify-content-between'>
               <div>
-                <p>Final Price</p>
+                <p>Sub-Total</p>
                 <p>Shipping</p>
+                <hr />
+                <p>Total Payable</p>
               </div>
               <div>
-                <p >{'\u20B9'}{cummulativePrice}</p>
-                <p style={{color : "green"}}>Free</p>
+                <p className='text-end'>{'\u20B9'}{cummulativePrice}</p>
+                <p className='text-end'>{'\u20B9'}50</p>
+                <hr />
+                <p className='text-end'>{'\u20B9'}{cummulativePrice + 50}</p>
               </div>
             </div>
-            <Button style={{width : "100%"}}>Buy Now</Button>        
+            <Button style={{width : "100%"}} onClick={() => handleBuyNow(cummulativePrice + 50)}>Buy Now</Button>        
           </div>
           :
           null 

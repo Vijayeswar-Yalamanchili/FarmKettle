@@ -74,6 +74,7 @@ const addCartList = async(req,res) => {
         if(user){
             if(!user.cartList.includes(req.params.productId)){
                 let addToCart = await UserAuthModel.findByIdAndUpdate({_id:req.params.id},{$push : {cartList : {productId : req.params.productId}}})
+                await ProductModel.findByIdAndUpdate({_id : req.params.productId}, {$set : {productQuantity : 1}},{new : true})
                 res.status(200).send({
                     addToCart
                 })
@@ -96,6 +97,7 @@ const removeCartList = async(req,res) => {
         if(user){
             if(!user.cartList.includes(req.params.productId)){
                 let removeFromCart = await UserAuthModel.findByIdAndUpdate({_id:req.params.id},{$pull : {cartList : {productId : req.params.productId}}})
+                await ProductModel.findByIdAndUpdate({_id : req.params.productId}, {$set : {productQuantity : 0}},{new : true})
                 res.status(200).send({
                     removeFromCart
                 })
@@ -136,6 +138,23 @@ const cartItemsList = async(req,res) => {
     }
 }
 
+const updateQuantity = async(req,res) => {
+    try {
+        const { value } = req.body
+        let product = await ProductModel.findById({_id : req.params.productId})
+        if(product){
+            let quantity = await ProductModel.findByIdAndUpdate({_id : req.params.productId}, {$set : {productQuantity : product.productQuantity + value}},{new : true})
+            res.status(200).send({
+                quantity
+            })
+        }        
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in getting product quantity"
+        })
+    }
+}
+
 export default {
     contact,
     allUsers,
@@ -144,5 +163,6 @@ export default {
     getAllProducts,
     addCartList,
     removeCartList,
-    cartItemsList
+    cartItemsList,
+    updateQuantity
 }

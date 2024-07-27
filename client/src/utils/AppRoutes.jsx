@@ -15,6 +15,8 @@ const MyAccountPage = lazy(()=> import('../pages/userPages/navs/MyAccount'))
 const MyProfilePage = lazy(()=> import('../pages/userPages/navs/MyProfile'))
 const MyAddressPage = lazy(()=> import('../pages/userPages/navs/MyAddress'))
 const MyOrdersPage = lazy(()=> import('../pages/userPages/navs/MyOrders'))
+const SuccessPage = lazy(()=> import('../pages/userPages/navs/SuccessPage'))
+const FailurePage = lazy(()=> import('../pages/userPages/navs/FailurePage'))
 
 const AdminLoginPage = lazy(()=> import('../pages/adminPages/authentications/AdminLogin'))
 const AdminRegisterPage = lazy(()=> import('../pages/adminPages/authentications/AdminRegister'))
@@ -82,6 +84,16 @@ const Approutes = [
     {
         path : '/myorders',
         element : <Suspense fallback={<LoadingComponent/>}><MyOrdersPage/></Suspense>,
+        exact : true
+    },
+    {
+        path : '/paymentsuccess',
+        element : <Suspense fallback={<LoadingComponent/>}><SuccessPage/></Suspense>,
+        exact : true
+    },
+    {
+        path : '/paymentfailure',
+        element : <Suspense fallback={<LoadingComponent/>}><FailurePage/></Suspense>,
         exact : true
     },
     // ADMIN
