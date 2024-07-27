@@ -37,10 +37,9 @@ function CartContent() {
     try {
       let res = await AxiosService.put(`${ApiRoutes.REMOVECARTITEMS.path}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
       console.log(res.data)
-      // if(res.status === 200) {
-      //     setCart(cart-1)
-      // }
-      // setLoading(false)
+      if(res.status === 200) {
+          setCart(0)
+      }
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }
@@ -78,8 +77,6 @@ function CartContent() {
   }
 
   const cummulativePrice = cartItem.reduce((preve,curr)=> preve + ((curr.productQuantity)* curr?.productPrice) ,0)
-
-  // console.log(cummulativePrice)
 
   const handleBuyNow = async(price) => {
     let productData = {
@@ -168,7 +165,6 @@ function CartContent() {
   useEffect(()=> {
     getCartItem()
   },[cartItem,quantity,quantities])
-  // console.log(quantities)
 
   return  <>
     <Container className='my-5'>

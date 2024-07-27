@@ -7,7 +7,6 @@ import ProductCard from '../ProductCard'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
 
-
 function BuyProductContent() {
 
     let { cart, setCart} = useContext(CartDataContext)

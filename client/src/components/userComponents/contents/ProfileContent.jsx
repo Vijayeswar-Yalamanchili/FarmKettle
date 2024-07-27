@@ -54,15 +54,14 @@ function ProfileContent() {
                 const id = decodedToken.id
                 let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
                 let result = res.data.currentUser
-                // let currentUser = result.filter((user)=> user._id === id)
                 if(res.status === 200){
                     setUserAuth(result)
                     setOldData(res.data.currentUser)                    
                 }
             }
         } catch (error) {
-            console.log(error.message)
-            // toast.error(error.response.data.message || error.message)
+            // console.log(error.message)
+            toast.error(error.response.data.message || error.message)
         }
     }
 
