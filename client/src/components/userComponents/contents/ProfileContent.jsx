@@ -3,14 +3,13 @@ import { Breadcrumb, Button, Container, Form, Modal } from 'react-bootstrap'
 import { jwtDecode } from 'jwt-decode'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-import { UserAuthContext } from '../../../contextApi/UserContextComponent'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
 
 function ProfileContent() {
 
     let navigate = useNavigate()
-    let {userAuth} = useContext(UserAuthContext)
+    const [userAuth,setUserAuth] = useState()
     const [oldData, setOldData] = useState([])
     let firstname = oldData?.firstName
     let lastname = oldData?.lastName
@@ -37,7 +36,7 @@ function ProfileContent() {
             mobile : mobile === ''? mobileNum : mobile,
             email : email === ''? emailId : email
             }
-            let res = await AxiosService.put(`${ApiRoutes.USERPROFILEUPDATE.path}/${userAuth[0]?._id}`,updatedDetails,{ headers : {
+            let res = await AxiosService.put(`${ApiRoutes.USERPROFILEUPDATE.path}/${userAuth?._id}`,updatedDetails,{ headers : {
             'Authorization' : `${getLoginToken}`
             }})
             let result = res.data.updatedProfile
@@ -47,20 +46,29 @@ function ProfileContent() {
         }
     }
   
-    const getuserData = async() => {
+    const getUser = async() => {
         try {
-            let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authorization' : `${getLoginToken}` }})
-            if(res.status === 200) {
-                setOldData(res.data.currentUser)
+            let getLoginToken = localStorage.getItem('loginToken')
+            if(getLoginToken){
+                const decodedToken = jwtDecode(getLoginToken)
+                const id = decodedToken.id
+                let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
+                let result = res.data.currentUser
+                // let currentUser = result.filter((user)=> user._id === id)
+                if(res.status === 200){
+                    setUserAuth(result)
+                    setOldData(res.data.currentUser)                    
+                }
             }
         } catch (error) {
-            toast.error(error.response.data.message || error.message)
+            console.log(error.message)
+            // toast.error(error.response.data.message || error.message)
         }
     }
-  
-    useEffect(() => {
-      getuserData()
-    })
+
+    useEffect(()=>{
+        getUser()
+    },[oldData, userAuth])
 
     return <>
         <Container className='my-4'>

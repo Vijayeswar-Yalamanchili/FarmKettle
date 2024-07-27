@@ -9,6 +9,7 @@ function ProductCard({cart,setCart,cardData}) {
 
     let [toggle, setToggle] = useState(true)
     const [loading, setLoading] = useState(false)
+    
     let getLoginToken = localStorage.getItem('loginToken')
     let decodedToken = jwtDecode(getLoginToken)
     let id = decodedToken.id
@@ -19,7 +20,6 @@ function ProductCard({cart,setCart,cardData}) {
             let res = await AxiosService.put(`${ApiRoutes.ADDCARTLIST.path}/${productId}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
             console.log("Adding : ", res.data)
             if(res.status === 200) {
-                // setPId(productId)
                 setToggle(!toggle)
                 setCart(cart+1)
             }

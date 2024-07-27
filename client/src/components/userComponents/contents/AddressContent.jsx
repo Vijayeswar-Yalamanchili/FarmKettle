@@ -12,7 +12,7 @@ import ApiRoutes from '../../../utils/ApiRoutes'
 function AddressContent() {
 
   let navigate = useNavigate()
-  let {userAuth} = useContext(UserAuthContext)
+  const [userAuth,setUserAuth] = useState()
   const [address, setAddress] = useState();
   const [addressList, setAddressList] = useState([]);
   const [show, setShow] = useState(false);  
@@ -34,7 +34,7 @@ function AddressContent() {
   const handleAddAddress = async() => {
     try {
       let addAddress = { newAddress : address }
-      let res = await AxiosService.post(`${ApiRoutes.ADDADDRESS.path}/${userAuth[0]?._id}`,addAddress,{ headers : {
+      let res = await AxiosService.post(`${ApiRoutes.ADDADDRESS.path}/${userAuth?._id}`,addAddress,{ headers : {
         'Authorization' : `${getLoginToken}`
       }})
       if(res.status === 200){
@@ -48,7 +48,7 @@ function AddressContent() {
   const handleEditAddress = async(id)=> {
     try {
       let modifiedAddress = { newAddress : editAddress }
-      let res = await AxiosService.put(`${ApiRoutes.EDITADDRESS.path}/${userAuth[0]?._id}/${id}`,modifiedAddress,{ headers : {
+      let res = await AxiosService.put(`${ApiRoutes.EDITADDRESS.path}/${userAuth?._id}/${id}`,modifiedAddress,{ headers : {
         'Authorization' : `${getLoginToken}`
       }})
       if(res.status === 200){
@@ -61,7 +61,7 @@ function AddressContent() {
 
   const handleDeleteAddress = async(id)=> {
     try {
-      let res = await AxiosService.delete(`${ApiRoutes.DELETEADDRESS.path}/${userAuth[0]?._id}/${id}`,{ headers : {
+      let res = await AxiosService.delete(`${ApiRoutes.DELETEADDRESS.path}/${userAuth?._id}/${id}`,{ headers : {
         'Authorization' : `${getLoginToken}`
       }})
     } catch (error) {
@@ -83,9 +83,27 @@ function AddressContent() {
     }
   }
 
+  const getUser = async() => {
+    try {
+      let getLoginToken = localStorage.getItem('loginToken')
+      if(getLoginToken){
+          const decodedToken = jwtDecode(getLoginToken)
+          const id = decodedToken.id
+          let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
+          let result = res.data.currentUser
+          if(res.status === 200){
+              setUserAuth(result)                    
+          }
+      }
+    } catch (error) {
+      toast.error(error.response.data.message || error.message)
+    }
+  }
+
   useEffect(() => {
     getAddressList()
-  },[addressList])
+    getUser()
+  },[addressList,userAuth])
 
   return <>
       <Container className='p-4'>

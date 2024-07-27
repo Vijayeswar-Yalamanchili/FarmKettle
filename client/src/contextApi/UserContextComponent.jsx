@@ -16,15 +16,16 @@ function UserContextComponent({children}) {
             if(getLoginToken){
                 const decodedToken = jwtDecode(getLoginToken)
                 const id = decodedToken.id
-                let res = await AxiosService.get(`${ApiRoutes.ALLUSERS.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
-                let result = res.data.usersList
-                let currentUser = result.filter((user)=> user._id === id)
+                let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
+                let result = res.data.currentUser
+                // let currentUser = result.filter((user)=> user._id === id)
                 if(res.status === 200){
-                    setUserAuth(currentUser)                    
+                    setUserAuth(result)                    
                 }
             }
         } catch (error) {
-            toast.error(error.response.data.message || error.message)
+            console.log(error.message)
+            // toast.error(error.response.data.message || error.message)
         }
     }
 

@@ -72,9 +72,9 @@ function CartContent() {
     }
     let bodyContent = JSON.stringify(bodyData)
     try {
+      console.log(bodyContent)
       // let res = await AxiosService.post(`${ApiRoutes.PAYMENTCHECKOUT.path}/${id}`,bodyContent,{ headers : { "Content-Type" : 'application/json' }})
-      // let result = res.data.paymentCheckOut
-      
+      // let result = res.data.paymentCheckOut      
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Image, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -8,7 +8,6 @@ import { faAddressCard, faBars, faBasketShopping, faCartShopping, faHeartPulse, 
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { useLogout } from '../../hooks/UseLogout'
 import { CartDataContext } from '../../contextApi/CartDataComponent'
-import { UserAuthContext } from '../../contextApi/UserContextComponent'
 import logo from '../../assets/farmKettle.png'
 import AxiosService from '../../utils/AxiosService'
 import ApiRoutes from '../../utils/ApiRoutes'
@@ -19,14 +18,32 @@ function AppNavbar() {
     const navigate = useNavigate()
     let logout = useLogout()
     let { cart } = useContext(CartDataContext)
-    let {userAuth} = useContext(UserAuthContext)
 
     const [myProfile, setMyProfile] = useState(false)
     const [respMenu, setRespMenu] = useState(false)
+    const [userAuth,setUserAuth] = useState()
     const getLoginToken = localStorage.getItem('loginToken')
     
     const handleMyProfile = () => setMyProfile(!myProfile)
     const handleRespMenu = () => setRespMenu(!respMenu)
+
+    const getUser = async() => {
+        try {
+            let getLoginToken = localStorage.getItem('loginToken')
+            if(getLoginToken){
+                const decodedToken = jwtDecode(getLoginToken)
+                const id = decodedToken.id
+                let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
+                let result = res.data.currentUser
+                if(res.status === 200){
+                    setUserAuth(result)                    
+                }
+            }
+        } catch (error) {
+            toast.error(error.response.data.message || error.message)
+        }
+    }
+    
 
     const handleLogout = async() => {
         try {     
@@ -41,6 +58,10 @@ function AppNavbar() {
           toast.error(error.response.data.message || error.message)
         }
     }
+
+    useEffect(()=>{
+        getUser()
+    },[userAuth])
 
     return <>
         <div style={{backgroundColor : "#0E6B06", height : "5rem"}}>
@@ -75,7 +96,7 @@ function AppNavbar() {
             myProfile ? 
                 getLoginToken ?
                     <div className="myProfileDrpdwn list-group list-group-flush px-1">
-                        <div className="listMenu list-group-item list-group-item-action"><b style={{textTransform : 'capitalize'}}>Hi, {userAuth[0]?.firstName}</b></div>
+                        <div className="listMenu list-group-item list-group-item-action"><b style={{textTransform : 'capitalize'}}>Hi, {userAuth?.firstName}</b></div>
                         <Link to={`/myaccount`} className="listMenu list-group-item list-group-item-action">
                             <span className='d-flex align-items-center' style={{gap:"15px"}}>
                                 <FontAwesomeIcon icon={faUserGear} size='xl' style={{color: "#0E6B06", width:"18px", height:"16px"}}/>My Account

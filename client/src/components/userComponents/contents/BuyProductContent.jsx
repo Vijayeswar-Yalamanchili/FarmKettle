@@ -10,23 +10,22 @@ import ApiRoutes from '../../../utils/ApiRoutes'
 
 function BuyProductContent() {
 
-    // const [loading, setLoading] = useState(false)
     let { cart, setCart} = useContext(CartDataContext)
     const [productCardData,setProductCardData] = useState([])
+
     let getLoginToken = localStorage.getItem('loginToken')
     let decodedToken = jwtDecode(getLoginToken)
     let id = decodedToken.id
 
     const getProductsData = async() => {
         try {
-            // setLoading(true)
             let res = await AxiosService.get(`${ApiRoutes.GETALLPRODUCTS.path}/${id}`,{ headers : { 
                 'Authorization' : `${getLoginToken}`
             }})
+            console.log(res.data)
             if(res.status === 200) {
                 setProductCardData(res.data.productsList)
             }
-            // setLoading(false)
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
@@ -44,7 +43,7 @@ function BuyProductContent() {
             <div className='productCard mt-4'>
                 <Row xs={1} md={2} lg={3} xl={4} className="g-4">
                 {
-                    productCardData.map((e,i) => {
+                    productCardData && productCardData.map((e,i) => {
                         return <ProductCard cart={cart} setCart={setCart} cardData={e} key={i}/>
                     })
                 }
