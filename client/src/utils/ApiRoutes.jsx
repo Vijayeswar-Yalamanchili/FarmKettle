@@ -55,6 +55,10 @@ const ApiRoutes = {
         path : '/users/removecart',
         authenticate : true
     },
+    REMOVECARTITEMS : {
+        path : '/users/clearcart',
+        authenticate : true
+    },
     GETCARTITEMS : {
         path :'/users/cartitems',
         authenticate : true
@@ -67,8 +71,23 @@ const ApiRoutes = {
         path :'/payment/order',
         authenticate : false
     },
-    
-
+    GETALLORDERS : {
+        path :'/orders/myorders',
+        authenticate : false
+    },
+    UPDATEORDER : {
+        path :'/orders/updateOrderId',
+        authenticate : false
+    },
+    //Razorpay
+    ORDER : {
+        path : '/payment/order',
+        authenticate : true
+    },
+    VALIDATEORDER : {
+        path : '/payment/order/validate',
+        authenticate : true
+    },
     // ADMIN
     ADMINLOGIN : {
         path : 'admin/login',

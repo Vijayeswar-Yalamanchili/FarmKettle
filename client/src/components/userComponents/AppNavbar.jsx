@@ -42,8 +42,7 @@ function AppNavbar() {
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
-    }
-    
+    }    
 
     const handleLogout = async() => {
         try {     
@@ -61,7 +60,7 @@ function AppNavbar() {
 
     useEffect(()=>{
         getUser()
-    },[userAuth])
+    },[userAuth,cart])
 
     return <>
         <div style={{backgroundColor : "#0E6B06", height : "5rem"}}>

@@ -22,7 +22,6 @@ function BuyProductContent() {
             let res = await AxiosService.get(`${ApiRoutes.GETALLPRODUCTS.path}/${id}`,{ headers : { 
                 'Authorization' : `${getLoginToken}`
             }})
-            console.log(res.data)
             if(res.status === 200) {
                 setProductCardData(res.data.productsList)
             }

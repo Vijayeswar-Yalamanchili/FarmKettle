@@ -14,7 +14,7 @@ function CartContent() {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(false)
   const [cartItem, setCartItem] = useState([])
-  const [quantities, setQuantities] = useState({})
+  const [quantities, setQuantities] = useState()
 
   let getLoginToken = localStorage.getItem('loginToken')
   let decodedToken = jwtDecode(getLoginToken)
@@ -28,6 +28,19 @@ function CartContent() {
           setCart(cart-1)
       }
       setLoading(false)
+    } catch (error) {
+      toast.error(error.response.data.message || error.message)
+    }
+  }
+
+  const handleClearCart = async() => {
+    try {
+      let res = await AxiosService.put(`${ApiRoutes.REMOVECARTITEMS.path}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
+      console.log(res.data)
+      // if(res.status === 200) {
+      //     setCart(cart-1)
+      // }
+      // setLoading(false)
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }
@@ -55,6 +68,7 @@ function CartContent() {
     try {
       let res = await AxiosService.put(`${ApiRoutes.UPDATEQUANTITY.path}/${productId}/${id}`,quantityVal,{ headers : { 'Authentication' : `${getLoginToken}` }})
       let result = res.data.quantity
+      setQuantities(result.productQuantity)
       if(result.productQuantity === 0){
         handleRemoveCart(result._id)
       }
@@ -63,18 +77,89 @@ function CartContent() {
     }
   }
 
-  const cummulativePrice = cartItem.reduce((preve,curr)=> preve + ((quantities[curr._id]  || 1)* curr?.productPrice) ,0)
+  const cummulativePrice = cartItem.reduce((preve,curr)=> preve + ((curr.productQuantity)* curr?.productPrice) ,0)
+
+  // console.log(cummulativePrice)
 
   const handleBuyNow = async(price) => {
-    console.log(price)
-    let bodyData = {
-      products : cartItem
+    let productData = {
+      // products : cartItem,
+      amount : price*100,
+      currency: "INR",
+      receipt : "receipt_11",
+      product : cartItem.map((e) => ({
+        productId : e._id,
+        productTitle : e.productTitle,
+        productQuantity : e.productQuantity,
+        productPrice : e.productPrice,
+        productImage : e.productImage,
+        productWeight : e.productWeight,
+      }))
     }
-    let bodyContent = JSON.stringify(bodyData)
     try {
-      console.log(bodyContent)
-      // let res = await AxiosService.post(`${ApiRoutes.PAYMENTCHECKOUT.path}/${id}`,bodyContent,{ headers : { "Content-Type" : 'application/json' }})
-      // let result = res.data.paymentCheckOut      
+      let res = await AxiosService.post(`${ApiRoutes.ORDER.path}/${id}`,productData, {
+        headers : {
+            'Authorization' : `${getLoginToken}`,
+            "Content-Type" : 'application/json'
+        }
+      })
+      let orderData = res.data.orderData
+      let order = res.data.order
+      var options = {
+        "key": import.meta.env.VITE_RP_KEY, // Enter the Key ID generated from the Dashboard
+        "amount": price, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "name": "FarmKettle", //your business name
+        "description": "Test Transaction",
+        "image": {logo},
+        "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": async function (response){
+          const responseBody = {...response}
+          let res = await AxiosService.post(`${ApiRoutes.VALIDATEORDER.path}/${order.id}`,responseBody, {
+              headers : {
+                  'Authorization' : `${getLoginToken}`,
+                  "Content-Type" : 'application/json'
+              }
+          })
+          const updateOrderDataResult = res.data
+          let orderDatas = {
+              orderId : updateOrderDataResult.orderId,
+              paymentId : updateOrderDataResult.paymentId,
+              id : orderData._id
+          }
+          console.log(orderDatas)
+          let resData = await AxiosService.put(`${ApiRoutes.UPDATEORDER.path}`,orderDatas, {
+              headers : {
+                  'Authorization' : `${getLoginToken}`,
+                  "Content-Type" : 'application/json'
+              }
+          })
+          console.log(resData)
+        },
+        "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+          "name": `${decodedToken.firstName} ${decodedToken.lastName}`, //your customer's name
+          "email": `${decodedToken.email}`, 
+          "contact": `${decodedToken.mobile}`  //Provide the customer's phone number for better conversion rates 
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#0E6B06"
+        }
+      };
+      var rzp1 = new Razorpay(options)
+      rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+      })
+      rzp1.open()
+      handleClearCart()
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }
@@ -82,16 +167,14 @@ function CartContent() {
 
   useEffect(()=> {
     getCartItem()
-  },[cartItem,quantity])
+  },[cartItem,quantity,quantities])
+  // console.log(quantities)
 
   return  <>
     <Container className='my-5'>
       {
         cartItem.length > 0 ? cartItem.map((e,i)=> {
-
-            let finalPrice =  `${e.productPrice}` * `${quantities[e._id] || 1}`
-
-            return <Card className='cartItemCard d-flex mx-auto mb-3' key={i}>
+           return <Card className='cartItemCard d-flex mx-auto mb-3' key={i}>
               <div className='cartItemCardImage'>
                 {/* <Image src={`http://localhost:8000/${e.productImage}`} style={{width : "100%",height : "100%"}}/> */}
                 <Image src={`https://farmkettle.onrender.com/${e.productImage}`} style={{width : "100%",height : "100%"}}/>
@@ -114,7 +197,7 @@ function CartContent() {
 
                 <div className='cartItemCardQuantity d-flex'>
                   <Card.Text style={{fontSize :"smaller"}} className='mb-0'>Delivery in 1 week</Card.Text>
-                  <h5 className="cartItemPrice">{'\u20B9'}{finalPrice}/-</h5>
+                  <h5 className="cartItemPrice">{'\u20B9'}{e.productPrice}/-</h5>
                 </div>
               </Card.Body>
             </Card>

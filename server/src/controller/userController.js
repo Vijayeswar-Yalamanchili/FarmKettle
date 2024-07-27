@@ -114,6 +114,24 @@ const removeCartList = async(req,res) => {
     }
 }
 
+const clearCartItems = async(req,res) => {
+    try {
+        // let user = await UserAuthModel.findById({_id : req.params.id})
+        // if(user){
+        //     if(!user.cartList.includes(req.params.productId)){
+                let clearCart = await UserAuthModel.findByIdAndUpdate({_id:req.params.id},{$set : {cartList : []}})
+                
+                res.status(200).send({
+                    clearCart
+                })
+        
+    } catch (error) {
+        res.status(500).send({
+            message : "Internal server error in clearing to cart"
+        })
+    }
+}
+
 const cartItemsList = async(req,res) => {
     try {
         let user = await UserAuthModel.findById({_id : req.params.id})
@@ -163,6 +181,7 @@ export default {
     getAllProducts,
     addCartList,
     removeCartList,
+    clearCartItems,
     cartItemsList,
     updateQuantity
 }
