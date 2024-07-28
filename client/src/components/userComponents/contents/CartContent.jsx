@@ -36,7 +36,6 @@ function CartContent() {
   const handleClearCart = async() => {
     try {
       let res = await AxiosService.put(`${ApiRoutes.REMOVECARTITEMS.path}/${id}`,{ headers : { 'Authentication' : `${getLoginToken}` }})
-      console.log(res.data)
       if(res.status === 200) {
           setCart(0)
       }
@@ -120,8 +119,8 @@ function CartContent() {
           })
           const updateOrderDataResult = res.data
           let orderDatas = {
-              orderId : updateOrderDataResult.orderId,
-              paymentId : updateOrderDataResult.paymentId,
+              orderId : updateOrderDataResult?.orderId,
+              paymentId : updateOrderDataResult?.paymentId,
               id : orderData._id
           }
           console.log(orderDatas)
@@ -131,7 +130,6 @@ function CartContent() {
                   "Content-Type" : 'application/json'
               }
           })
-          console.log(resData)
         },
         "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
           "name": `${decodedToken.firstName} ${decodedToken.lastName}`, //your customer's name

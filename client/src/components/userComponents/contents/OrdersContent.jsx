@@ -37,6 +37,8 @@ function OrdersContent() {
         {
           orders.length > 0 && orders.map((e,i) => {
             return <Card key={i} className='mx-5 mb-3 orderListCard mx-auto'>
+              {
+                e.orderId && <>
                 <div className='orderListCardHeader d-flex px-5 pt-3'>
                   <div>OrderId : {e.orderId} </div>
                   <div>Amount paid : {'\u20B9'}{e.amount}/- </div>
@@ -60,6 +62,9 @@ function OrdersContent() {
                 </div>
                 <hr className='mx-auto' style={{width : "90%"}}/>
                 <p className='mx-auto'>Products will be <i>delivered in a week</i> at</p>
+                </>
+              }
+                
             </Card>
           }).reverse()
         }

@@ -653,6 +653,22 @@
     width: 100%;
 }
 
+.orderListCardBody{
+    max-height: 22rem;
+    overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.orderListCardBody::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.orderListCardBody {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 @media screen and (max-width : 576px) {
     .orderListCardHeader{
         flex-direction: column;

@@ -7,7 +7,6 @@ const updateOrderDatas = async(req,res) => {
             updateOrderData
         })
     } catch (error) {
-        console.log(error)
         res.status(500).send({
             message:"Internal Server Error in Getting all stays"
         })
@@ -21,7 +20,6 @@ const getMyOrders = async(req,res) => {
             ordersList
         })
     } catch (error) {
-        console.log(error)
         res.status(500).send({
             message:"Internal Server Error in Getting all orders"
         })
