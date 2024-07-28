@@ -14,6 +14,21 @@ const updateOrderDatas = async(req,res) => {
     }
 }
 
+const getMyOrders = async(req,res) => {
+    try {
+        const ordersList = await OrdersModel.find({currentUserId : req.params.id})
+        res.status(200).send({
+            ordersList
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            message:"Internal Server Error in Getting all orders"
+        })
+    }
+}
+
 export default {
-    updateOrderDatas
+    updateOrderDatas,
+    getMyOrders
 }

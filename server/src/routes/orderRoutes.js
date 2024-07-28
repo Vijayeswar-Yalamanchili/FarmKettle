@@ -4,7 +4,7 @@ import ordersController from '../controller/ordersController.js'
 
 const router = express.Router()
 
-// router.get('/myorders/:id', auth.authenticate, ordersController.getMyOrders)
+router.get('/myorders/:id', auth.authenticate, ordersController.getMyOrders)
 router.put('/updateOrderId', auth.authenticate, ordersController.updateOrderDatas)
 
 export default router

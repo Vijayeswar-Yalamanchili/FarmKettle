@@ -639,7 +639,46 @@
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+/*OrderPage */
 
+.orderListCard{
+    width: 70%;
+}
+
+.orderListCardHeader{
+    justify-content: space-between;
+}
+
+.orderListBodyCardContent{
+    width: 100%;
+}
+
+@media screen and (max-width : 576px) {
+    .orderListCardHeader{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width : 768px) {
+    .orderListCard{
+        width: 100%;
+    }
+    .orderListCardHeader{
+        font-size: small;
+    }
+    .orderCardImage{
+        width: 130px;
+        height: 150px;
+    }
+}
+
+@media screen and (max-width : 992px) {
+    .orderListCard{
+        width: 90%;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 /* ADMIN */
 
