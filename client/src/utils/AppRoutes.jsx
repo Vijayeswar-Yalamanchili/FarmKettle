@@ -23,7 +23,8 @@ const AdminRegisterPage = lazy(()=> import('../pages/adminPages/authentications/
 const AdminProfilePage = lazy(()=> import('../pages/adminPages/navs/AdminProfile'))
 const AdminDashboardPage = lazy(()=> import('../pages/adminPages/navs/AdminDashboard'))
 const AdminUsersListPage = lazy(()=> import('../pages/adminPages/navs/AdminUsersList'))
-const AdminProductssListPage = lazy(()=> import('../pages/adminPages/navs/AdminProductsList'))
+const AdminProductsListPage = lazy(()=> import('../pages/adminPages/navs/AdminProductsList'))
+const AdminOrdersListPage = lazy(()=> import('../pages/adminPages/navs/AdminOrdersList'))
 
 const Approutes = [
     {
@@ -119,7 +120,12 @@ const Approutes = [
     },
     {
         path : '/admin/dashboard/productslist',
-        element : <Suspense fallback={<AdminLoadingComponent/>}><UserListContextComponent><AdminProductssListPage/></UserListContextComponent></Suspense>,
+        element : <Suspense fallback={<AdminLoadingComponent/>}><UserListContextComponent><AdminProductsListPage/></UserListContextComponent></Suspense>,
+        exact : true
+    },
+    {
+        path : '/admin/dashboard/orderslist',
+        element : <Suspense fallback={<AdminLoadingComponent/>}><UserListContextComponent><AdminOrdersListPage/></UserListContextComponent></Suspense>,
         exact : true
     },
     {

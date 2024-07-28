@@ -68,7 +68,7 @@ function Login() {
           <div className="d-grid mb-4">
             <Button className='formBtns' onClick={()=>navigate('/register')}>Sign Up</Button>
           </div>
-          <OAuth/>
+          {/* <OAuth/> */}
         </Form>
       </Col>
     </Container>

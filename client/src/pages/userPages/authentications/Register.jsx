@@ -93,7 +93,7 @@ function Register() {
             <Button variant='primary'className='formBtns' type="submit" disabled={loading}>{loading ? <Spinner animation="border" /> : 'Register'}</Button>
           </div>
           <hr style={{color:"#0E6B06"}}/>
-          <OAuth/>
+          {/* <OAuth/> */}
           <div className='text-center mt-3'>
             Already existing user? <Link to={'/login'} className='loginText'>Login</Link>
           </div>

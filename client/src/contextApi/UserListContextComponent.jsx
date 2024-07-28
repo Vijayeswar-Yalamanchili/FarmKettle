@@ -13,6 +13,8 @@ function UserListContextComponent({children}) {
     const [admincount, setAdminCount] = useState()
     const [products, setProducts] = useState([])
     const [productsCount, setProductsCount] = useState([])
+    const [orders, setOrders] = useState([])
+    const [ordersCount, setOrdersCount] = useState([])
     let getAdminToken = localStorage.getItem('adminLoginToken')
     let decodedToken = jwtDecode(getAdminToken)
     let id = decodedToken.id
@@ -43,14 +45,29 @@ function UserListContextComponent({children}) {
             toast.error(error.response.data.message || error.message)
         }
     }
+
+    const getOrdersList = async() => {
+        try {
+            let res = await AxiosService.get(`${ApiRoutes.ADMINGETORDER.path}/${id}`,{ headers : { 
+                'Authorization' : `${getAdminToken}`
+            }})
+            if(res.status === 200) {
+                setOrders(res.data.ordersList)
+                setOrdersCount(res.data.ordersCount)
+            }
+        } catch (error) {
+            toast.error(error.response.data.message || error.message)
+        }
+    }
     
     useEffect(()=> {
           getAllUsersList()
           getProductsList()
+          getOrdersList()
     },[products,users])
 
     return <>
-        <UserListContext.Provider value={{users, usercount, admincount, products, productsCount}}>
+        <UserListContext.Provider value={{users, usercount, admincount, products, productsCount, orders, ordersCount}}>
             {children}
         </UserListContext.Provider>
     </>

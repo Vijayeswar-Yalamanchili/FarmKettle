@@ -133,6 +133,10 @@ const ApiRoutes = {
         path : '/admin/getallproducts',
         authenticate : true
     },
+    ADMINGETORDER : {
+        path : '/admin/getallorders',
+        authenticate : true
+    },
     ADMINEDITPRODUCT : {
         path : '/admin/editproduct',
         authenticate : true
@@ -140,6 +144,10 @@ const ApiRoutes = {
     ADMINDELETEPRODUCT : {
         path : '/admin/deleteproduct',
         authenticate : true
+    },
+    ADMINGETALLORDERS : {
+        path :'/admin/myorders',
+        authenticate : false
     },
 }
 

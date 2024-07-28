@@ -10,7 +10,7 @@ import productsList from '../../../assets/productsList.svg'
 function AdminDashboard() {
 
   let navigate = useNavigate()
-  let { usercount, admincount, productsCount } = useContext(UserListContext)
+  let { usercount, admincount, productsCount, ordersCount } = useContext(UserListContext)
 
   return <>
     <AdminNavbar/>
@@ -32,6 +32,15 @@ function AdminDashboard() {
                   <div className='cardBodyText'>
                       <h4>ProductsList</h4>
                       <p className='subtitle'>Products : {productsCount}</p>
+                  </div>
+              </Card.Body>
+          </Card>
+          <Card className='cardAcc' onClick={()=> navigate('/admin/dashboard/orderslist')}>
+              <Card.Body className='cardBody'>
+                  <Image src={productsList} className='cardImage'/>
+                  <div className='cardBodyText'>
+                      <h4>OrdersList</h4>
+                      <p className='subtitle'>Orders Booked : {ordersCount}</p>
                   </div>
               </Card.Body>
           </Card>

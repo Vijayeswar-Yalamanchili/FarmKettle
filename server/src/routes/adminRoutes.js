@@ -4,6 +4,7 @@ import adminAuthController from '../controller/adminAuthController.js'
 import adminUserController from '../controller/adminUserController.js'
 import adminProductController from '../controller/adminProductController.js'
 import productImageUpload from '../helper/productImageUpload.js'
+import adminOrderController from '../controller/adminOrderController.js'
 
 const router = express.Router()
 
@@ -20,6 +21,8 @@ router.post('/addproduct/:id', auth.adminAuthenticate,auth.adminGuard, productIm
 router.get('/getallproducts/:id', auth.adminAuthenticate, adminProductController.getAllProducts)
 router.put('/editproduct/:id', auth.adminAuthenticate,productImageUpload.imageUpload.single('imagefile'), adminProductController.updateProduct)
 router.delete('/deleteproduct/:id', auth.adminAuthenticate, adminProductController.removeProduct)
+
+router.get('/getallorders/:id', auth.adminAuthenticate, adminOrderController.getAllOrders)
 
 router.get('/getcurrentuser/:id', auth.adminAuthenticate, adminUserController.getCurrentUser)
 router.put('/updatecurrentuser/:id', auth.adminAuthenticate, adminUserController.updateProfileData)

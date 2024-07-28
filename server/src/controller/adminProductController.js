@@ -27,7 +27,7 @@ const getAllProducts = async(req,res) => {
         }
     } catch (error) {
         res.status(500).send({
-            message : "Internal server error in adding new product"
+            message : "Internal server error in getting all product data"
         })
     }
 }
