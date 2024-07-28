@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Breadcrumb, Button, Container, Form, Modal } from 'react-bootstrap'
+import { Breadcrumb, Button, Container, Form, Modal, Spinner } from 'react-bootstrap'
 import { jwtDecode } from 'jwt-decode'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
@@ -19,7 +19,8 @@ function ProfileContent() {
     const [lname, setLname] = useState('')
     const [mobile, setMobile] = useState('')
     const [email, setEmail] = useState('')
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false)
+    const [loading, setLoading] = useState(false)
     
     const getLoginToken = localStorage.getItem('loginToken')    
     const decodedtoken = jwtDecode(getLoginToken)
@@ -30,6 +31,7 @@ function ProfileContent() {
   
     const handleUpdatedDetails = async() => {
         try {
+            setLoading(true)
             let updatedDetails = {
             firstName : fname === ''? firstname : fname,
             lastName : lname === '' ? lastname : lname,
@@ -41,6 +43,7 @@ function ProfileContent() {
             }})
             let result = res.data.updatedProfile
             handleClose()
+            setLoading(false)
         } catch (error) {
             toast.error(error.response.data.message || error.message)
         }
@@ -128,7 +131,7 @@ function ProfileContent() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <Button variant="primary" onClick={handleUpdatedDetails}>Save Changes</Button>
+                    <Button variant="primary" onClick={handleUpdatedDetails} disabled={loading}>{loading ? <Spinner animation="border" /> : 'Update Details'}</Button>
                 </Modal.Footer>
             </Form>
         </Modal>

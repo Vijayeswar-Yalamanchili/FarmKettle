@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Container, Breadcrumb, Button, Modal, Form, Card, Row } from 'react-bootstrap'
+import { Container, Breadcrumb, Button, Modal, Form, Card, Row, Spinner } from 'react-bootstrap'
 import { jwtDecode } from 'jwt-decode'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
@@ -12,12 +12,13 @@ function AddressContent() {
 
   let navigate = useNavigate()
   const [userAuth,setUserAuth] = useState()
-  const [address, setAddress] = useState();
-  const [addressList, setAddressList] = useState([]);
-  const [show, setShow] = useState(false);  
-  const [editAddress, setEditAddress] = useState();
-  const [oldAddress, setOldAddress] = useState();
-  const [editShow, setEditShow] = useState(false); 
+  const [address, setAddress] = useState()
+  const [addressList, setAddressList] = useState([])
+  const [show, setShow] = useState(false); 
+  const [editAddress, setEditAddress] = useState()
+  const [oldAddress, setOldAddress] = useState()
+  const [editShow, setEditShow] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [id,setId] = useState()
   const getLoginToken = localStorage.getItem('loginToken')
 
@@ -32,6 +33,7 @@ function AddressContent() {
 
   const handleAddAddress = async() => {
     try {
+      setLoading(true)
       let addAddress = { newAddress : address }
       let res = await AxiosService.post(`${ApiRoutes.ADDADDRESS.path}/${userAuth?._id}`,addAddress,{ headers : {
         'Authorization' : `${getLoginToken}`
@@ -39,6 +41,7 @@ function AddressContent() {
       if(res.status === 200){
         handleClose()
       }
+      setLoading(false)
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }
@@ -46,6 +49,7 @@ function AddressContent() {
 
   const handleEditAddress = async(id)=> {
     try {
+      setLoading(true)
       let modifiedAddress = { newAddress : editAddress }
       let res = await AxiosService.put(`${ApiRoutes.EDITADDRESS.path}/${userAuth?._id}/${id}`,modifiedAddress,{ headers : {
         'Authorization' : `${getLoginToken}`
@@ -53,6 +57,7 @@ function AddressContent() {
       if(res.status === 200){
         handleEditClose()
       }
+      setLoading(false)
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }
@@ -154,7 +159,7 @@ function AddressContent() {
               </Modal.Body>
               <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose}>Close</Button>
-                  <Button variant="primary" onClick={handleAddAddress}>Save Address</Button>
+                  <Button variant="primary" onClick={handleAddAddress} disabled={loading}>{loading ? <Spinner animation="border" /> : 'Add Address'}</Button>
               </Modal.Footer>
           </Form>
       </Modal>
@@ -170,7 +175,7 @@ function AddressContent() {
               </Modal.Body>
               <Modal.Footer>
                   <Button variant="secondary" onClick={handleEditClose}>Close</Button>
-                  <Button variant="primary" onClick={(e) => handleEditAddress(id)}>Save Address</Button>
+                  <Button variant="primary" onClick={(e) => handleEditAddress(id)} disabled={loading}>{loading ? <Spinner animation="border" /> : 'Update Address'}</Button>
               </Modal.Footer>
           </Form>
       </Modal>
