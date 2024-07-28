@@ -5,7 +5,6 @@ import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { UserAuthContext } from '../../../contextApi/UserContextComponent'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
 
