@@ -154,7 +154,7 @@ function AddressContent() {
               </Modal.Header>
               <Modal.Body>
                   <Form.Group className="mb-3">
-                      <Form.Control as="textarea" rows={3} placeholder='Enter new Address' onChange={(e) => setAddress(e.target.value)}/>
+                      <Form.Control as="textarea" rows={3} placeholder='Enter Name and Address' onChange={(e) => setAddress(e.target.value)}/>
                   </Form.Group>
               </Modal.Body>
               <Modal.Footer>

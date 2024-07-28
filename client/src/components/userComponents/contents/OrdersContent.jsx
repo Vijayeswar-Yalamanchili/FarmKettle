@@ -28,14 +28,14 @@ function OrdersContent() {
 
   useEffect(()=> {
     getOrdersList()
-  },[])
+  },[orders])
 
   return <>
     <Container className='my-4'>
       <h4>My Orders</h4>
       <div>
         {
-          orders.length > 0 && orders.map((e,i) => {
+          orders.length > 0 ? orders.map((e,i) => {
             return <Card key={i} className='mx-5 mb-3 orderListCard mx-auto'>
               {
                 e.orderId && <>
@@ -61,12 +61,16 @@ function OrdersContent() {
                   }
                 </div>
                 <hr className='mx-auto' style={{width : "90%"}}/>
-                <p className='mx-auto'>Products will be <i>delivered in a week</i> at</p>
+                <p className='mx-auto'>Products will be <i>delivered in a week</i> at {e.address}</p>
                 </>
               }
                 
             </Card>
-          }).reverse()
+          }).reverse() 
+          :
+          <Card className='mx-auto' style={{width : "20%"}}>
+            <Card.Body className='text-center'>No Orders Found!</Card.Body>
+          </Card>
         }
         
       </div>

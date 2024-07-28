@@ -1,20 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Card, Container, Image, Spinner } from 'react-bootstrap'
+import { Button, Card, Container, Image, Spinner, Form } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 import { CartDataContext } from '../../../contextApi/CartDataComponent'
 import logo from '../../../assets/farmKettle.png'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
+import { useNavigate } from 'react-router-dom'
 
 
 function CartContent() {
 
+  let navigate = useNavigate()
   let { setCart,cart } = useContext(CartDataContext)
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(false)
   const [cartItem, setCartItem] = useState([])
   const [quantities, setQuantities] = useState()
+  const [userAuth,setUserAuth] = useState()
+  const [addresses, setAddresses] = useState()
+  const [selectedOption, setSelectedOption] = useState('')
 
   let getLoginToken = localStorage.getItem('loginToken')
   let decodedToken = jwtDecode(getLoginToken)
@@ -79,10 +84,10 @@ function CartContent() {
 
   const handleBuyNow = async(price) => {
     let productData = {
-      // products : cartItem,
       amount : price*100,
       currency: "INR",
       receipt : "receipt_11",
+      address : selectedOption,
       product : cartItem.map((e) => ({
         productId : e._id,
         productTitle : e.productTitle,
@@ -155,17 +160,52 @@ function CartContent() {
       })
       rzp1.open()
       handleClearCart()
+      navigate('/myorders')
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }
   }
 
+  const getUser = async() => {
+    try {
+        let getLoginToken = localStorage.getItem('loginToken')
+        if(getLoginToken){
+            let res = await AxiosService.get(`${ApiRoutes.CURRENTUSER.path}/${id}`,{ headers : { 'Authorization' : ` ${getLoginToken}`}})
+            let result = res.data.currentUser
+            if(res.status === 200){
+                setUserAuth(result)  
+                setAddresses(result.addressList)                  
+            }
+        }
+    } catch (error) {
+        toast.error(error.response.data.message || error.message)
+    }
+  } 
+
+  const handleSelectChange = (event) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+    console.log(value);
+  };
+
   useEffect(()=> {
     getCartItem()
+    getUser()
   },[cartItem,quantity,quantities])
 
   return  <>
     <Container className='my-5'>
+
+      <div className='mx-auto mb-4' style={{width : "70%"}}>
+        <Form.Select value={selectedOption} onChange={handleSelectChange}>
+          <option>Select Delivery Address</option>
+          {
+             addresses && addresses.map((e) => {
+              return <option value={e.address}>{e.address}</option>
+             })
+          }
+        </Form.Select>
+      </div>
       {
         cartItem.length > 0 ? cartItem.map((e,i)=> {
            return <Card className='cartItemCard d-flex mx-auto mb-3' key={i}>
