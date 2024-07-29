@@ -65,6 +65,29 @@ const register = async(req,res) => {
     }
 }
 
+const forgotPassword = async(req,res) => {
+    try {
+        const user = await UserAuthModel.findOne({email : req.body.email})
+        if(user){
+            req.body.password = await hash.createHash(req.body.password)
+            let resetPwd = await UserAuthModel.updateOne({password : req.body.password})
+            res.status(200).send({
+                message : "Password updated successfully",
+                resetPwd
+            })
+        }else{
+            res.status(400).send({
+                message : `User with ${req.body.email} doesn't exists`
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            message : "Internal server error in fetching email"
+        })
+    }
+}
+
 const logout = async(req,res) => {
     try {
         const user = await UserAuthModel.findOne({_id : req.params.id})
@@ -99,6 +122,7 @@ const contact = async(req,res) => {
 export default {
     login,
     register,
+    forgotPassword,
     logout,
     contact
 }

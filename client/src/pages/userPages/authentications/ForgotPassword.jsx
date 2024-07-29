@@ -8,9 +8,8 @@ import AppNavbar from '../../../components/userComponents/AppNavbar'
 import AppFooter from '../../../components/userComponents/AppFooter'
 import AxiosService from '../../../utils/AxiosService'
 import ApiRoutes from '../../../utils/ApiRoutes'
-import OAuth from '../../../components/userComponents/OAuth'
 
-function Login() {
+function ForgotPassword() {
 
   let navigate = useNavigate()
   const [loading, setLoading] = useState(false)
@@ -18,25 +17,29 @@ function Login() {
   let formik = useFormik({
     initialValues:{
       email:'',
-      password:''
+      password:'',      
+      confirmPassword:''
     },
     validationSchema:Yup.object({          
       email:Yup.string().required('Email is required').email('Enter a valid email'),
-      password:Yup.string().required('Password is required').matches(/^[a-zA-Z0-9!@#$%^&*]{8,15}$/,'Enter a valid Password')
+      password:Yup.string().required('Password is required').matches(/^[a-zA-Z0-9!@#$%^&*]{8,15}$/,'Enter a valid Password'),
+      confirmPassword:Yup.string().required('Confirm Password is required').matches(/^[a-zA-Z0-9!@#$%^&*]{8,15}$/,'Confirm Password should match Password')
     }),
     onSubmit : async(values) => {
         try {
           setLoading(true)
-          let res = await AxiosService.post(`${ApiRoutes.LOGIN.path}`,values)
-          if(res.status === 200){
-              localStorage.setItem('loginToken',res.data.loginToken)
-              navigate('/')
-          }
-          setLoading(false)
+          if(values.password === values.confirmPassword){
+            let res = await AxiosService.post(`${ApiRoutes.FORGOTPASSWORD.path}`,values)
+            if(res.status === 200){
+                navigate('/login')
+            }
+            setLoading(false)
+          }else{
+            toast.error("Passwords doesnt match! Please enter the same passwords")
+          }        
         } catch (error) {
             toast.error(error.response.data.message || error.message)
-            setLoading(false)
-        }        
+        }
     }
   })
 
@@ -58,18 +61,15 @@ function Login() {
             {formik.touched.password && formik.errors.password ? (<div className='authErrorText'>{formik.errors.password}</div>) : null}
           </Form.Group>
           
-          <div className='mb-4'>
-            <Link to={'/forgotpassword'} className='frgtPwdText'>Forgot Password ?</Link>
-          </div>
+          <Form.Group className="mb-4">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control type='password' placeholder="Re-Enter Password" id="confirmPassword" name='confirmPassword' onChange={formik.handleChange} value={formik.values.confirmPassword} onBlur={formik.handleBlur}/>
+            {formik.touched.password && formik.errors.password ? (<div className='authErrorText'>{formik.errors.password}</div>) : null}
+          </Form.Group>
          
           <div className="d-grid mb-4">
-            <Button className='formBtns' type='submit' disabled={loading}>{loading ? <Spinner animation="border" /> : 'Login'}</Button>            
+            <Button className='formBtns' type='submit' disabled={loading}>{loading ? <Spinner animation="border" /> : 'Update Password'}</Button>            
           </div>
-          <hr style={{color:"#0E6B06"}}/>
-          <div className="d-grid mb-4">
-            <Button className='formBtns' onClick={()=>navigate('/register')}>Sign Up</Button>
-          </div>
-          {/* <OAuth/> */}
         </Form>
       </Col>
     </Container>
@@ -77,4 +77,4 @@ function Login() {
   </>
 }
 
-export default Login
+export default ForgotPassword

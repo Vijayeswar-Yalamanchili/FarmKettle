@@ -10,6 +10,7 @@ const router = express.Router()
 
 router.post('/login',adminAuthController.login)
 router.post('/register',adminAuthController.register)
+router.post('/forgotpassword',adminAuthController.forgotPassword)
 router.put('/logout/:id',adminAuthController.logout)
 
 router.get('/allusers/:id',auth.adminAuthenticate,auth.adminGuard,adminUserController.allUsers)

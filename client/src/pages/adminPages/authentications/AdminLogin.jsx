@@ -35,6 +35,7 @@ function AdminLogin() {
                 setLoading(false)
             } catch (error) {
                 toast.error(error.response.data.message || error.message)
+                setLoading(false)
             }
         }
     })

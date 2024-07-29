@@ -17,7 +17,6 @@ function OrdersContent() {
     try {
       let res = await AxiosService.get(`${ApiRoutes.GETALLORDERS.path}/${id}`,{ headers : { 'Authorization' : `${getLoginToken}` } })
       let result = res.data.ordersList
-      console.log(result)
       if(res.status === 200){
         setOrders(result)
       }

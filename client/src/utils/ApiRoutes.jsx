@@ -7,6 +7,10 @@ const ApiRoutes = {
         path : '/users/register',
         authenticate : false
     },
+    FORGOTPASSWORD : {
+        path : '/users/forgotpassword',
+        authenticate : false
+    },
     LOGOUT : {
         path : '/users/logout',
         authenticate : true
@@ -90,12 +94,16 @@ const ApiRoutes = {
     },
     // ADMIN
     ADMINLOGIN : {
-        path : 'admin/login',
+        path : '/admin/login',
         authenticate : true
     },
     ADMINREGISTER : {
-        path : 'admin/register',
+        path : '/admin/register',
         authenticate : true
+    },
+    ADMINFORGOTPASSWORD : {
+        path : '/admin/forgotpassword',
+        authenticate : false
     },
     ADMINLOGOUT : {
         path : '/admin/logout',

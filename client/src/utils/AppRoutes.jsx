@@ -5,6 +5,7 @@ import AdminLoadingComponent from "../components/adminComponents/AdminLoadingCom
 
 const LoginPage = lazy(()=> import('../pages/userPages/authentications/Login'))
 const RegisterPage = lazy(()=> import('../pages/userPages/authentications/Register'))
+const ForgotPasswordPage = lazy(()=> import('../pages/userPages/authentications/ForgotPassword'))
 const HomePage = lazy(()=> import('../pages/userPages/navs/Home'))
 const AboutPage = lazy(()=> import('../pages/userPages/navs/About'))
 const HCPage = lazy(()=> import('../pages/userPages/navs/HealthCertifications'))
@@ -20,6 +21,7 @@ const FailurePage = lazy(()=> import('../pages/userPages/navs/FailurePage'))
 
 const AdminLoginPage = lazy(()=> import('../pages/adminPages/authentications/AdminLogin'))
 const AdminRegisterPage = lazy(()=> import('../pages/adminPages/authentications/AdminRegister'))
+const AdminForgotPasswordPage = lazy(()=> import('../pages/adminPages/authentications/AdminForgotPassword'))
 const AdminProfilePage = lazy(()=> import('../pages/adminPages/navs/AdminProfile'))
 const AdminDashboardPage = lazy(()=> import('../pages/adminPages/navs/AdminDashboard'))
 const AdminUsersListPage = lazy(()=> import('../pages/adminPages/navs/AdminUsersList'))
@@ -35,6 +37,11 @@ const Approutes = [
     {
         path : '/register',
         element : <Suspense fallback={<LoadingComponent/>}><RegisterPage/></Suspense>,
+        exact : true
+    },
+    {
+        path : '/forgotpassword',
+        element : <Suspense fallback={<LoadingComponent/>}><ForgotPasswordPage/></Suspense>,
         exact : true
     },
     {
@@ -106,6 +113,11 @@ const Approutes = [
     {
         path : '/admin/register',
         element : <Suspense fallback={<AdminLoadingComponent/>}><AdminRegisterPage/></Suspense>,
+        exact : true
+    },
+    {
+        path : '/admin/forgotpassword',
+        element : <Suspense fallback={<AdminLoadingComponent/>}><AdminForgotPasswordPage/></Suspense>,
         exact : true
     },
     {
