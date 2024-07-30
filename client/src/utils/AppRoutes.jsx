@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react"
 import LoadingComponent from '../components/userComponents/LoadingComponent'
 import UserListContextComponent from "../contextApi/UserListContextComponent"
 import AdminLoadingComponent from "../components/adminComponents/AdminLoadingComponent"
+import UserErrorScreen from '../components/UserErrorScreen'
+import AdminErrorScreen from '../components/AdminErrorScreen'
 
 const LoginPage = lazy(()=> import('../pages/userPages/authentications/Login'))
 const RegisterPage = lazy(()=> import('../pages/userPages/authentications/Register'))
@@ -104,6 +106,11 @@ const Approutes = [
         element : <Suspense fallback={<LoadingComponent/>}><FailurePage/></Suspense>,
         exact : true
     },
+    {
+        path:'*',
+        element : <UserErrorScreen/>,
+        exact:true
+    },
     // ADMIN
     {
         path : '/admin',
@@ -145,6 +152,11 @@ const Approutes = [
         element : <Suspense fallback={<AdminLoadingComponent/>}><AdminProfilePage/></Suspense>,
         exact : true
     },
+    {
+        path:'*',
+        element : <AdminErrorScreen/>,
+        exact:true
+    }
 ]
 
 export default Approutes

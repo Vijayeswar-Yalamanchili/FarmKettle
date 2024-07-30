@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Col, Form, Button, Spinner } from 'react-bootstrap'
+import { Container, Col, Form, Button, Spinner, Breadcrumb } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
@@ -46,6 +46,11 @@ function ForgotPassword() {
   return <>
     <AppNavbar/>
     <Container>
+      <Breadcrumb>
+        <Breadcrumb.Item onClick={ ()=> navigate('/login')}>Login</Breadcrumb.Item>
+        <Breadcrumb.Item active>Forgot Password</Breadcrumb.Item>
+      </Breadcrumb>
+
       <Col md xs={12}>
         <Form onSubmit={formik.handleSubmit} className='authForm mx-auto my-5 p-5 rounded-5'>
           
