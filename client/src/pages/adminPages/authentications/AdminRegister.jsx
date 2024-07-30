@@ -48,6 +48,7 @@ function AdminRegister() {
         }
     }
   })
+  
   return <>
     <AdminNavbar/>
     <Container>
