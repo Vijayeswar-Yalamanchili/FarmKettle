@@ -83,84 +83,88 @@ function CartContent() {
   const cummulativePrice = cartItem.reduce((preve,curr)=> preve + ((curr.productQuantity)* curr?.productPrice) ,0)
 
   const handleBuyNow = async(price) => {
-    let productData = {
-      amount : price*100,
-      currency: "INR",
-      receipt : "receipt_11",
-      address : selectedOption,
-      product : cartItem.map((e) => ({
-        productId : e._id,
-        productTitle : e.productTitle,
-        productQuantity : e.productQuantity,
-        productPrice : e.productPrice,
-        productImage : e.productImage,
-        productWeight : e.productWeight,
-      }))
-    }
     try {
-      let res = await AxiosService.post(`${ApiRoutes.ORDER.path}/${id}`,productData, {
-        headers : {
-            'Authorization' : `${getLoginToken}`,
-            "Content-Type" : 'application/json'
+      if(!selectedOption){
+        toast.error("Selecte the address")
+      } else {
+        let productData = {
+          amount : price*100,
+          currency: "INR",
+          receipt : "receipt_11",
+          address : selectedOption,
+          product : cartItem.map((e) => ({
+            productId : e._id,
+            productTitle : e.productTitle,
+            productQuantity : e.productQuantity,
+            productPrice : e.productPrice,
+            productImage : e.productImage,
+            productWeight : e.productWeight,
+          }))
         }
-      })
-      let orderData = res.data.orderData
-      let order = res.data.order
-      var options = {
-        "key": import.meta.env.VITE_RP_KEY, // Enter the Key ID generated from the Dashboard
-        "amount": price, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        "currency": "INR",
-        "name": "FarmKettle", //your business name
-        "description": "Test Transaction",
-        "image": {logo},
-        "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        "handler": async function (response){
-          const responseBody = {...response}
-          let res = await AxiosService.post(`${ApiRoutes.VALIDATEORDER.path}/${order.id}`,responseBody, {
-              headers : {
-                  'Authorization' : `${getLoginToken}`,
-                  "Content-Type" : 'application/json'
-              }
-          })
-          const updateOrderDataResult = res.data
-          let orderDatas = {
-              orderId : updateOrderDataResult?.orderId,
-              paymentId : updateOrderDataResult?.paymentId,
-              id : orderData._id
+        let res = await AxiosService.post(`${ApiRoutes.ORDER.path}/${id}`,productData, {
+          headers : {
+              'Authorization' : `${getLoginToken}`,
+              "Content-Type" : 'application/json'
           }
-          console.log(orderDatas)
-          let resData = await AxiosService.put(`${ApiRoutes.UPDATEORDER.path}`,orderDatas, {
-              headers : {
-                  'Authorization' : `${getLoginToken}`,
-                  "Content-Type" : 'application/json'
-              }
-          })
-        },
-        "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
-          "name": `${decodedToken.firstName} ${decodedToken.lastName}`, //your customer's name
-          "email": `${decodedToken.email}`, 
-          "contact": `${decodedToken.mobile}`  //Provide the customer's phone number for better conversion rates 
-        },
-        "notes": {
-            "address": "Razorpay Corporate Office"
-        },
-        "theme": {
-            "color": "#0E6B06"
-        }
-      };
-      var rzp1 = new Razorpay(options)
-      rzp1.on('payment.failed', function (response){
-        alert(response.error.code);
-        alert(response.error.description);
-        alert(response.error.source);
-        alert(response.error.step);
-        alert(response.error.reason);
-        alert(response.error.metadata.order_id);
-        alert(response.error.metadata.payment_id);
-      })
-      rzp1.open()
-      handleClearCart()
-      navigate('/myorders')
+        })
+        let orderData = res.data.orderData
+        let order = res.data.order
+        var options = {
+          "key": import.meta.env.VITE_RP_KEY, // Enter the Key ID generated from the Dashboard
+          "amount": price, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "currency": "INR",
+          "name": "FarmKettle", //your business name
+          "description": "Test Transaction",
+          "image": {logo},
+          "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          "handler": async function (response){
+            const responseBody = {...response}
+            let res = await AxiosService.post(`${ApiRoutes.VALIDATEORDER.path}/${order.id}`,responseBody, {
+                headers : {
+                    'Authorization' : `${getLoginToken}`,
+                    "Content-Type" : 'application/json'
+                }
+            })
+            const updateOrderDataResult = res.data
+            let orderDatas = {
+                orderId : updateOrderDataResult?.orderId,
+                paymentId : updateOrderDataResult?.paymentId,
+                id : orderData._id
+            }
+            console.log(orderDatas)
+            let resData = await AxiosService.put(`${ApiRoutes.UPDATEORDER.path}`,orderDatas, {
+                headers : {
+                    'Authorization' : `${getLoginToken}`,
+                    "Content-Type" : 'application/json'
+                }
+            })
+          },
+          "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+            "name": `${decodedToken.firstName} ${decodedToken.lastName}`, //your customer's name
+            "email": `${decodedToken.email}`, 
+            "contact": `${decodedToken.mobile}`  //Provide the customer's phone number for better conversion rates 
+          },
+          "notes": {
+              "address": "Razorpay Corporate Office"
+          },
+          "theme": {
+              "color": "#0E6B06"
+          }
+        };
+        var rzp1 = new Razorpay(options)
+        rzp1.on('payment.failed', function (response){
+          alert(response.error.code);
+          alert(response.error.description);
+          alert(response.error.source);
+          alert(response.error.step);
+          alert(response.error.reason);
+          alert(response.error.metadata.order_id);
+          alert(response.error.metadata.payment_id);
+        })
+        rzp1.open()
+        handleClearCart()
+        navigate('/myorders')
+      }
     } catch (error) {
       toast.error(error.response.data.message || error.message)
     }
